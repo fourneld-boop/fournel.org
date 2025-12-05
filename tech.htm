@@ -1,548 +1,483 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" style="--wm-toolbar-height: 285px;"><!-- #BeginTemplate "../master.dwt" --><head><script src="Technology%20Timeline_files/athena.js" type="text/javascript"></script>
-<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app225.us.archive.org';v.server_ms=359;archive_analytics.send_pageview({});});</script>
-<script type="text/javascript" src="Technology%20Timeline_files/bundle-playback.js" charset="utf-8"></script>
-<script type="text/javascript" src="Technology%20Timeline_files/wombat.js" charset="utf-8"></script>
-<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
-<script type="text/javascript" src="Technology%20Timeline_files/ruffle.js"></script>
-<script type="text/javascript">
-    __wm.init("https://web.archive.org/web");
-  __wm.wombat("http://www.fournel.org:80/tech/tech.htm","20170827145558","https://web.archive.org/","web","https://web-static.archive.org/_static/",
-	      "1503845758");
-</script>
-<link rel="stylesheet" type="text/css" href="Technology%20Timeline_files/banner-styles.css">
-<link rel="stylesheet" type="text/css" href="Technology%20Timeline_files/iconochive.css">
-<!-- End Wayback Rewrite JS Include -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Technology Timeline – fournel.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="A long-form technology and socio-technical timeline: from Hominid and Agrarian ages through Industrial, Information, and beyond.">
 
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-<!-- #BeginEditable "doctitle" -->
-<title>Technology Timeline</title>
-<style type="text/css">
+  <style>
+    :root {
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #4fd1ff;
+      --accent-2: #a855ff;
+      --accent-soft: rgba(79, 209, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
+    }
 
-.style2 {
-	text-align: left;
-}
-</style>
-<!-- #EndEditable -->
-<link href="Technology%20Timeline_files/style2.css" rel="stylesheet" type="text/css">
-<style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
 
-.style1 {
-	color: #5F8EA9;
-	text-decoration: underline;
-}
-</style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #3a1454 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 18, 0.96),
+        rgba(2, 6, 18, 0.88),
+        transparent
+      );
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
+        radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.7),
+        0 0 40px rgba(79, 209, 255, 0.7);
+      overflow: hidden;
+    }
+
+    .nav-logo::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 999px;
+      border: 2px solid rgba(5, 10, 25, 0.9);
+      box-shadow: 0 0 12px rgba(2, 6, 18, 0.8) inset;
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    .nav-title span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      font-size: 0.86rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      border-color: var(--border-soft);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem 3.3rem;
+    }
+
+    .hero {
+      margin-bottom: 2.3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(79, 209, 255, 0.4);
+      background: rgba(10, 27, 58, 0.9);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #5cffb3;
+      box-shadow: 0 0 10px rgba(92, 255, 179, 0.9);
+    }
+
+    .hero h1 {
+      margin: 0.7rem 0 0.4rem;
+      font-size: clamp(2rem, 2.4vw + 1.3rem, 2.6rem);
+      letter-spacing: 0.01em;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 40rem;
+    }
+
+    .hero-subtitle span {
+      color: var(--accent);
+    }
+
+    .hero-actions {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    .hero-meta {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(4, 10, 26, 0.92);
+    }
+
+    /* Tech graphic card */
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      background: radial-gradient(circle at 25% 15%, #4fd1ff, transparent 55%),
+                  radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
+                  radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
+      border: 1px solid rgba(79, 209, 255, 0.4);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #e5ecff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .hero-card-lines {
+      position: absolute;
+      inset: auto -40px -90px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-card-lines::before,
+    .hero-card-lines::after {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-card-lines::after {
+      inset: 36px;
+    }
+
+    .hero-card-node {
+      position: absolute;
+      right: 50px;
+      bottom: 70px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, #b9e8ff 42%, transparent 60%),
+        conic-gradient(from 0deg, #020612, #3b98ff, #020612, #a855ff, #020612);
+      box-shadow:
+        0 0 18px rgba(79, 209, 255, 0.85),
+        0 0 70px rgba(15, 23, 42, 1);
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .timeline-wrapper {
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      padding: 1.1rem 1.2rem 1.3rem;
+      max-height: 75vh;
+      overflow: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .timeline-wrapper h2 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .timeline-wrapper p {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline {
+      font-family: "SF Mono", "Consolas", "Liberation Mono", "Courier New", monospace;
+      font-size: 0.86rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.9rem;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      header {
+        position: static;
+      }
+
+      .timeline-wrapper {
+        max-height: none;
+      }
+    }
+  </style>
 </head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>Technology Timeline</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="index.html">About</a>
+    </div>
+  </nav>
+</header>
 
-<body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
-<script>__wm.rw(0);</script>
-<div id="wm-ipp-base" lang="en" style="display: block; direction: ltr; height: 285px;" toolbar-mode="auto">
-</div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20170827145558/http://www.fournel.org:80/tech/tech.htm</div>
-<script type="text/javascript">//<![CDATA[
-__wm.bt(750,27,25,2,"web","http://www.fournel.org/tech/tech.htm","20170827145558",1996,"https://web-static.archive.org/_static/",["https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3","https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv"], false);
-  __wm.rw(1);
-//]]></script>
-<!-- END WAYBACK TOOLBAR INSERT -->
- 
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Socio-technical ages</span>
+      </div>
+      <h1>Technology Timeline</h1>
+      <p class="hero-subtitle">
+        This timeline tracks <span>ages of technology and infrastructure</span> – from Hominid,
+        Agrarian, and Industrial eras to Information, Biotech, Nanotech, and beyond. It’s designed to
+        sit alongside the <a href="history.htm">historical chronology</a> and the portal on
+        <a href="home.htm">the wormhole home page</a>.
+      </p>
 
-<!-- Begin Container -->
-<div id="container">
-	<!-- Begin Masthead -->
-	<div id="masthead">
-		<h1>
-		<img alt="Nexus Logo" height="74" src="Technology%20Timeline_files/nexusbannner.jpg" width="486"></h1>
-		<h3><font color="#FF0000" face="Becker-Medium" size="5">
-        Historical and Technological Timelines</font></h3>
-	</div>
-	<!-- End Masthead -->
-	<!-- Begin Navigation -->
-	<div id="navigation">
-		<ul style="width: 98%; height: 228px">
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/index.html">Home</a></li>
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/about/about.htm">About</a></li>
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/tech.htm">Technology Timeline</a></li>
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/history/history.htm">Historical Chronology</a></li>
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/photo_gallery/photo_gallery.htm">Photo Gallery</a></li>
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/information_links/information_links.htm">Links</a></li>
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/faq/faq.htm">FAQ</a></li>
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/contact/contact.htm">Contact</a></li>
-		</ul>
-		<p>&nbsp;</p>
-		<p style="width: 149px">&nbsp;</p>
-		<p>&nbsp;</p>
-		<p style="width: 152px; height: 14px">&nbsp;</p>
-	</div>
-	<!-- End Navigation -->
-	<!-- Begin Content -->
-	<div id="content">
-		<!-- #BeginEditable "content" -->
-		<h2>Technology Timeline</h2>
-		<p>What follows is a loose system of classification used to determine the
-  approximate level of technological and socio-political advancement for sentient life on Earth
-  and eventually elsewhere in the Universe. The time span from 7 million B.C. up to the
-  present is based on legitimate archaeological discoveries and historical records. Everything
-  after that is based partly on current scientific theories and partly on my own
-  speculations.</p>
-		<h3>&nbsp;<font size="5">The Ages of Technological and Socio-Political Advancement</font></h3>
-		<ul>
-			<li><span class="style_bold">Hominid Age (pre-technological age)</span><br>
-			<span class="style_italic">7 million BC to 2.6 million BC <br>
-			[ex.
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Sahelanthropus_tchadensis">Sahelanthropus Tchadensis,</a>
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Australopithecus_anamensis">Australopithecus Anamensis</a>] 
-			<br>
-			</span><br>
-			Hominid Social Organization. Hominids who evolved from primate 
-			mammals emerge in Africa around 7 million B.C.. Food gained through 
-			gathering plants. Simple tool users. Unorganized Violence common.
-			<br>
-			</li>
-			<li class="style2"><span class="style_bold">Scavenging Age</span><br>
-			<i>2.6 million BC to 600,000 BC</i> <br>
-			[ex:
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Australopithecus_afarensis">Australopithecus afarensis</a>,
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Australopithecus_africanus">Australopithecus Africanus</a>,
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Homo_habilis">Homo habilis</a>, 
-			&amp; <a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Homo_erectus">Homo Erectus</a>]
-			<br>
-			<br>
-			<img alt="Australopithecus Africanus" height="119" longdesc="Australopithecus Africanus from 3 to 1.6 million years ago" src="Technology%20Timeline_files/australopithecus_small.jpg" width="199"><br>
-			Clan (family) social organization. Scavenging Revolution: food 
-			gained through scavenging for meat. Simple stone tools made. Fire 
-			Discovered. Transportation by foot, and later on, by
-			<a href="https://web.archive.org/web/20170827145558/http://www.trussel.com/prehist/news132.htm">water</a>.&nbsp; 
-			Organized Violence Develops. <br>
-			</li>
-			<li><span class="style_bold">Hunting/Gathering Age</span><br>
-			<span class="style_italic">600,000 BC to 10,000 BC<br>
-			[ex. <a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Homo_erectus">Homo 
-			Erectus</a> &amp; 
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Homo_sapiens">Homo Sapiens</a>] 
-			<br>
-			</span><br>
-			Village social organization. Horticultural Revolution: food gained 
-			through planting small crops and domestication of some animals. 
-			Advanced tools in use. More advanced pictorial communication: 
-			writing is invented. Transportation is primarily through animal and 
-			water. Wheel invented. Organized Warfare Develops.&nbsp; First cities are 
-			built (ie. Eridu, Uruk, and Jericho, etc....)&nbsp; For a more detailed 
-			History click here. </li>
-			<li><strong>Horticultural Age</strong><br>
-			<em>10,000 B.C. to 4000 B.C. </em>[ex.
-			<a href="https://web.archive.org/web/20170827145558/http://www.wf.carleton.ca/Museum/man/sapiens.html">Homo 
-			Sapiens Sapiens</a>]<br>
-			Village social organization.
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/prehistor.htm">
-			Horticultural Revolution</a>: food gained through planting small 
-			crops and domestication of some animals. Advanced tools in use. More 
-			advanced pictorial communication: writing is invented. 
-			Transportation is primarily through animal and water. Wheel 
-			invented. Organized Warfare Develops.&nbsp; First cities are built (ie. 
-			Eridu, Uruk, and Jericho, etc....)&nbsp; For a more
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/history/history.htm">detailed History click here</a>.<br>
-			&nbsp;</li>
-			<li><strong>Agrarian Age</strong><br>
-			<em>4000 B.C. to 1700 A.D.</em><br>
-			City and Regional social organization (city states control vast 
-			areas - ie. Ur, Babylon, Sparta, Athens, Carthage, Rome, 
-			Constantinople, and Baghdad, etc..). Agrarian Revolution: food 
-			gained through planting large crops using the plough and breeding 
-			livestock. Small scale manufactured goods. Parchment is first used, 
-			making writing common: used for keeping records, business 
-			transactions, religious documents, etc.; Machines are invented. 
-			Transportation through animal, water, and/or wind-powered means. For 
-			a more <a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/history/history.htm">detailed history click here</a>. Greek Dark Age (1100 to 750 B.C.). 
-			Major religions emerge: <a href="https://web.archive.org/web/20170827145558/http://www.sabaean.org/">Sabeanism</a>, 
-			Judaism, Hinduism, Zoroastrianism (modern Parsee in India), 
-			Confucianism, Taoism, Buddhism, Jainism, Shinto, Christianity, 
-			Islam, and Sikhism. Roman Empire established (27 BC). Gunpowder 
-			invented. European Dark Age (400 to 1500 AD). Mercenary Armies and 
-			Navies established. Organized Warfare becomes common. Era of 
-			European Discovery and Colonization (1500 AD to 1900 AD).&nbsp; 
-			First nation-states are established (ie. China, Hungary, Poland, 
-			Lithuania, Spain, Portugal, France, England, and Russia) in the 
-			later part of the Agrarian age &nbsp;<br>
-			</li>
-			<li><strong>Industrial Age</strong><br>
-			<em>1700 A.D. to 1960 A.D.</em><br>
-			National social organization (<a href="https://web.archive.org/web/20170827145558/http://www.un.org/Overview/unmember.html">nation 
-			states</a> - ie. United States, Britain, France, Germany, Russia, 
-			China, India, Brazil, etc...).
-			<a href="https://web.archive.org/web/20170827145558/http://campus.northpark.edu/history//WebChron/WestEurope/IndRev.html">
-			Industrial Revolution</a>: mass production using factories create 
-			new occupations. Standing Armies and Navies (and later, Air Forces) 
-			are Developed. Electricity is in use. Simple mechanized vehicles. In 
-			1773, the first Stock Market is created in Britain. In 1787, the 
-			United States of America is formed. Mass produced text and 
-			communication using the telegraph (1844) (and later the telephone) 
-			is in use. New Christian religious sects emerge in the west: 
-			Jehovah's Witness, Seventh Day Adventist, and Mormonism (Later Day 
-			Saints). The Bahá'í Faith emerges out of 19th century Shi'ah Persia. 
-			Newspapers are common. Radio and Television is invented. World War I 
-			(1914-1918). The <a href="https://web.archive.org/web/20170827145558/http://www.un.org/">United Nations</a> is 
-			established after World War II (1939-1945) ends; Nuclear weapons are 
-			developed in 1945 thereby beginning the Cold War between the East 
-			(Soviet Union and allies) and West (United States and allies). In 
-			1946 the Electronic Computer (ENIAC) is invented. In 1947 A.D., 
-			<img alt="USS Independance" height="201" src="Technology%20Timeline_files/independance.jpg" width="300"><br>An example of an aircraft carrier (USS Independence) of the late 
-			20th century.&nbsp; <br>
-			UFO 
-			phenomena begins after Roswell Incident shows flying saucers on 
-			Earth and captured Alien bodies (<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/grey.htm">Greys</a>). 
-			In 1957 A.D. first satellite (Sputnik 1) is launched into
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/earth.htm">
-			Earth</a> Orbit.&nbsp; For a more
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/history/history.htm">detailed history click here</a>.<br>
-			&nbsp;<br>
-			</li>
-			<li>
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/infotech.htm">
-			<strong>Information Age</strong></a><br>
-			<em>1960 A.D. to 2030 A.D. (Present Age)</em><br>
-			International social organization (ie. -
-			<a href="https://web.archive.org/web/20170827145558/http://www.un.org/">United Nations</a>, European Union, 
-			North Atlantic Treaty Organization, World Trade Organization, World 
-			Bank, and other international organizations). Information 
-			Revolution: service-oriented and computer-based occupations. In 1969 
-			AD Earth first landed on its moon,
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/luna.htm">Luna</a>. Petroleum for fuel is in use. Nuclear Fission power plants 
-			are in use. Mass production becomes more efficient, giving rise to 
-			advances in alloys and plastics: "High-tech" industries. Computers 
-			become common. Primitive space travel via chemical rocket technology 
-			(liquid hydrogen and oxygen fuel). <br>
-			<img alt="USS Discovery" height="205" src="Technology%20Timeline_files/Shuttle.jpg" width="212"><br>
-			An example of an late 20th century space shuttle (USS Discovery)<br>&nbsp;<br>An example of a satellite of the late 20th century.<br>Mass transportation and communication (Radio is transmitted at the 
-			speed of light so 1 c=speed of light or 300,000 km/s). For more 
-			information on <a href="https://web.archive.org/web/20170827145558/http://www.4p8.com/eric.brasseur/erta.html">Special relativity click here.</a> Television is common. Stephen 
-			Hawking's "A Brief History of Time" is written.&nbsp;&nbsp;
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/time.htm">Click here for a preview of some of Hawking's ideas</a>&nbsp;&nbsp;<br>Nuclear, Chemical, Biological, and Cyber War are developed. In 1989 
-			the Cold War ends; the Soviet Union is dissolved in 1991.&nbsp; 
-			First
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/planets.htm">extra-solar planets</a> discovered. In 2003, the potential for 
-			complete recording and summation of daily financial dealings began 
-			to be realized. In 1995 the World Trade Organization is founded.<br>&nbsp;<br>2009<br>A $1,000 personal computer can perform about a trillion calculations 
-			per second. Personal computers with high-resolution visual displays 
-			come in a range of sizes, from those small enough to be embedded in 
-			clothing and jewellery up to the size of a thin book.<br>&nbsp; Cables are disappearing. Communication between components uses 
-			short-distance wireless technology. High-speed wireless 
-			communication provides access to the Web.<br>&nbsp; The majority of text is created using continuous speech recognition. Also 
-			ubiquitous are language user interfaces (LUIs).<br>&nbsp; Most routine business transactions (purchases, travel, reservations) take 
-			place between a human and a virtual personality. Often, the virtual 
-			personality includes an animated visual presence that looks like a 
-			human face.<br>&nbsp; Although traditional classroom organization is still common, intelligent 
-			courseware has emerged as a common means of learning.<br>&nbsp; Pocket-sized reading machines for the blind and visually impaired, 
-			"listening machines" (speech-to-text conversion) for the deaf, and 
-			computer- controlled orthotic devices for paraplegic individuals 
-			result in a growing perception that primary disabilities do not 
-			necessarily impart handicaps.<br>&nbsp; Translating telephones (speech-to-speech language translation) are 
-			commonly used for many language pairs.<br>&nbsp; Accelerating returns from the advance of computer technology have 
-			resulted in continued economic expansion. Price deflation, which had 
-			been a reality in the computer field during the twentieth century, 
-			is now occurring outside the computer field. The reason for this is 
-			that virtually all economic sectors are deeply affected by the 
-			accelerating improvement in the price performance of computing.<br>&nbsp; Human musicians routinely jam with cybernetic musicians.<br>&nbsp; Bioengineered treatments for cancer and heart disease have greatly 
-			reduced the mortality from these diseases.<br>&nbsp; The neo-Luddite movement is growing.<br>&nbsp;&nbsp; 
-			<br>2019<br>A $1,000 computing device (in 1999 dollars) is now approximately 
-			equal to the computational ability of the human brain. Computers are 
-			now largely invisible and are embedded everywhere-in walls, tables, 
-			chairs, desks, clothing, jewelry, and bodies.<br>&nbsp; Three-dimensional virtual reality displays, embedded in glasses and 
-			contact lenses, as well as auditory "lenses," are used routinely as 
-			primary interfaces for communication with other persons, computers, 
-			the Web, and virtual reality.<br>&nbsp; Most interaction with computing is through gestures and two-way 
-			natural-language spoken communication.<br>&nbsp; Nanoengineered machines are beginning to be applied to manufacturing and 
-			process-control applications.<br>&nbsp; High-resolution, three-dimensional visual and auditory virtual reality 
-			and realistic all-encompassing tactile environments enable people to 
-			do virtually anything with anybody, regardless of physical 
-			proximity.<br>&nbsp; Paper books or documents are rarely used and most learning is conducted 
-			through intelligent, simulated software-based teachers.<br>&nbsp; Blind persons routinely use eyeglass-mounted reading-navigation systems. 
-			Deaf persons read what other people are saying through their lens 
-			displays. Paraplegic and some quadriplegic persons routinely walk 
-			and climb stairs through a combination of computer-controlled nerve 
-			stimulation and exoskeletal robotic devices.<br>&nbsp; The vast majority of transactions include a simulated person.<br>&nbsp; Automated driving systems are now installed in most roads.<br>&nbsp; People are beginning to have relationships with automated personalities 
-			and use them as companions, teachers, caretakers, and lovers.<br>&nbsp; Virtual artists, with their own reputations, are emerging in all of the 
-			arts.<br>&nbsp; There are widespread reports of computers passing the Turing Test, 
-			although these tests do not meet the criteria established by 
-			knowledgeable observers.<br>&nbsp;<br>&nbsp;<br>2029<br>A $1,000 (in 1999 dollars) unit of computation has the computing 
-			capacity of approximately 1,000 human brains. Permanent or removable 
-			implants (similar to contact lenses) for the eyes as well as 
-			cochlear implants are now used to provide input and output between 
-			the human user and the worldwide computing network.<br>&nbsp; Direct neural pathways have been perfected for high-bandwidth connection 
-			to the human brain. A range of neural implants is becoming available 
-			to enhance visual and auditory perception and interpretation, 
-			memory, and reasoning.<br>&nbsp; Automated agents are now learning on their own, and significant knowledge 
-			is being created by machines with little or no human intervention. 
-			Computers have read all available human- and machine-generated 
-			literature and multimedia material.<br>&nbsp; There is widespread use of all-encompassing visual, auditory, and tactile 
-			communication using direct neural connections, allowing virtual 
-			reality to take place without having to be in a "total touch 
-			enclosure."<br>&nbsp; The majority of communication does not involve a human. The majority of 
-			communication involving <br>&nbsp; There is almost no human employment in production, agriculture, or 
-			transportation. Basic life needs are available for the vast majority 
-			of the human race. <br>&nbsp; There is a growing discussion about the legal rights of computers and 
-			what constitutes being "human."<br>&nbsp; Although computers routinely pass apparently valid forms of the Turing 
-			Test, controversy persists about whether or not machine intelligence 
-			equals human intelligence in all of its diversity.<br>&nbsp; Machines claim to be conscious.&nbsp; See Artificial Intelligence. These 
-			claims are largely accepted.<br>&nbsp;<br>&nbsp;<br>2049<br>The common use of nanoproduced food, which has the correct 
-			nutritional composition and the same taste and texture of 
-			organically produced food, means that the availability of food is no 
-			longer affected by limited resources, bad crop weather, or spoilage. 
-			Nanobot swarm projections are used to create visual-auditory-tactile 
-			projections of people and objects in real reality.<br>&nbsp;<br>By 2037 A.D. the European Union (EU) became a loose confederation of 
-			states with a common political &amp; economic system.&nbsp; For a more
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/history/history.htm">detailed history click here</a>. &nbsp;<br>
-			<br><br>
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/orionplan.gif">
-			</a>&nbsp; An example of a commercial orbital spacecraft (Orion) of 
-			the early 21st century. <br>
-			</li>
-			<li><a href="https://web.archive.org/web/20170827145558/http://www.wired.com/wired/scenarios/museum.html">
-			<strong>Nanotechnology</strong></a><strong> Age</strong><br>
-			2<em>030 A.D. to 2300 A.D.&nbsp;&nbsp; Global social organization 
-			(World Confederation) and <a href="https://web.archive.org/web/20170827145558/http://www.towardsunity.org/">Continental social organization</a></em> (<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/European_Union">European 
-			Union</a>,
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/North_American_Union">North 
-			American Union</a>, 
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Cooperation_Council_for_the_Arab_States_of_the_Gulf">
-			Arab 
-			Union</a>, 
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/East_Asia_Community">East 
-			Asian Union</a>, <a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Asean">
-			South-East Asian U<span class="style1">nion</span></a>,
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/South_Asian_Association_for_Regional_Cooperation">
-			South Asian Union</a>, 
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/African_union">African Union</a>,
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Central_Asian_Union">Central 
-			Asian Union</a>,
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/Pacific_Union">Pacific Union,</a> and
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/South_American_Union">South 
-			American U<span class="style1">nion</span></a>).
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/nanotech.htm">
-			Nanotechnology</a> Revolution: creation of self-replicating 
-			atom-sized machines thereby revolutionizing the agricultural, 
-			industrial, information, and service industries; cybernetic 
-			technology developed (brain implants which allow transmission of 
-			information from person to person) and organic technology (living 
-			machines) developed. Nuclear fusion: (<a href="https://web.archive.org/web/20170827145558/http://silver.neep.wisc.edu/~neep533/LEC24/0slide.html">click 
-			here for new Fusion principles course</a> &amp;
-			<a href="https://web.archive.org/web/20170827145558/http://elvis.neep.wisc.edu/~neep602/lecture26.html">Click 
-			here for old Fusion principles course</a>) and solar power are in 
-			use. <br>
-			&nbsp;<br>
-			Enterprise traveling to Mars<br>
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/forcefields.htm">
-			Forcefield</a> Technology developed. Interplanetary space travel is 
-			developed in 21st century due to low cost Solar Sail Propulsion,
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/ion.htm">
-			Ion Propulsion</a>, and Nanotechnology-based orbital space 
-			manufacturing. <br>
-			&nbsp;<br>
-			&nbsp;<br>
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/ion_craft.htm">
-			</a><br>
-			An example of a mid 21st century explorer ship (Discovery) using ion 
-			propulsion.<br>
-			&nbsp;<br>
-			In 2088, New Alexandria, the first permanent
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/mars.htm">
-			Mars</a> Colony is established and a monument to
-			<a href="https://web.archive.org/web/20170827145558/http://www.carlsagan.com/">Carl Sagan</a> is erected in the 
-			centre of the colony. By 2130 Spacecraft with rotational centrifuges 
-			are employed traveling at sublight speeds (by 2130 it would take 53 
-			days to travel to Mars and 150 days to travel to Jupiter using
-			<a href="https://web.archive.org/web/20170827145558/http://elvis.neep.wisc.edu/~jfs/neep602.lecture31.fusionProp.96.html">
-			Fusion Propulsion</a> with a 10kw/kg payload ratio). Colonies on 
-			various in-system worlds such as
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/europa.htm">Europa</a>,
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/io.htm">Io</a>,
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/venus.htm">Venus</a>, and
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/titan.htm">Titan</a> were established in the late 21st and early 22nd 
-			centuries.<br>
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/tachyon.htm">
-			Tachyon</a>-based communication allows almost instant communications 
-			over interplanetary distances (at 100 c). Common Global language and 
-			script developed (Terran). Common weights and measures is 
-			established:
-			<a href="https://web.archive.org/web/20170827145558/http://edie.cprost.sfu.ca/~rhlogan/metric.html">Metric 
-			System (System Internationale)</a>. Artificial Intelligence systems 
-			become common. Holovision becomes common. Holo-rooms are invented. 
-			Nano-based and Space-based Warfare are developed.&nbsp; In 2045 A.D. 
-			the <a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/World_government">United 
-			Nations Confederation</a> is established taking control of global 
-			security (peacekeeper force), overseeing 
-			shipping/mining/development/colonization of new areas (land, sea, 
-			and space), environmental stabilization/reconstruction, and 
-			overseeing the world economy. The oceans, Antarctica, and Luna 
-			become International territory under the jurisdiction of the World 
-			Confederation.&nbsp; By 2075 A.D. all organized warfare 
-			(international and civil wars) ceases to exist due to enforcement by 
-			the United Nations Confederation.&nbsp; In 2095 A.D. the
-			<a href="https://web.archive.org/web/20170827145558/http://en.wikipedia.org/wiki/World_government">World Union</a> 
-			is established becoming the final political/judicial authority on 
-			Earth.<br>
-			&nbsp;<br>
-			&nbsp;In 2207, artificial gravity is invented: allowing residents of 
-			space habitats and passengers on spacecraft to have an Earth-like 
-			gravity. By 2300, a
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/cyberocracy.htm">planetary matrix develops on Earth</a> (Terran Union) linking Earth, 
-			Luna, and it's colonies into an single interconnected network or 
-			matrix. By 2300 AD, all unorganized warfare (border skirmishes, 
-			rebellions, uprisings, etc...) ceases to exist.&nbsp;
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/mars.htm">Mars</a> did establish it's own independent government (in 2649 AD 
-			which lasted for approx. 500 years)<br>
-&nbsp; <br>
-			Terran Union flag of the 24 century<br>
-			&nbsp;<br>
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/leonov1.jpg">
-			</a>&nbsp;<br>
-			&nbsp;An example of a deep space mining ship (Leonov) of the early 22nd 
-			century using fusion propulsion.<br>
-			Go to <a href="#Top">Top</a> <br>
-			</li>
-			<li><strong>Quantum Age</strong><br>
-			<em>2300 A.D. to 15,000 A.D.</em><br>
-			Stellar Social Organization (Stellar Matrices: interconnected 
-			planets and moons all functioning together in one Star System - ie. 
-			Sol Matrix (est. 3212 AD), Alpha Centauri Matrix, Vega Matrix, and 
-			Tau Ceti Matrix, etc...).&nbsp; Type I civilization* (ability to 
-			harness the power of a planet). <br>
-			* Star faring civilizations may be classified according to the scale 
-			of energies they command, in a ranking termed as Karadashev levels 
-			or types I, II, and III.&nbsp;<br>
-			A type I civilization is able to utilize the power output of an 
-			entire planet. A type II, an entire star, type III, an entire 
-			galaxy. One estimate is that humanity itself may reach Type III 
-			status around one million AD (if it doesn't destroy itself in the 
-			meantime). As of 2000 AD humanity was estimated to rate 0.7 on the 
-			Karadashev scale, in terms of interstellar transmission capacities 
-			alone.<br>
-&nbsp; Quantum Revolution: Creation of matter and energy from quantum dynamics:
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/replicator.htm">replication technology</a>. Highly efficient nanotech-industries 
-			used for energy prohibitive items; Cyber-organic technology becomes 
-			common: development of Starships.
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/jumpgate.htm">Jumpgate</a> technology is discovered allowing interstellar travel 
-			(100 c using Tachyon drives). The first interstellar colony that was 
-			founded was
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/proxima3.htm">
-			Proxima 3 Colony</a> in 2464 A.D, followed by her sister world
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/alpha2.htm">Alpha II colony</a> in 2489 A.D.
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/magnet.htm">Magneto-Gravitic</a> technology becomes common: artificial gravity 
-			and propulsion. Memory can be transferred from person to person. In 
-			3130 A.D. first contact is made with an Alien civilization (the
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/vaqlar.htm">Vaq'lar</a>).&nbsp;&nbsp; Interactive Holo-rooms are common. &nbsp;<br>
-			An example of the type of interstellar ship (Voyager) of the 24th 
-			century using
-			<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/antimatter.htm">antimatter</a> propulsion.&nbsp;&nbsp; General trade is conducted 
-			with various Alien Civilizations. Hyperspace Communication Developed 
-			(10,000 times the speed of light). By 5000 A.D. all organized 
-			violence (piracy, gangs etc...) ceases to exist. &nbsp;<br>
-			<br>
-			An example of the interstellar organic starships (White Star class) 
-			of the 4th millennium A.D. using magneto-gravitic propulsion.<br>
-			&nbsp;<br>
-			</li>
-			<li><strong>Creative/Artistic Age</strong><br>
-			<em>15,000 A.D. to 300,000 A.D.</em> [ex.
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/vaqlar.htm">
-			Vaq'lar</a> and
-			<a href="https://web.archive.org/web/20170827145558/http://www.aleph.se/Trans/Words/n.html#NEOMORPH">Neohumans</a>]<br>
-			Galactic Social Organization: (Galactic Matrices: interconnected 
-			star systems all functioning together in one Galaxy - ie. Milky Way 
-			Matrix, Andromeda Matrix, and Large Magellenic Matrix, etc...). Type 
-			II civilization* (ability to harness the power of a star). 
-			Creative/Artistic Revolution: society engages in creative/artistic 
-			pursuits as primary occupation: return to nature and art. By 10,000 
-			A.D. Empathic ability develops: the ability to read the emotions of 
-			others. By 30,000 A.D. all unorganized violence (homicide &amp; suicide) 
-			ceases to exist. Entry/exit to Hyperspace accomplished through 
-			advanced means: dimensional phasing/hyperflux (10,000 c). Subspace 
-			Communication developed (1,000,000 c). Ability to transfer 'soul' 
-			from one body to another: creation of artificial bodies - see Greg 
-			Bear's novel
-			<a href="https://web.archive.org/web/20170827145558/http://www.gregbear.com/GREGBEAR/Bear.nsf/pages/300008">
-			"Eon"</a> for more information. Planetary-scale device construction 
-			possible (<a href="https://web.archive.org/web/20170827145558/http://www.aleph.se/Trans/Tech/Megascale/dyson_page.html">Dysan 
-			Spheres</a> and other
-			<a href="https://web.archive.org/web/20170827145558/http://www.aleph.se/Trans/Tech/Megascale/index.html">
-			Megascale Engineering</a>). Empathic ability develops: the ability 
-			to feel the emotions of others. By 100,000 A.D., Empathic ability is 
-			common and Psychic ability begins to develop: the ability to read 
-			the thoughts of others.<br>
-			&nbsp;</li>
-			<li><strong>PSI Age</strong><br>
-			<em>300,000 A.D. to 3 million A.D.</em> [ex.
-			<a href="https://web.archive.org/web/20170827145558/http://www.aleph.se/Trans/Global/Posthumanity/">Posthumans</a>]<br>
-			Intergalactic Social Organization: Single Transgalactic 
-			Consciousness develops. Type III civilization* (ability to harness 
-			the power of a galaxy).&nbsp; PSI Revolution: Society/Consciousness 
-			engages in psychic pursuits as primary occupation. Temporal Research 
-			leads to ability to view the past. The manipulation of stars 
-			possible. <a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/wormhole.htm">Wormhole</a> Communication develops with ability to communicate 
-			instantly anywhere in the universe. Subspace Conduits are 
-			constructed (1,000,000 c) enabling fast travel across the galaxy. 
-			Psychic ability is common and Telekinetic ability begins to develop: 
-			the ability to move objects with one's mind. <br>
-			&nbsp;</li>
-			<li><strong>Temporal Age<br>
-			</strong><em>3 million A.D. to 300 million A.D.<br>
-			</em>Universal/Cosmic Social Organization: Cosmic Consciousness. 
-			Temporal Revolution: Manipulation of the time stream possible. 
-			Wormhole Transportation developed allowing instant travel anywhere 
-			in the universe. Extradimensional Communication is developed. 
-			Telekinetic Ability is common. Superbeings begin to evolve existing 
-			as pure energy. <br>
-			&nbsp;<br>
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/stargate.jpg">
-			</a>
-			<a href="https://web.archive.org/web/20170827145558/file:///C:/Users/Dan/Documents/My%20Web%20Sites/nexus/stargate2.jpg">
-			</a>An example of wormhole transportation of 10 million years A.D.<br>
-			&nbsp;<br>
-			</li>
-			<li><strong>Ascendant Age</strong><br>
-			<em>300 million A.D. to 3 billion A.D.<br>
-			</em>Interdimensional Social Organization: Q Continuum. Superbeings, 
-			almost god-like in intelligence and power. All, in part or in whole, 
-			are extradimensional in nature. No barrier bars their passage in 
-			either space or time (at least in this Multiverse).</li>
-		</ul>
-		<!-- #EndEditable "content" --></div>
-	<!-- End Content -->
-	<!-- Begin Footer -->
-	<div id="footer">
-		<p><a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/index.html">Home</a> | <a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/about/about.htm">About</a> |
-		<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/tech/tech.htm"><span class="style1">Tech</span></a> | 
-		<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/history/history.htm"><span class="style1">History</span></a> 
-		| <a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/photo_gallery/photo_gallery.htm">Photo Gallery</a> |
-		<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/information_links/information_links.htm">Links</a> |
-		<a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/faq/faq.htm">FAQ</a> | <a href="https://web.archive.org/web/20170827145558/http://www.fournel.org/contact/contact.htm">Contact</a></p>
-	</div>
-	<!-- End Footer --></div>
-<!-- End Container -->
+      <div class="hero-actions">
+        <a href="home.htm" class="btn btn-primary">← Back to wormhole home</a>
+        <a href="history.htm" class="btn btn-ghost">Jump to historical chronology</a>
+      </div>
 
+      <div class="hero-meta">
+        <span>💻 Ages, infrastructures, and phase shifts</span>
+        <span>🧩 Mix of research, classification, and speculation</span>
+      </div>
+    </div>
 
+    <aside class="hero-card">
+      <h2>How to read this timeline</h2>
+      <p>
+        Instead of year-by-year political events, this page focuses on the layers under them: energy
+        systems, communication, computation, and the technologies that quietly reorganize society.
+        Ages overlap; some are global, some regional, and some mostly conceptual.
+      </p>
+      <div class="hero-card-lines"></div>
+      <div class="hero-card-node"></div>
+    </aside>
+  </section>
 
+  <section>
+    <div class="timeline-wrapper" aria-label="Technology timeline text">
+      <h2>The technology ages</h2>
+      <p class="section-intro">
+        Scroll to explore. Over time, links will be updated away from older archive URLs where possible.
+      </p>
 
+      <div class="timeline">
+        <!--
+          PASTE YOUR EXISTING TECH TIMELINE CONTENT HERE.
 
+          Example: everything from your first "Hominid Age / Stone Age", "Agrarian Age",
+          "Industrial Age", etc. down to the end of the file.
 
+          Keep the core text and any inline links you still want.
+          Do NOT paste the old Wayback banner or old navigation bars.
+        -->
+      </div>
+    </div>
+  </section>
+</main>
 
-</body><!-- #EndTemplate --></html>
-<!--
-     FILE ARCHIVED ON 14:55:58 Aug 27, 2017 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 20:10:45 Dec 05, 2025.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+<footer>
+  <span>© <span id="year"></span> Dan Fournel · fournel.org</span>
+  <span>Technology Timeline · hosted on GitHub Pages</span>
+</footer>
 
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
--->
-<!--
-playback timings (ms):
-  captures_list: 0.572
-  exclusion.robots: 0.037
-  exclusion.robots.policy: 0.026
-  esindex: 0.009
-  cdx.remote: 7.883
-  LoadShardBlock: 166.826 (3)
-  PetaboxLoader3.datanode: 154.895 (4)
-  PetaboxLoader3.resolve: 122.848 (2)
-  load_resource: 155.008
-  nav: 0.162 (6)
--->
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
