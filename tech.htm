@@ -393,6 +393,36 @@
       padding-top: 0.9rem;
     }
 
+    /* Image grid for technology gallery */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.8rem;
+    }
+
+    .image-grid figure {
+      margin: 0;
+      background: var(--bg-alt);
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      padding: 0.55rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .image-grid figcaption {
+      margin-top: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
     @media (max-width: 840px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
@@ -426,6 +456,7 @@
       <a href="home.htm">Home</a>
       <a href="history.htm">History</a>
       <a href="tech.htm">Technology</a>
+      <a href="religion.htm">Religion</a>
       <a href="future.htm">Future</a>
       <a href="ww3.htm">WW3 Timeline</a>
       <a href="index.html">About</a>
@@ -468,6 +499,118 @@
       <div class="hero-card-lines"></div>
       <div class="hero-card-node"></div>
     </aside>
+  </section>
+
+  <!-- NEW: Technology image gallery with 20 images -->
+  <section>
+    <h2>Technology Image Gallery</h2>
+    <p class="section-intro">
+      Visual snapshots of some of the technologies mentioned below. Filenames assume an <code>images/</code>
+      folder in this repository – you can swap in your own artwork or photos as you like.
+    </p>
+
+    <div class="image-grid">
+      <!-- 1 -->
+      <figure>
+        <img src="images/stone-tools.jpg" alt="Replica of early stone tools on a rock surface" loading="lazy" />
+        <figcaption>Early stone tools used by hominins: flakes and cores for cutting, scraping, and pounding.</figcaption>
+      </figure>
+      <!-- 2 -->
+      <figure>
+        <img src="images/neolithic-farming.jpg" alt="Illustration of early farmers with simple tools and fields" loading="lazy" />
+        <figcaption>Neolithic agriculture: simple plows, seed scattering, and domesticated plants and animals.</figcaption>
+      </figure>
+      <!-- 3 -->
+      <figure>
+        <img src="images/bronze-age-weapons.jpg" alt="Bronze Age swords and axes displayed on a table" loading="lazy" />
+        <figcaption>Bronze Age metalworking: cast tools and weapons that transform warfare and craft.</figcaption>
+      </figure>
+      <!-- 4 -->
+      <figure>
+        <img src="images/roman-aqueduct.jpg" alt="Ancient stone aqueduct crossing a valley" loading="lazy" />
+        <figcaption>Roman aqueducts: gravity-fed water systems showcasing large-scale engineering.</figcaption>
+      </figure>
+      <!-- 5 -->
+      <figure>
+        <img src="images/mechanical-clock.jpg" alt="Close-up of gears in a medieval mechanical clock" loading="lazy" />
+        <figcaption>Medieval mechanical clocks: gearing and escapements that measure time with precision.</figcaption>
+      </figure>
+      <!-- 6 -->
+      <figure>
+        <img src="images/printing-press.jpg" alt="Wooden hand-operated printing press" loading="lazy" />
+        <figcaption>Movable-type printing press: mass production of books and pamphlets.</figcaption>
+      </figure>
+      <!-- 7 -->
+      <figure>
+        <img src="images/steam-locomotive.jpg" alt="19th-century steam locomotive on a railway" loading="lazy" />
+        <figcaption>Steam locomotive: industrial-age transport linking cities and continents.</figcaption>
+      </figure>
+      <!-- 8 -->
+      <figure>
+        <img src="images/telegraph-key.jpg" alt="Brass telegraph key on a wooden base" loading="lazy" />
+        <figcaption>Telegraph key: early electrical communication across continents.</figcaption>
+      </figure>
+      <!-- 9 -->
+      <figure>
+        <img src="images/early-telephone.jpg" alt="Antique telephone with rotary dial" loading="lazy" />
+        <figcaption>Early telephones: voice carried over wires, shrinking distance between people.</figcaption>
+      </figure>
+      <!-- 10 -->
+      <figure>
+        <img src="images/wright-flyer.jpg" alt="Replica of the Wright Flyer on a sandy field" loading="lazy" />
+        <figcaption>First powered flight: the Wright Flyer and the dawn of aviation.</figcaption>
+      </figure>
+      <!-- 11 -->
+      <figure>
+        <img src="images/rocket-launch.jpg" alt="Rocket launching into the sky with bright exhaust" loading="lazy" />
+        <figcaption>Space-age rocketry enabling satellites, exploration, and human spaceflight.</figcaption>
+      </figure>
+      <!-- 12 -->
+      <figure>
+        <img src="images/mainframe-computer.jpg" alt="Vintage mainframe computer room with consoles" loading="lazy" />
+        <figcaption>Mid-20th-century mainframe computers: entire rooms dedicated to early electronic computation.</figcaption>
+      </figure>
+      <!-- 13 -->
+      <figure>
+        <img src="images/personal-computer-80s.jpg" alt="1980s personal computer on a desk" loading="lazy" />
+        <figcaption>Personal computers: bringing digital tools into homes, schools, and small offices.</figcaption>
+      </figure>
+      <!-- 14 -->
+      <figure>
+        <img src="images/internet-cables.jpg" alt="Fiber optic cables glowing with light" loading="lazy" />
+        <figcaption>Fiber-optic and internet backbone infrastructure carrying global data traffic.</figcaption>
+      </figure>
+      <!-- 15 -->
+      <figure>
+        <img src="images/smartphone-closeup.jpg" alt="Close-up of a hand holding a smartphone" loading="lazy" />
+        <figcaption>Smartphones: converging computing, communication, cameras, and navigation.</figcaption>
+      </figure>
+      <!-- 16 -->
+      <figure>
+        <img src="images/cloud-datacenter.jpg" alt="Rows of servers in a modern data center" loading="lazy" />
+        <figcaption>Cloud data centers: large-scale computing and storage supporting web services and AI.</figcaption>
+      </figure>
+      <!-- 17 -->
+      <figure>
+        <img src="images/solar-farm.jpg" alt="Solar panels in rows across a field" loading="lazy" />
+        <figcaption>Solar farms and renewables: shifting the energy mix away from fossil fuels.</figcaption>
+      </figure>
+      <!-- 18 -->
+      <figure>
+        <img src="images/industrial-robot-arm.jpg" alt="Robotic arm working in a factory environment" loading="lazy" />
+        <figcaption>Industrial and logistics robots: automated manufacturing and material handling.</figcaption>
+      </figure>
+      <!-- 19 -->
+      <figure>
+        <img src="images/human-ai-collaboration.jpg" alt="Person working at a computer with abstract AI overlay graphics" loading="lazy" />
+        <figcaption>Human–AI collaboration: software co-pilots assisting with coding, design, and analysis.</figcaption>
+      </figure>
+      <!-- 20 -->
+      <figure>
+        <img src="images/futuristic-space-structure.jpg" alt="Artistic rendering of a large orbital megastructure" loading="lazy" />
+        <figcaption>Hypothetical megastructures: speculative large-scale engineering in space.</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section>
@@ -771,4 +914,231 @@
         <h4>Meta-technology: managing change itself</h4>
         <ul>
           <li>★ The highest-leverage “technology” may be institutions and norms that shape how new technologies are discovered, deployed, or constrained.</li>
-          <li>★ Civilizations that survive this long likely evolve robust mechanisms to prevent self-d
+          <li>★ Civilizations that survive this long likely evolve robust mechanisms to prevent self-destruction by runaway tools.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>5000–5999 AD · ★ 6th Millennium</h3>
+        <h4>Environmental and stellar timescales</h4>
+        <ul>
+          <li>★ Tools operate comfortably on geological and stellar timescales: moving ice, oceans, even small moons or asteroids over tens of thousands of years.</li>
+          <li>★ Cultural, biological, and synthetic lineages may be deeply interwoven and highly diverse.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>6000–6999 AD · ★ 7th Millennium</h3>
+        <h4>Unknown equilibria</h4>
+        <ul>
+          <li>★ It becomes very hard to say which specific technologies exist; broad capabilities likely include near-total control of local matter/energy and extremely rich inner worlds.</li>
+          <li>★ The distinction between “tool” and “environment” may blur: entire ecosystems and star systems can be consciously shaped.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>7000–7999 AD · ★ 8th Millennium</h3>
+        <h4>Cosmic archiving and aesthetics</h4>
+        <ul>
+          <li>★ Long-lived civilizations may devote enormous effort to art, knowledge, and preservation, not just expansion.</li>
+          <li>★ Planetary surfaces, rings, or entire nebulae may be subtly shaped as artworks or data structures.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>8000–8999 AD · ★ 9th Millennium</h3>
+        <h4>Interplay of many lineages</h4>
+        <ul>
+          <li>★ If multiple independent technological lineages exist, their interactions (trade, conflict, or isolation) become a central “technology-of-technologies.”</li>
+          <li>★ Communication constraints across light-years still bound how tightly systems can couple.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>9000–9999 AD · ★ 10th Millennium</h3>
+        <h4>Preparing for longer cosmic eras</h4>
+        <ul>
+          <li>★ Surviving techno-civilizations plan for tens of thousands to millions of years, considering stellar evolution and long-term cosmic risks.</li>
+          <li>★ Technology is indistinguishable from “natural” processes at many scales; intentional design and emergent dynamics are tightly interwoven.</li>
+        </ul>
+      </div>
+
+      <!-- EVERY 10,000 YEARS TO 100,000 -->
+
+      <div class="timeline-era">
+        <h3>10,000–20,000 AD · ★ +10,000 years</h3>
+        <h4>Deep stabilization or transformation</h4>
+        <ul>
+          <li>★ Either long-lived technological civilizations stabilize into enduring forms, or most succumb to collapse, transformation, or transcendence.</li>
+          <li>★ Surviving infrastructures are designed to be robust against geological and cosmic perturbations.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>20,000–30,000 AD · ★ +20,000 years</h3>
+        <h4>Stellar neighborhood gardening</h4>
+        <ul>
+          <li>★ If expansion continues, nearby stars and planetary systems are carefully engineered as habitats, data centers, or conservation zones.</li>
+          <li>★ Timescales of projects may routinely span tens of thousands of years.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>30,000–40,000 AD · ★ +30,000 years</h3>
+        <h4>Macro-ecological engineering</h4>
+        <ul>
+          <li>★ Large-scale manipulation of planetary orbits, rotation rates, or atmospheres is technically feasible if desired.</li>
+          <li>★ The concept of “technology” starts to mean entire sculpted regions of space-time and matter.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>40,000–50,000 AD · ★ +40,000 years</h3>
+        <h4>Persistent information structures</h4>
+        <ul>
+          <li>★ Extremely redundant information systems are built to survive even if active civilizations wax and wane.</li>
+          <li>★ Artifacts may be designed to be legible to very different kinds of minds over huge timespans.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>50,000–60,000 AD · ★ +50,000 years</h3>
+        <h4>Long dusk of specific technologies</h4>
+        <ul>
+          <li>★ Many early digital technologies (our current computers, networks) exist only as emulated curiosities within vastly more advanced substrates.</li>
+          <li>★ Whatever persists has passed through countless cycles of refactoring, consolidation, and cultural reinterpretation.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>60,000–70,000 AD · ★ +60,000 years</h3>
+        <h4>Continuity and drift</h4>
+        <ul>
+          <li>★ Some technological traditions maintain recognizable continuity; others diverge into forms that would be incomprehensible to 21st-century observers.</li>
+          <li>★ The boundary between biological, synthetic, and informational entities is extremely fluid.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>70,000–80,000 AD · ★ +70,000 years</h3>
+        <h4>Large-scale experimentation</h4>
+        <ul>
+          <li>★ Civilizations (if extant) might run experiments on entire star systems, planets, or simulated universes to explore physics and complexity.</li>
+          <li>★ Toolsets likely include manipulation of extreme environments (black holes, neutron stars) if accessible and safe.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>80,000–90,000 AD · ★ +80,000 years</h3>
+        <h4>Preparing for stellar evolution phases</h4>
+        <ul>
+          <li>★ Long-term strategies may address eventual changes in stellar output, galactic dynamics, or cosmic radiation backgrounds.</li>
+          <li>★ Technology becomes, in effect, the management of position and state within a changing universe.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>90,000–100,000 AD · ★ +90,000–100,000 years</h3>
+        <h4>First full 100,000-year technological arc</h4>
+        <ul>
+          <li>★ From our perspective, almost everything is unknown; the most robust “technology” is likely the capacity to adapt through radical change.</li>
+          <li>★ Surviving lineages, if any, have mastered not just tools, but the governance of tools over deep time.</li>
+        </ul>
+      </div>
+
+      <!-- EVERY 100,000 YEARS TO 1,000,000 -->
+
+      <div class="timeline-era">
+        <h3>100,000–200,000 AD · ★ +100,000–200,000 years</h3>
+        <h4>Macroscopic cosmic engineering (if still active)</h4>
+        <ul>
+          <li>★ Civilizations that remain technological may now operate comfortably on 100,000-year project cycles, reshaping regions of the galaxy.</li>
+          <li>★ Or, technological activity may have quieted into low-energy, highly stable forms that are hard to detect.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>200,000–300,000 AD · ★ +200,000–300,000 years</h3>
+        <h4>Branches and extinctions</h4>
+        <ul>
+          <li>★ Some branches of technological lineages may have gone extinct; others may have diverged into forms that don’t resemble “civilization” at all.</li>
+          <li>★ Long-term artifacts—huge archives, stellar structures—might outlive their creators.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>300,000–400,000 AD · ★ +300,000–400,000 years</h3>
+        <h4>Galactic-scale questions</h4>
+        <ul>
+          <li>★ If many technological civilizations ever existed, their traces, interactions, or absences become part of the “technology landscape.”</li>
+          <li>★ Tools may include methods to avoid interference, to hide, or to signal across vast times and distances.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>400,000–500,000 AD · ★ +400,000–500,000 years</h3>
+        <h4>Meta-civilizational technologies</h4>
+        <ul>
+          <li>★ The highest-level “technologies” might be frameworks for multiple civilizations to coexist, merge, or respect one another’s light-cones.</li>
+          <li>★ Or, only a few isolated lineages remain, tending their own engineered niches.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>500,000–600,000 AD · ★ +500,000–600,000 years</h3>
+        <h4>Survival against rare catastrophes</h4>
+        <ul>
+          <li>★ Technologies might focus on resilience against rare but devastating cosmic events (supernovae, gamma-ray bursts, large-scale instabilities).</li>
+          <li>★ Distributed, redundant designs mean no single failure can erase all knowledge or capacity.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>600,000–700,000 AD · ★ +600,000–700,000 years</h3>
+        <h4>Long-term cultural drift</h4>
+        <ul>
+          <li>★ What remains recognizable is not specific devices, but patterns: networks of communication, energy flows, and adaptive behavior.</li>
+          <li>★ Some regions may deliberately limit technological complexity to avoid risks, adopting “minimalist” high-tech.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>700,000–800,000 AD · ★ +700,000–800,000 years</h3>
+        <h4>Unknown unknowns</h4>
+        <ul>
+          <li>★ Discoveries about physics or reality itself may have fundamentally changed what “technology” can be.</li>
+          <li>★ Our current imagination is probably inadequate to describe the dominant tools of this era, if any exist.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>800,000–900,000 AD · ★ +800,000–900,000 years</h3>
+        <h4>Preparing for the million-year mark</h4>
+        <ul>
+          <li>★ Technologies are evaluated in million-year risk frameworks; anything likely to cause irreversible harm over that span is excluded or quarantined.</li>
+          <li>★ Stability, subtlety, and reversibility become key design values.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>900,000–1,000,000 AD · ★ +900,000–1,000,000 years</h3>
+        <h4>One million years of tools</h4>
+        <ul>
+          <li>★ If any descendant of our current technological civilization still exists, it will have passed through transformations we can barely sketch.</li>
+          <li>★ The deepest “technology” may simply be: the ability to persist, adapt, and care about the far future in a changing universe.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Dan Fournel · fournel.org</span>
+  <span>Technology Through Deep Time · hosted on GitHub Pages</span>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
