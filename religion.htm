@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Religious & Spiritual History – fournel.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="A high-level timeline of religious and spiritual history from 50,000 years ago to the present, covering major world religions and diverse traditions, including the Bahá’í Faith.">
+
+  <style>
+    :root {
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #4fd1ff;
+      --accent-2: #a855ff;
+      --accent-soft: rgba(79, 209, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #3a1454 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 18, 0.96),
+        rgba(2, 6, 18, 0.88),
+        transparent
+      );
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
+        radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.7),
+        0 0 40px rgba(79, 209, 255, 0.7);
+      overflow: hidden;
+    }
+
+    .nav-logo::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 999px;
+      border: 2px solid rgba(5, 10, 25, 0.9);
+      box-shadow: 0 0 12px rgba(2, 6, 18, 0.8) inset;
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    .nav-title span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      font-size: 0.86rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      border-color: var(--border-soft);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem 3.3rem;
+    }
+
+    .hero {
+      margin-bottom: 2.3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(79, 209, 255, 0.4);
+      background: rgba(10, 27, 58, 0.9);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #5cffb3;
+      box-shadow: 0 0 10px rgba(92, 255, 179, 0.9);
+    }
+
+    .hero h1 {
+      margin: 0.7rem 0 0.4rem;
+      font-size: clamp(2rem, 2.4vw + 1.3rem, 2.6rem);
+      letter-spacing: 0.01em;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 40rem;
+    }
+
+    .hero-subtitle span {
+      color: var(--accent);
+    }
+
+    .hero-actions {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    .hero-meta {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(4, 10, 26, 0.92);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      background: radial-gradient(circle at 25% 15%, #4fd1ff, transparent 55%),
+                  radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
+                  radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
+      border: 1px solid rgba(79, 209, 255, 0.4);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #e5ecff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .hero-card-lines {
+      position: absolute;
+      inset: auto -40px -90px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-card-lines::before,
+    .hero-card-lines::after {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-card-lines::after {
+      inset: 36px;
+    }
+
+    .hero-card-node {
+      position: absolute;
+      right: 50px;
+      bottom: 70px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, #b9e8ff 42%, transparent 60%),
+        conic-gradient(from 0deg, #020612, #3b98ff, #020612, #a855ff, #020612);
+      box-shadow:
+        0 0 18px rgba(79, 209, 255, 0.85),
+        0 0 70px rgba(15, 23, 42, 1);
+    }
+
+    section {
+      margin-bottom: 2.1rem;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .timeline-wrapper {
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      padding: 1.1rem 1.2rem 1.3rem;
+      max-height: 75vh;
+      overflow: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .timeline-wrapper h2 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .timeline-wrapper p {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-era {
+      margin-top: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-era h3 {
+      margin: 0 0 0.15rem;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .timeline-era h4 {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .timeline-era ul {
+      margin: 0.4rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .timeline-era li + li {
+      margin-top: 0.25rem;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.9rem;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      header {
+        position: static;
+      }
+
+      .timeline-wrapper {
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>Religious &amp; Spiritual History</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="religion.htm">Religion</a>
+      <a href="future.htm">Future</a>
+      <a href="ww3.htm">WW3 Timeline</a>
+      <a href="index.html">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>50,000 years ago – present</span>
+      </div>
+      <h1>Religious &amp; Spiritual History (Global Overview)</h1>
+      <p class="hero-subtitle">
+        A selective, <span>non-exhaustive</span> timeline of religious and spiritual history from
+        early ritual behavior to today’s global traditions. It touches on major world religions,
+        regional traditions, new religious movements, and includes the <span>Bahá’í Faith</span> –
+        all described historically, not as endorsements.
+      </p>
+
+      <div class="hero-actions">
+        <a href="history.htm" class="btn btn-primary">Compare with major historical events →</a>
+        <a href="future.htm" class="btn btn-ghost">See future scenario timelines →</a>
+      </div>
+
+      <div class="hero-meta">
+        <span>📜 Focus: origins, spread, and interactions of traditions</span>
+        <span>🔍 Overview, not a complete list of every faith</span>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <h2>Scope &amp; limitations</h2>
+      <p>
+        This is a compressed map of religious history, not an authoritative encyclopedia or theological
+        statement. Dates are approximate, especially for early periods. Many important local and
+        Indigenous traditions can only be represented briefly. For political context, see
+        <a href="history.htm">history</a>; for tools and infrastructure, see
+        <a href="tech.htm">technology</a>.
+      </p>
+      <div class="hero-card-lines"></div>
+      <div class="hero-card-node"></div>
+    </aside>
+  </section>
+
+  <section>
+    <div class="timeline-wrapper" aria-label="Religious and spiritual history from 50,000 years ago to present">
+      <h2>Religious &amp; Spiritual Timeline: 50,000 years ago – Present</h2>
+      <p class="section-intro">
+        “Religion” here is broad: ritual practices, mythic narratives, ethical systems, and organized
+        institutions. Early phases blur into culture and cosmology. Later phases show organized
+        traditions, scriptures, and global networks.
+      </p>
+
+      <!-- 50,000–10,000 BCE -->
+      <div class="timeline-era">
+        <h3>50,000 – 10,000 BCE · Deep Prehistory</h3>
+        <h4>Early ritual, symbolism, and the roots of religious behavior</h4>
+        <ul>
+          <li>
+            Evidence of deliberate burials, grave goods, and possible ancestor veneration among early
+            Homo sapiens and other hominins suggests emerging beliefs about death and an unseen world.
+          </li>
+          <li>
+            Cave art, carved figurines, and ritual sites (e.g., in Europe and Africa) point to complex
+            symbol systems, mythic stories, and perhaps early “shamanic” roles within small-scale
+            hunter-gatherer societies.
+          </li>
+          <li>
+            Diverse Indigenous spiritualities develop worldwide, each tied closely to specific
+            landscapes, animals, and seasonal cycles; these begin long before written history and
+            continue in various forms into the present.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 10,000–3000 BCE -->
+      <div class="timeline-era">
+        <h3>10,000 – 3,000 BCE · Early Agricultural &amp; Village Religions</h3>
+        <h4>Fertility, sky, and earth deities in emerging settled societies</h4>
+        <ul>
+          <li>
+            As agriculture spreads, religious life often centers on fertility of crops and herds,
+            seasonal cycles, and local deities or spirits associated with rivers, mountains, and fields.
+          </li>
+          <li>
+            Ritual sites and early temples appear in places like the Fertile Crescent and Anatolia;
+            statues, altars, and offerings mark increasingly structured cults and priestly roles.
+          </li>
+          <li>
+            Ancestor veneration, household shrines, and clan spirits become common in many communities,
+            foreshadowing later organized pantheons.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 3000–500 BCE -->
+      <div class="timeline-era">
+        <h3>3,000 – 500 BCE · Ancient Civilizations &amp; Temple Religions</h3>
+        <h4>Structured pantheons, priesthoods, and early scriptures</h4>
+        <ul>
+          <li>
+            Ancient Mesopotamia – Polytheistic religions in Sumer, Akkad, Babylon, and Assyria center on
+            gods linked to sky, storms, love, and war (e.g., Anu, Enlil, Ishtar); temples and ziggurats
+            dominate city life; myths like the Enuma Elish and Gilgamesh circulate.
+          </li>
+          <li>
+            Ancient Egypt – Complex pantheon (Ra, Osiris, Isis, Amun, etc.), belief in the afterlife,
+            judgment, and elaborate funerary practices; priests maintain temple cults; pharaohs often
+            seen as divine or semi-divine.
+          </li>
+          <li>
+            Indus Valley &amp; early South Asia – Religious life is less well documented, but later
+            Vedic traditions in India (c. 1500–500 BCE) develop sacrificial rituals, hymns (Vedas), and
+            deities such as Indra, Agni, and Varuna.
+          </li>
+          <li>
+            Early Chinese traditions – Ancestor worship, divination (oracle bones), and reverence for
+            Heaven (Tian); early forms of Chinese folk religion and ritual practice in Shang and Zhou
+            periods.
+          </li>
+          <li>
+            Ancient Levant – Canaanite and other regional polytheisms, alongside early Israelite
+            traditions that will later develop into Judaism.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 800–200 BCE roughly: Axial -->
+      <div class="timeline-era">
+        <h3>800 – 200 BCE · “Axial Age” Transformations</h3>
+        <h4>Philosophical and ethical religions across multiple regions</h4>
+        <ul>
+          <li>
+            Early Judaism – Development of Israelite monotheism over centuries; belief in one God, a
+            covenant relationship, and a distinctive law and ethic; formative texts later compiled into
+            the Hebrew Bible.
+          </li>
+          <li>
+            South Asia – Upanishadic thought explores inner reality and ultimate truth (Brahman, Atman);
+            new movements like <strong>Buddhism</strong> (Siddhartha Gautama), emphasizing the Four Noble Truths
+            and the path to liberation, and <strong>Jainism</strong>, emphasizing non-violence and spiritual
+            discipline, emerge alongside evolving Vedic/Hindu traditions.
+          </li>
+          <li>
+            China – <strong>Confucianism</strong> (Confucius and later thinkers) articulates an ethical and social
+            philosophy focused on virtue, harmony, and proper relationships; <strong>Daoism</strong> (Laozi, Zhuangzi
+            and others) emphasizes alignment with the Dao (the Way), naturalness, and spontaneity.
+          </li>
+          <li>
+            Greece – Philosophical schools (Pythagoreans, Platonists, Stoics, etc.) reflect on ethics,
+            metaphysics, and the nature of the divine; traditional Greek polytheism continues alongside
+            philosophical religion.
+          </li>
+          <li>
+            Persia – <strong>Zoroastrianism</strong>, associated with Zarathustra, emphasizes a cosmic struggle
+            between truth and falsehood, ethical responsibility, and eventual renewal of the world.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 1st c BCE – 500 CE -->
+      <div class="timeline-era">
+        <h3>1st century BCE – 500 CE · Formation of Christianity &amp; Expansion of Buddhism</h3>
+        <h4>New religious communities and cross-regional spread</h4>
+        <ul>
+          <li>
+            Christianity – Emerging from Jewish contexts in 1st-century Roman Judea, followers of Jesus
+            form communities emphasizing his life, teachings, death, and resurrection; over centuries,
+            Christianity spreads across the Roman Empire and beyond, developing scripture (New
+            Testament), theology, and diverse traditions (Eastern, Western, and various early branches).
+          </li>
+          <li>
+            Buddhism – Spreads across South and Southeast Asia, Central Asia, and East Asia via monastic
+            networks and trade routes; diverse schools emerge (Theravāda, Mahāyāna, early Vajrayāna).
+          </li>
+          <li>
+            Hindu traditions – Develop richly in South Asia, incorporating Vedic heritage, epic
+            literature (Mahābhārata, Rāmāyaṇa), devotional movements (bhakti), and a wide variety of
+            deities and philosophies.
+          </li>
+          <li>
+            Chinese &amp; East Asian religious life – Confucianism, Daoism, and Chinese folk religion
+            intertwine; Buddhism enters China and is localized in various forms; later spreads to Korea,
+            Japan, and other regions.
+          </li>
+          <li>
+            Greco-Roman polytheisms – Continue and evolve until gradually outcompeted by Christianity in
+            many regions of the Roman Empire; local and “pagan” traditions persist for centuries.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 500–1000 -->
+      <div class="timeline-era">
+        <h3>500 – 1,000 CE · Late Antiquity &amp; Early Medieval</h3>
+        <h4>Islamic beginnings, Christian diversification, and regional syntheses</h4>
+        <ul>
+          <li>
+            Islam – In the 7th century, Islam emerges in the Arabian Peninsula with the Prophet
+            Muhammad; the Qur’an and Hadith become foundational texts. Within centuries, Islam spreads
+            across the Middle East, North Africa, parts of Europe, Central Asia, and South Asia, giving
+            rise to diverse theological, legal, and mystical traditions (Sunni, Shia, Sufi paths, etc.).
+          </li>
+          <li>
+            Christianity – Splits culturally and administratively between Latin-speaking West and
+            Greek-speaking East; monasteries preserve texts; various church councils define orthodoxies
+            and heresies. Early Celtic, Coptic, Syriac, Armenian, and other Christian traditions remain
+            important.
+          </li>
+          <li>
+            South and Southeast Asia – Hindu and Buddhist kingdoms flourish; Buddhist monastic
+            communities remain influential from Sri Lanka to Southeast Asia; local folk beliefs blend
+            with organized traditions.
+          </li>
+          <li>
+            Indigenous traditions – Aboriginal spiritualities in Australia, the Americas, Africa, and
+            elsewhere continue to develop, often with rich oral cosmologies, rituals, and sacred
+            geographies.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 1000–1500 -->
+      <div class="timeline-era">
+        <h3>1,000 – 1,500 CE · High Medieval &amp; Global Interactions</h3>
+        <h4>Crusades, scholasticism, and expanding religious networks</h4>
+        <ul>
+          <li>
+            Islam – Golden age of Islamic learning in many regions; flourishing of philosophy, science,
+            and Sufism; expansion into West Africa, East Africa, Central and South Asia, and Southeast
+            Asia via trade and scholarship.
+          </li>
+          <li>
+            Christianity – Eastern Orthodox and Roman Catholic churches consolidate; the Great Schism
+            (1054) formalizes a split between East and West. Crusades and religious orders (Franciscans,
+            Dominicans, etc.) shape Christian life in Europe and the Near East.
+          </li>
+          <li>
+            East Asian religions – In China, Buddhism, Daoism, and Confucianism coexist and interact;
+            in Japan, Shinto practices blend with Buddhism; Zen/Chan traditions emerge as influential
+            currents.
+          </li>
+          <li>
+            New religious syntheses – In various regions (e.g., West Africa, the Indian Ocean world),
+            Islam, Christianity, and local traditions blend into distinct regional forms.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 1500–1800 -->
+      <div class="timeline-era">
+        <h3>1,500 – 1,800 CE · Reformations, Global Missions &amp; New Movements</h3>
+        <h4>Christian Reformation, Counter-Reformation, and broader contact</h4>
+        <ul>
+          <li>
+            Protestant Reformation – 16th-century movements (Lutheran, Reformed, Anglican and others)
+            challenge Catholic structures in Europe; emphasis on scripture, individual conscience, and
+            different views of church authority.
+          </li>
+          <li>
+            Catholic Counter-Reformation – Catholic Church reforms certain practices, strengthens
+            institutions, and expands global missionary work (Jesuits and others) in the Americas, Asia,
+            and Africa.
+          </li>
+          <li>
+            Sikhism – In the Punjab region (15th–16th centuries), <strong>Sikhism</strong> develops,
+            emphasizing devotion to one God, the teachings of the Gurus, and community life (e.g., the
+            Guru Granth Sahib as scripture).
+          </li>
+          <li>
+            Global contact – Indigenous religions in the Americas, Africa, and Oceania encounter
+            Christianity and, in some regions, Islam; complex patterns of conversion, resistance, and
+            syncretism emerge (e.g., Afro-Atlantic religions such as Candomblé, Santería, Vodou).
+          </li>
+          <li>
+            East Asia – Confucianism remains central to state ideology in China, while Buddhism and
+            folk religion remain vital; in Japan, Buddhist-Shinto combinations continue; Christian
+            missions have limited but notable influence in some areas.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 1800–1900 -->
+      <div class="timeline-era">
+        <h3>1,800 – 1,900 CE · Modernity, Reform, and New Religious Movements</h3>
+        <h4>Industrialization, secularization debates, and emerging faiths</h4>
+        <ul>
+          <li>
+            Christian world – New denominations and revival movements (Evangelicalism, Adventism,
+            Holiness movements, later Pentecostal beginnings) appear; debates over science, biblical
+            interpretation, and social reform intensify.
+          </li>
+          <li>
+            Reform within Judaism – Haskalah (Jewish Enlightenment), Reform, Conservative, and modern
+            Orthodox movements develop in response to emancipation, modern philosophy, and changing
+            social conditions.
+          </li>
+          <li>
+            Islamic reform – Diverse reformist and revivalist currents arise in response to colonialism
+            and internal debates: efforts to reinterpret law, emphasize education, or renew spirituality.
+          </li>
+          <li>
+            New Religious Movements – Various new groups appear in the 19th century, including
+            Latter-day Saint movement (Mormonism), Jehovah’s Witnesses, and others, each with distinctive
+            scriptures and organizational forms.
+          </li>
+          <li>
+            Bahá’í Faith – Beginning in 1844 with the Báb in Persia and later associated with
+            Bahá’u’lláh (who declares his mission in 1863), the Bahá’í Faith teaches the unity of
+            humanity, progressive revelation, and the eventual unification of the planet; it develops
+            into a global religious community over the following century.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 1900–2000 -->
+      <div class="timeline-era">
+        <h3>1,900 – 2,000 CE · 20th Century Pluralism &amp; Globalization</h3>
+        <h4>World wars, decolonization, interfaith, and secular frameworks</h4>
+        <ul>
+          <li>
+            World Wars &amp; ideology – Two world wars, totalitarian ideologies, and genocide deeply
+            affect religious communities and theologies, particularly in Europe and the Middle East.
+          </li>
+          <li>
+            Decolonization – As colonial empires dissolve, Indigenous and local religious traditions in
+            Africa, Asia, and the Americas assert themselves in new ways; Christianity and Islam grow
+            rapidly in many formerly colonized regions.
+          </li>
+          <li>
+            Interfaith &amp; ecumenical movements – Organizations and dialogues emerge to foster
+            cooperation across Christian denominations and between different world religions; global
+            communications make inter-religious contact more common.
+          </li>
+          <li>
+            Secularism &amp; non-religious identities – In parts of Europe and elsewhere, explicit
+            secular or non-religious identities grow; humanist and philosophical frameworks offer
+            alternatives to traditional religious affiliation.
+          </li>
+          <li>
+            New and alternative spiritualities – 20th century sees growth of New Age movements,
+            neo-pagan revivals, and other alternative spiritual currents, especially in the West.
+          </li>
+          <li>
+            Bahá’í Faith – Spreads from its Middle Eastern origins to communities around the globe;
+            administrative institutions (local and national bodies, and the Universal House of Justice)
+            are gradually established; teachings emphasize unity, equality, and global cooperation.
+          </li>
+        </ul>
+      </div>
+
+      <!-- 2000–present -->
+      <div class="timeline-era">
+        <h3>2,000 CE – Present · 21st Century Religious Landscape</h3>
+        <h4>Digital religion, continued diversity, and shifting demographics</h4>
+        <ul>
+          <li>
+            Global Christianity and Islam – Continue as two of the world’s largest religions, with major
+            centers of growth in Africa, Asia, and Latin America; internal diversity and debates remain
+            strong.
+          </li>
+          <li>
+            Hindu, Buddhist, Sikh, Jain, and other South Asian traditions – Maintain large populations
+            in South Asia and diaspora communities worldwide; new forms of engagement, reform, and
+            dialogue appear in response to globalization and migration.
+          </li>
+          <li>
+            Judaism – Remains globally distributed with significant centers in Israel and North America;
+            religious life includes a spectrum from secular/cultural to various Orthodox, Conservative,
+            Reform, and other communities.
+          </li>
+          <li>
+            Indigenous spiritualities – Continue and, in some places, revive or gain greater public
+            visibility; efforts to protect sacred sites and traditional knowledge grow.
+          </li>
+          <li>
+            Bahá’í Faith – Maintains communities in many countries; continues to emphasize global
+            unity, service, and community-building processes at local and national levels.
+          </li>
+          <li>
+            “Spiritual but not religious” and non-theistic paths – Many people around the world identify
+            with spirituality, philosophy, or ethics outside formal religious labels; digital spaces host
+            new forms of religious and spiritual expression.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Dan Fournel · fournel.org</span>
+  <span>Religious &amp; Spiritual History · hosted on GitHub Pages</span>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
