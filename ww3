@@ -1,20 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>fournel.org · World War III Scenario Timeline (2026–2045)</title>
+  <title>World War III & The New Order (2026–2045) – fournel.org</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="A speculative, integrated chronology of a third world war (2026–2037) and the birth of a new international order (2038–2045).">
+
   <style>
     :root {
-      --bg: #f7f7f7;
-      --fg: #222222;
-      --muted: #666666;
-      --accent: #2255aa;
-      --card: #ffffff;
-      --shadow: 0 1px 3px rgba(0,0,0,0.08);
-      --radius: 10px;
-      --max-width: 900px;
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #4fd1ff;
+      --accent-2: #a855ff;
+      --accent-soft: rgba(79, 209, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
     }
 
     * {
@@ -24,9 +30,12 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.6;
+      background:
+        radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #3a1454 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -39,565 +48,679 @@
     }
 
     header {
-      border-bottom: 1px solid #e0e0e0;
-      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 18, 0.96),
+        rgba(2, 6, 18, 0.88),
+        transparent
+      );
+      border-bottom: 1px solid var(--border-soft);
     }
 
-    .nav-bar {
+    .nav {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 12px 16px;
+      padding: 0.7rem 1.5rem;
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
+        radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.7),
+        0 0 40px rgba(79, 209, 255, 0.7);
+      overflow: hidden;
+    }
+
+    .nav-logo::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 999px;
+      border: 2px solid rgba(5, 10, 25, 0.9);
+      box-shadow: 0 0 12px rgba(2, 6, 18, 0.8) inset;
     }
 
     .nav-title {
       font-weight: 600;
-      font-size: 1rem;
-      white-space: nowrap;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    .nav-title span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
+      gap: 0.9rem;
+      font-size: 0.86rem;
       flex-wrap: wrap;
-      gap: 10px;
-      font-size: 0.9rem;
     }
 
     .nav-links a {
-      padding: 3px 6px;
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
     }
 
-    .nav-links a.active {
-      background: #eef3fb;
-      font-weight: 600;
+    .nav-links a:hover {
+      border-color: var(--border-soft);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02);
+      text-decoration: none;
     }
 
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 20px 16px 40px;
+      padding: 2.2rem 1.5rem 3.3rem;
     }
 
     .hero {
-      margin-bottom: 24px;
+      margin-bottom: 2.3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
     }
 
-    .hero-kicker {
-      font-size: 0.85rem;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(79, 209, 255, 0.4);
+      background: rgba(10, 27, 58, 0.9);
+      font-size: 0.7rem;
+      color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 4px;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #5cffb3;
+      box-shadow: 0 0 10px rgba(92, 255, 179, 0.9);
     }
 
     .hero h1 {
-      margin: 0 0 6px;
-      font-size: clamp(1.8rem, 4vw, 2.2rem);
+      margin: 0.7rem 0 0.4rem;
+      font-size: clamp(2rem, 2.4vw + 1.3rem, 2.6rem);
+      letter-spacing: 0.01em;
     }
 
-    .hero-tagline {
+    .hero-subtitle {
+      margin: 0;
       font-size: 0.98rem;
       color: var(--muted);
-      margin-bottom: 14px;
+      line-height: 1.7;
+      max-width: 40rem;
+    }
+
+    .hero-subtitle span {
+      color: var(--accent);
+    }
+
+    .hero-actions {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      text-decoration: none;
     }
 
     .hero-meta {
-      font-size: 0.85rem;
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.8rem;
       color: var(--muted);
     }
 
     .hero-meta span {
-      margin-right: 10px;
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(4, 10, 26, 0.92);
     }
 
-    .intro {
-      margin-top: 24px;
-      margin-bottom: 24px;
-      padding: 14px 16px;
-      background: #ffffff;
+    /* Graphic card */
+    .hero-card {
       border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      background: radial-gradient(circle at 25% 15%, #4fd1ff, transparent 55%),
+                  radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
+                  radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
+      border: 1px solid rgba(79, 209, 255, 0.4);
       box-shadow: var(--shadow);
-      font-size: 0.95rem;
-    }
-
-    .intro h2 {
-      margin-top: 0;
-      margin-bottom: 6px;
-      font-size: 1.1rem;
-    }
-
-    .intro p {
-      margin: 4px 0;
-    }
-
-    .paths {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .path-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 10px 12px;
-      box-shadow: var(--shadow);
-      font-size: 0.9rem;
-    }
-
-    .path-label {
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 3px;
-    }
-
-    .path-card h3 {
-      margin: 0 0 4px;
-      font-size: 1rem;
-    }
-
-    .path-card p {
-      margin: 3px 0 6px;
-    }
-
-    .path-card a {
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    /* Timeline */
-
-    .timeline-section {
-      margin-top: 30px;
-    }
-
-    .timeline-section h2 {
-      margin-top: 0;
-      font-size: 1.4rem;
-      margin-bottom: 4px;
-    }
-
-    .timeline-subtitle {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .timeline-note {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .year-block {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 10px 14px;
-      margin-bottom: 10px;
-      box-shadow: var(--shadow);
-    }
-
-    .year-block h3 {
-      margin: 0 0 4px;
-      font-size: 1.15rem;
-    }
-
-    .tagline {
       font-size: 0.86rem;
+      color: #e5ecff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .hero-card-lines {
+      position: absolute;
+      inset: auto -40px -90px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-card-lines::before,
+    .hero-card-lines::after {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-card-lines::after {
+      inset: 36px;
+    }
+
+    .hero-card-node {
+      position: absolute;
+      right: 50px;
+      bottom: 70px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, #b9e8ff 42%, transparent 60%),
+        conic-gradient(from 0deg, #020612, #3b98ff, #020612, #a855ff, #020612);
+      box-shadow:
+        0 0 18px rgba(79, 209, 255, 0.85),
+        0 0 70px rgba(15, 23, 42, 1);
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      font-size: 0.9rem;
       color: var(--muted);
-      margin-bottom: 4px;
     }
 
-    .year-block ul {
-      margin: 4px 0 4px 1.2rem;
-      padding: 0;
-      font-size: 0.92rem;
+    .timeline-wrapper {
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      padding: 1.1rem 1.2rem 1.3rem;
+      max-height: 75vh;
+      overflow: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--muted);
     }
 
-    .year-block li {
-      margin-bottom: 2px;
+    .timeline-wrapper h2 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+      color: var(--text);
     }
 
-    .region-label {
-      font-weight: 600;
-      color: #333333;
+    .timeline-wrapper p {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-year {
+      margin-top: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-year h3 {
+      margin: 0 0 0.2rem;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .timeline-year h4 {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .timeline-year ul {
+      margin: 0.4rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .timeline-year li + li {
+      margin-top: 0.25rem;
     }
 
     footer {
-      border-top: 1px solid #e0e0e0;
-      margin-top: 30px;
-      padding: 12px 16px 20px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem 1.6rem;
       font-size: 0.8rem;
       color: var(--muted);
-      text-align: center;
-      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.9rem;
     }
 
-    footer a {
-      color: var(--muted);
-    }
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #101114;
-        --fg: #f2f2f2;
-        --muted: #aaaaaa;
-        --card: #191a1f;
-        --accent: #86a9ff;
-        --shadow: 0 1px 4px rgba(0,0,0,0.6);
+      .hero-card {
+        order: -1;
       }
-      body {
-        background: radial-gradient(circle at top, #181b22 0, #0d0e11 55%, #050507 100%);
+
+      header {
+        position: static;
       }
-      header, footer {
-        background: #111217;
-        border-color: #252733;
+
+      .timeline-wrapper {
+        max-height: none;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav-bar">
-      <div class="nav-title">fournel.org · Timelines · Technology · Futures</div>
-      <nav class="nav-links">
-        <a href="https://fournel.org/home.htm">Home</a>
-        <a href="#" class="active">Future Scenario</a>
-        <a href="#">History</a>
-        <a href="#">Technology</a>
-        <a href="#">About</a>
-      </nav>
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>World War III Scenario</span>
+      </div>
     </div>
-  </header>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="future.htm">Future</a>
+      <a href="index.html">About</a>
+    </div>
+  </nav>
+</header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-kicker">Future scenario timeline</div>
-      <h1>World War III & The New Order (2026–2045)</h1>
-      <p class="hero-tagline">
-        A speculative, integrated chronology of a third world war starting in Europe,
-        China’s expansion across Eastern Asia, a Caribbean build-up, the attack on Australia,
-        and the birth of a new global security system.
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Scenario · 2026–2045</span>
+      </div>
+      <h1>World War III &amp; The New Order</h1>
+      <p class="hero-subtitle">
+        A speculative, integrated chronology of a third world war starting in Europe, China’s expansion
+        across Eastern Asia, a Caribbean build-up, the attack on Australia, and the birth of a new
+        <span>global security system</span>. It tunnels straight from the near future into a different
+        international order.
       </p>
+
+      <div class="hero-actions">
+        <a href="future.htm" class="btn btn-primary">← Back to future scenarios hub</a>
+        <a href="history.htm" class="btn btn-ghost">Compare with historical chronology</a>
+        <a href="tech.htm" class="btn btn-ghost">View technology arcs</a>
+      </div>
+
       <div class="hero-meta">
-        <span>Scope: 2026–2045</span>
-        <span>Regions: Europe · Indo-Pacific · Caribbean · North America</span>
+        <span>🌀 Focused wormhole: 2026–2045</span>
+        <span>⚠️ Fictional scenario, not a forecast</span>
       </div>
-    </section>
+    </div>
 
-    <section class="intro">
-      <h2>A wormhole into one possible mid-21st-century future</h2>
+    <aside class="hero-card">
+      <h2>A wormhole into one possible mid-21st century</h2>
       <p>
-        Think of this page as a focused “wormhole” that tunnels straight into a single scenario:
-        a decade-long global conflict followed by an overhaul of international institutions.
-        It’s not a prediction, but a structured thought experiment — a way to explore risks,
-        turning points, and long-range consequences.
+        Think of this page as a focused “wormhole” that tunnels straight into a single scenario: a
+        decade-long global conflict followed by an overhaul of international institutions. It’s not a
+        prediction, but a structured thought experiment — a way to explore risks, turning points, and
+        long-range consequences.
       </p>
-      <p>
-        The timeline is organized year by year from 2026 to 2045, highlighting how events in
-        Europe, the Indo-Pacific, and the Caribbean interact to produce a new post-war order.
-      </p>
-    </section>
+      <div class="hero-card-lines"></div>
+      <div class="hero-card-node"></div>
+    </aside>
+  </section>
 
-    <section class="paths">
-      <article class="path-card">
-        <div class="path-label">Deep context</div>
-        <h3>Historical backdrop</h3>
-        <p>
-          Compare this scenario against long-run historical patterns: great-power wars,
-          alliance systems, arms races, and post-war settlements.
-        </p>
-        <a href="#">Open historical chronology →</a>
-      </article>
-
-      <article class="path-card">
-        <div class="path-label">Systems view</div>
-        <h3>Technology & escalation</h3>
-        <p>
-          Track how drones, cyber operations, hypersonic weapons, and space systems
-          shape the pace and character of the conflict.
-        </p>
-        <a href="#">Browse technology arcs →</a>
-      </article>
-
-      <article class="path-card">
-        <div class="path-label">Speculative</div>
-        <h3>Post-war governance</h3>
-        <p>
-          Extend the scenario into new international institutions like the GSRS:
-          shared security, reconstruction funds, and cyber/space governance.
-        </p>
-        <a href="#">See more future scenarios →</a>
-      </article>
-    </section>
-
-    <section class="timeline-section">
+  <section>
+    <div class="timeline-wrapper" aria-label="World War III scenario timeline text">
       <h2>Year-by-Year Timeline: 2026–2045</h2>
-      <p class="timeline-subtitle">
-        From pre-war tension to full-scale global conflict, Caribbean escalation,
-        and the consolidation of a new international order.
-      </p>
-      <p class="timeline-note">
-        Note: This is a fictional, high-level strategic scenario — not a forecast or policy recommendation.
+      <p class="section-intro">
+        From pre-war tension to full-scale global conflict, Caribbean escalation, and the consolidation
+        of a new international order. Scope: 2026–2045 · Regions: Europe · Indo-Pacific · Caribbean ·
+        North America. Note: This is a fictional, high-level strategic scenario — not a forecast or
+        policy recommendation.
       </p>
 
-      <!-- 2026 -->
-      <div class="year-block">
+      <!-- TIMELINE STARTS HERE -->
+
+      <div class="timeline-year">
         <h3>2026</h3>
-        <div class="tagline">The last year before open global war</div>
+        <h4>The last year before open global war</h4>
         <ul>
-          <li><span class="region-label">Europe:</span> Russia intensifies “exercises” near Estonia, Latvia, Lithuania, and Belarus. NATO intelligence flags worrying patterns but political leaders remain divided about the severity of the threat.</li>
-          <li><span class="region-label">Indo-Pacific:</span> China ramps up air and naval incursions near Taiwan and Japan; Chinese coast guard and militia vessels increase pressure on Philippine positions in the South China Sea.</li>
-          <li><span class="region-label">Caribbean:</span> China quietly deepens port access and signals-intelligence facilities in Cuba and along the northern coast of South America, raising alarms at U.S. Southern Command.</li>
-          <li><span class="region-label">Global:</span> Cyberattacks on energy grids and financial systems grow more frequent; attribution remains murky, but security services increasingly suspect coordinated state involvement.</li>
+          <li><strong>Europe:</strong> Russia intensifies “exercises” near Estonia, Latvia, Lithuania, and Belarus. NATO intelligence flags worrying patterns but political leaders remain divided about the severity of the threat.</li>
+          <li><strong>Indo-Pacific:</strong> China ramps up air and naval incursions near Taiwan and Japan; Chinese coast guard and militia vessels increase pressure on Philippine positions in the South China Sea.</li>
+          <li><strong>Caribbean:</strong> China quietly deepens port access and signals-intelligence facilities in Cuba and along the northern coast of South America, raising alarms at U.S. Southern Command.</li>
+          <li><strong>Global:</strong> Cyberattacks on energy grids and financial systems grow more frequent; attribution remains murky, but security services increasingly suspect coordinated state involvement.</li>
         </ul>
       </div>
 
-      <!-- 2027 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2027</h3>
-        <div class="tagline">World War III begins in Europe and East Asia</div>
+        <h4>World War III begins in Europe and East Asia</h4>
         <ul>
-          <li><span class="region-label">Europe (January):</span> Russia launches a surprise invasion of Estonia and Latvia, with missile and cyber strikes on Lithuania. NATO triggers Article&nbsp;5, committing to collective defense.</li>
-          <li><span class="region-label">NATO response:</span> European NATO members deploy forces to the front; the U.S., Canada, and Australia initially focus on logistics, intelligence, and cyber operations rather than large front-line deployments.</li>
-          <li><span class="region-label">Taiwan (mid-year):</span> China executes a major cyber and electronic-warfare campaign, crippling Taiwanese power and communications. A naval and air blockade follows, forcing Taipei to surrender after weeks of isolation.</li>
-          <li><span class="region-label">Korean Peninsula:</span> North Korea launches a coordinated offensive on the South as Chinese forces cross the Yalu “to stabilize the peninsula.” Combined pressure leads to the collapse of organized South Korean resistance.</li>
-          <li><span class="region-label">Japan:</span> Chinese hypersonic missiles strike major air and naval bases, badly damaging Japan’s ability to project power. Japan remains independent but is heavily constrained.</li>
-          <li><span class="region-label">Caribbean:</span> A large Chinese “research and security” flotilla visits Cuban ports; expansion of a Chinese listening and radar complex is detected. U.S. naval and air patrols quietly increase.</li>
+          <li><strong>Europe (January):</strong> Russia launches a surprise invasion of Estonia and Latvia, with missile and cyber strikes on Lithuania. NATO triggers Article&nbsp;5, committing to collective defense.</li>
+          <li><strong>NATO response:</strong> European NATO members deploy forces to the front; the U.S., Canada, and Australia initially focus on logistics, intelligence, and cyber operations rather than large front-line deployments.</li>
+          <li><strong>Taiwan (mid-year):</strong> China executes a major cyber and electronic-warfare campaign, crippling Taiwanese power and communications. A naval and air blockade follows, forcing Taipei to surrender after weeks of isolation.</li>
+          <li><strong>Korean Peninsula:</strong> North Korea launches a coordinated offensive on the South as Chinese forces cross the Yalu “to stabilize the peninsula.” Combined pressure leads to the collapse of organized South Korean resistance.</li>
+          <li><strong>Japan:</strong> Chinese hypersonic missiles strike major air and naval bases, badly damaging Japan’s ability to project power. Japan remains independent but is heavily constrained.</li>
+          <li><strong>Caribbean:</strong> A large Chinese “research and security” flotilla visits Cuban ports; expansion of a Chinese listening and radar complex is detected. U.S. naval and air patrols quietly increase.</li>
         </ul>
       </div>
 
-      <!-- 2028 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2028</h3>
-        <div class="tagline">Chinese expansion across Southeast Asia and rising Caribbean tension</div>
+        <h4>Chinese expansion across Southeast Asia and rising Caribbean tension</h4>
         <ul>
-          <li><span class="region-label">Philippines:</span> Sustained drone swarms and missile coercion lead to the loss of key outposts and a forced political settlement that grants China effective control over the West Philippine Sea.</li>
-          <li><span class="region-label">Vietnam:</span> China launches a three-pronged attack from the land border, the Gulf of Tonkin, and the air. Hanoi falls; northern Vietnam is occupied and southern Vietnam is pushed into a subordinate “autonomous” status.</li>
-          <li><span class="region-label">Mainland Southeast Asia:</span> Laos and Cambodia sign “comprehensive security agreements”; Chinese forces enter northern Myanmar in the name of stabilizing internal conflict.</li>
-          <li><span class="region-label">Indonesia:</span> China seizes the Natuna and Aru islands and leverages that position to force Indonesia into a neutrality pact that restricts cooperation with Western navies.</li>
-          <li><span class="region-label">Europe:</span> NATO halts further Russian progress and stabilizes lines around Riga and Tallinn. The war settles into a costly stalemate.</li>
-          <li><span class="region-label">Caribbean:</span> Satellite imagery reveals hardened Chinese facilities in Cuba and Suriname, including radar arrays and deep-water port upgrades. The U.S. shifts additional air assets and submarines to the region.</li>
+          <li><strong>Philippines:</strong> Sustained drone swarms and missile coercion lead to the loss of key outposts and a forced political settlement that grants China effective control over the West Philippine Sea.</li>
+          <li><strong>Vietnam:</strong> China launches a three-pronged attack from the land border, the Gulf of Tonkin, and the air. Hanoi falls; northern Vietnam is occupied and southern Vietnam is pushed into a subordinate “autonomous” status.</li>
+          <li><strong>Mainland Southeast Asia:</strong> Laos and Cambodia sign “comprehensive security agreements”; Chinese forces enter northern Myanmar in the name of stabilizing internal conflict.</li>
+          <li><strong>Indonesia:</strong> China seizes the Natuna and Aru islands and leverages that position to force Indonesia into a neutrality pact that restricts cooperation with Western navies.</li>
+          <li><strong>Europe:</strong> NATO halts further Russian progress and stabilizes lines around Riga and Tallinn. The war settles into a costly stalemate.</li>
+          <li><strong>Caribbean:</strong> Satellite imagery reveals hardened Chinese facilities in Cuba and Suriname, including radar arrays and deep-water port upgrades. The U.S. shifts additional air assets and submarines to the region.</li>
         </ul>
       </div>
 
-      <!-- 2029 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2029</h3>
-        <div class="tagline">China completes its Eastern empire and strikes Australia; global war fully ignites</div>
+        <h4>China completes its Eastern empire and strikes Australia; global war fully ignites</h4>
         <ul>
-          <li><span class="region-label">China’s sphere (early year):</span> By mid-2029, China effectively controls Taiwan, Korea, northern Vietnam, the Philippines, key islands in Indonesia and Myanmar, and the Ryukyu chain. Japan is partially blockaded and under intense pressure.</li>
-          <li><span class="region-label">Europe:</span> NATO retakes some ground in Latvia and Lithuania but Russia still holds parts of Estonia and critical supply corridors; attrition is high on both sides.</li>
-          <li><span class="region-label">Attack on Australia (September):</span> China launches “Operation Southern Thunder” — a surprise strike using hypersonic and cruise missiles, underwater drones, and cyberattacks against HMAS Stirling, RAAF bases in Darwin, Tindal, and Amberley, and fuel and communication nodes. Northern Australia suffers heavy losses.</li>
-          <li><span class="region-label">Allied declarations:</span> Australia declares total war. The U.S. and Canada formally enter direct combat against China, confirming their role as active belligerents in both European and Indo-Pacific theatres.</li>
-          <li><span class="region-label">Caribbean (Windward Passage clash):</span> A Chinese naval group leaving Cuban waters confronts U.S. ships; a tense standoff escalates into a battle in which multiple Chinese vessels are sunk. The Caribbean is recognized as a secondary but critical theatre for containing Chinese reach toward North America.</li>
+          <li><strong>China’s sphere (early year):</strong> By mid-2029, China effectively controls Taiwan, Korea, northern Vietnam, the Philippines, key islands in Indonesia and Myanmar, and the Ryukyu chain. Japan is partially blockaded and under intense pressure.</li>
+          <li><strong>Europe:</strong> NATO retakes some ground in Latvia and Lithuania but Russia still holds parts of Estonia and critical supply corridors; attrition is high on both sides.</li>
+          <li><strong>Attack on Australia (September):</strong> China launches “Operation Southern Thunder” — a surprise strike using hypersonic and cruise missiles, underwater drones, and cyberattacks against HMAS Stirling, RAAF bases in Darwin, Tindal, and Amberley, and fuel and communication nodes. Northern Australia suffers heavy losses.</li>
+          <li><strong>Allied declarations:</strong> Australia declares total war. The U.S. and Canada formally enter direct combat against China, confirming their role as active belligerents in both European and Indo-Pacific theatres.</li>
+          <li><strong>Caribbean (Windward Passage clash):</strong> A Chinese naval group leaving Cuban waters confronts U.S. ships; a tense standoff escalates into a battle in which multiple Chinese vessels are sunk. The Caribbean is recognized as a secondary but critical theatre for containing Chinese reach toward North America.</li>
         </ul>
       </div>
 
-      <!-- 2030 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2030</h3>
-        <div class="tagline">Dual-theatre global war and the Caribbean as a fortified U.S. shield</div>
+        <h4>Dual-theatre global war and the Caribbean as a fortified U.S. shield</h4>
         <ul>
-          <li><span class="region-label">Indo-Pacific:</span> China advances into Timor-Leste and Papua to secure forward bases near northern Australia. Allied navies and air forces fight intense battles in the Timor and Arafura Seas to prevent further encroachment.</li>
-          <li><span class="region-label">Australia & allies:</span> The U.S. deploys carrier groups and long-range bombers to Australian waters; Canada sends CF-35 squadrons, surface combatants, and submarines to operate from Western Australian ports.</li>
-          <li><span class="region-label">Europe:</span> NATO mounts limited offensives that regain portions of Latvia and Lithuania. Russian forces dig in, relying increasingly on missile barrages and deep defenses.</li>
-          <li><span class="region-label">Caribbean:</span> The U.S. establishes a “Caribbean Defensive Zone,” hardening bases from Florida to Puerto Rico, enhancing missile defense, and tightly monitoring Chinese-linked shipping. The region becomes a crucial southern shield for the U.S. homeland.</li>
+          <li><strong>Indo-Pacific:</strong> China advances into Timor-Leste and Papua to secure forward bases near northern Australia. Allied navies and air forces fight intense battles in the Timor and Arafura Seas to prevent further encroachment.</li>
+          <li><strong>Australia & allies:</strong> The U.S. deploys carrier groups and long-range bombers to Australian waters; Canada sends CF-35 squadrons, surface combatants, and submarines to operate from Western Australian ports.</li>
+          <li><strong>Europe:</strong> NATO mounts limited offensives that regain portions of Latvia and Lithuania. Russian forces dig in, relying increasingly on missile barrages and deep defenses.</li>
+          <li><strong>Caribbean:</strong> The U.S. establishes a “Caribbean Defensive Zone,” hardening bases from Florida to Puerto Rico, enhancing missile defense, and tightly monitoring Chinese-linked shipping. The region becomes a crucial southern shield for the U.S. homeland.</li>
         </ul>
       </div>
 
-      <!-- 2031 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2031</h3>
-        <div class="tagline">Stalemate and attrition, but China’s offensive momentum slows</div>
+        <h4>Stalemate and attrition, but China’s offensive momentum slows</h4>
         <ul>
-          <li><span class="region-label">Indo-Pacific:</span> Fighting around Papua and the northern approaches to Australia remains fierce. Allied drone warfare and precision anti-ship missiles increasingly blunt Chinese operations and expose logistics vulnerabilities.</li>
-          <li><span class="region-label">Australia:</span> National mobilization expands the military, accelerates domestic missile and drone production, and drives rapid hardening of critical infrastructure and northern cities.</li>
-          <li><span class="region-label">Europe:</span> NATO makes incremental gains in Estonia and Latvia but cannot yet force a strategic breakthrough; both sides endure heavy casualties.</li>
-          <li><span class="region-label">Caribbean:</span> U.S. and Canadian naval and air power prevent further Chinese build-up. Intelligence and cyber operations target remaining Chinese facilities and networks in the region.</li>
+          <li><strong>Indo-Pacific:</strong> Fighting around Papua and the northern approaches to Australia remains fierce. Allied drone warfare and precision anti-ship missiles increasingly blunt Chinese operations and expose logistics vulnerabilities.</li>
+          <li><strong>Australia:</strong> National mobilization expands the military, accelerates domestic missile and drone production, and drives rapid hardening of critical infrastructure and northern cities.</li>
+          <li><strong>Europe:</strong> NATO makes incremental gains in Estonia and Latvia but cannot yet force a strategic breakthrough; both sides endure heavy casualties.</li>
+          <li><strong>Caribbean:</strong> U.S. and Canadian naval and air power prevent further Chinese build-up. Intelligence and cyber operations target remaining Chinese facilities and networks in the region.</li>
         </ul>
       </div>
 
-      <!-- 2032 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2032</h3>
-        <div class="tagline">Turning the tide in the Pacific: the Battle of the Timor Sea</div>
+        <h4>Turning the tide in the Pacific: the Battle of the Timor Sea</h4>
         <ul>
-          <li><span class="region-label">Battle of the Timor Sea:</span> A major combined operation by U.S., Australian, Canadian, and Japanese forces destroys a Chinese carrier group and multiple amphibious and logistics vessels. China loses a carrier and several escorts, ending its ability to mount large-scale offensives toward Australia.</li>
-          <li><span class="region-label">Indo-Pacific:</span> Allied forces begin liberating Timor-Leste and push Chinese troops out of much of Papua, establishing firmer control of northern approaches.</li>
-          <li><span class="region-label">Europe:</span> NATO pushes Russian forces back from the outskirts of Riga and Tallinn, regaining important urban and logistical areas.</li>
-          <li><span class="region-label">Caribbean:</span> U.S. and Canadian operations neutralize or dismantle known Chinese intelligence nodes; the region settles into a secure rear area and logistics hub for Atlantic operations.</li>
+          <li><strong>Battle of the Timor Sea:</strong> A major combined operation by U.S., Australian, Canadian, and Japanese forces destroys a Chinese carrier group and multiple amphibious and logistics vessels. China loses a carrier and several escorts, ending its ability to mount large-scale offensives toward Australia.</li>
+          <li><strong>Indo-Pacific:</strong> Allied forces begin liberating Timor-Leste and push Chinese troops out of much of Papua, establishing firmer control of northern approaches.</li>
+          <li><strong>Europe:</strong> NATO pushes Russian forces back from the outskirts of Riga and Tallinn, regaining important urban and logistical areas.</li>
+          <li><strong>Caribbean:</strong> U.S. and Canadian operations neutralize or dismantle known Chinese intelligence nodes; the region settles into a secure rear area and logistics hub for Atlantic operations.</li>
         </ul>
       </div>
 
-      <!-- 2033 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2033</h3>
-        <div class="tagline">Allied counteroffensives gain momentum</div>
+        <h4>Allied counteroffensives gain momentum</h4>
         <ul>
-          <li><span class="region-label">Indo-Pacific:</span> Allied forces fully secure Timor-Leste and most of Papua, attack Chinese positions across eastern Indonesia, and increase pressure on Chinese outposts in the South China Sea.</li>
-          <li><span class="region-label">Europe:</span> NATO liberates much of Latvia and Estonia, consolidates defensive lines, and secures supply routes from Poland and Germany to the Baltic region. Russian losses in equipment and manpower mount.</li>
-          <li><span class="region-label">Caribbean:</span> Chinese military presence effectively disappears. The U.S. and Canada focus on anti-submarine warfare and persistent surveillance to prevent any renewed penetration.</li>
-          <li><span class="region-label">Global:</span> War weariness is widespread, but the shift in momentum toward the Allies becomes undeniable.</li>
+          <li><strong>Indo-Pacific:</strong> Allied forces fully secure Timor-Leste and most of Papua, attack Chinese positions across eastern Indonesia, and increase pressure on Chinese outposts in the South China Sea.</li>
+          <li><strong>Europe:</strong> NATO liberates much of Latvia and Estonia, consolidates defensive lines, and secures supply routes from Poland and Germany to the Baltic region. Russian losses in equipment and manpower mount.</li>
+          <li><strong>Caribbean:</strong> Chinese military presence effectively disappears. The U.S. and Canada focus on anti-submarine warfare and persistent surveillance to prevent any renewed penetration.</li>
+          <li><strong>Global:</strong> War weariness is widespread, but the shift in momentum toward the Allies becomes undeniable.</li>
         </ul>
       </div>
 
-      <!-- 2034 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2034</h3>
-        <div class="tagline">Breaking China’s outer ring and tightening the blockade</div>
+        <h4>Breaking China’s outer ring and tightening the blockade</h4>
         <ul>
-          <li><span class="region-label">South China Sea:</span> Allied operations seize or neutralize key Chinese-controlled islands and artificial bases in the Spratly and Paracel groups, converting several into Allied staging points that dominate critical sea lanes.</li>
-          <li><span class="region-label">Maritime blockade:</span> A de facto blockade sharply limits China’s access to imported resources. Global trade reorganizes around Allied-secured routes through the Indian Ocean and Atlantic.</li>
-          <li><span class="region-label">Europe:</span> NATO offensives drive Russian forces closer to pre-war borders; Belarus is increasingly destabilized by resistance and internal opposition to the war.</li>
-          <li><span class="region-label">Caribbean:</span> The theatre’s role shifts primarily to long-range surveillance, undersea monitoring, and strategic missile defense, ensuring the Western Hemisphere remains insulated from direct attack.</li>
+          <li><strong>South China Sea:</strong> Allied operations seize or neutralize key Chinese-controlled islands and artificial bases in the Spratly and Paracel groups, converting several into Allied staging points that dominate critical sea lanes.</li>
+          <li><strong>Maritime blockade:</strong> A de facto blockade sharply limits China’s access to imported resources. Global trade reorganizes around Allied-secured routes through the Indian Ocean and Atlantic.</li>
+          <li><strong>Europe:</strong> NATO offensives drive Russian forces closer to pre-war borders; Belarus is increasingly destabilized by resistance and internal opposition to the war.</li>
+          <li><strong>Caribbean:</strong> The theatre’s role shifts primarily to long-range surveillance, undersea monitoring, and strategic missile defense, ensuring the Western Hemisphere remains insulated from direct attack.</li>
         </ul>
       </div>
 
-      <!-- 2035 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2035</h3>
-        <div class="tagline">Erosion of Chinese and Russian power</div>
+        <h4>Erosion of Chinese and Russian power</h4>
         <ul>
-          <li><span class="region-label">Indo-Pacific:</span> China increasingly struggles to resupply remaining garrisons in Vietnam, the Philippines, and Myanmar. Local resistance movements gain strength with covert Allied support.</li>
-          <li><span class="region-label">Japan & Korea:</span> Japan completes major rearmament and joins high-tempo operations. Uprisings in occupied Korea and discontent in China’s interior consume growing Chinese military resources.</li>
-          <li><span class="region-label">Europe:</span> Russian defensive lines show signs of stress as sanctions, battlefield losses, and domestic protests converge.</li>
-          <li><span class="region-label">Global economy:</span> Wartime production remains high. Allied governments begin laying out reconstruction plans for the Baltics, Korea, Taiwan, and Southeast Asia.</li>
+          <li><strong>Indo-Pacific:</strong> China increasingly struggles to resupply remaining garrisons in Vietnam, the Philippines, and Myanmar. Local resistance movements gain strength with covert Allied support.</li>
+          <li><strong>Japan &amp; Korea:</strong> Japan completes major rearmament and joins high-tempo operations. Uprisings in occupied Korea and discontent in China’s interior consume growing Chinese military resources.</li>
+          <li><strong>Europe:</strong> Russian defensive lines show signs of stress as sanctions, battlefield losses, and domestic protests converge.</li>
+          <li><strong>Global economy:</strong> Wartime production remains high. Allied governments begin laying out reconstruction plans for the Baltics, Korea, Taiwan, and Southeast Asia.</li>
         </ul>
       </div>
 
-      <!-- 2036 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2036</h3>
-        <div class="tagline">Approaching endgame</div>
+        <h4>Approaching endgame</h4>
         <ul>
-          <li><span class="region-label">Indo-Pacific:</span> Allied air and missile strikes target key coastal bases and logistics hubs in southern China used to support operations in Southeast Asia. Chinese naval and air losses pass replacement capacity.</li>
-          <li><span class="region-label">Europe:</span> NATO launches coordinated offensives that push Russian forces back across much of the pre-war frontiers. Russian leadership faces intensifying internal pressure.</li>
-          <li><span class="region-label">Domestic crises:</span> Both China and Russia confront serious economic disruption, elite fractures, and social unrest. Factions within their systems begin quietly exploring negotiated exits.</li>
-          <li><span class="region-label">Caribbean:</span> The region remains militarily quiet and firmly Allied, serving as a stable logistics and surveillance base for broader Atlantic security.</li>
+          <li><strong>Indo-Pacific:</strong> Allied air and missile strikes target key coastal bases and logistics hubs in southern China used to support operations in Southeast Asia. Chinese naval and air losses pass replacement capacity.</li>
+          <li><strong>Europe:</strong> NATO launches coordinated offensives that push Russian forces back across much of the pre-war frontiers. Russian leadership faces intensifying internal pressure.</li>
+          <li><strong>Domestic crises:</strong> Both China and Russia confront serious economic disruption, elite fractures, and social unrest. Factions within their systems begin quietly exploring negotiated exits.</li>
+          <li><strong>Caribbean:</strong> The region remains militarily quiet and firmly Allied, serving as a stable logistics and surveillance base for broader Atlantic security.</li>
         </ul>
       </div>
 
-      <!-- 2037 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2037</h3>
-        <div class="tagline">End of World War III</div>
+        <h4>End of World War III</h4>
         <ul>
-          <li><span class="region-label">Treaty of Warsaw (Europe):</span> Russia agrees to withdraw from all Baltic territories, accept the demilitarization of Kaliningrad, and recognize a neutral, internationally supervised Belarus in exchange for phased sanctions relief and security guarantees.</li>
-          <li><span class="region-label">Treaty of Canberra (Indo-Pacific):</span> China signs an agreement to withdraw from occupied territories in Southeast Asia, accept Korean reunification under an internationally backed government, and demilitarize key zones of the South China Sea.</li>
-          <li><span class="region-label">Global:</span> World War III is formally declared over. States begin negotiating a new international architecture designed to prevent a repeat of such a large-scale conflict.</li>
-          <li><span class="region-label">Caribbean:</span> Chinese influence is effectively eliminated; the region is recognized as a secure Allied strategic zone integrated into long-term Atlantic defense planning.</li>
+          <li><strong>Treaty of Warsaw (Europe):</strong> Russia agrees to withdraw from all Baltic territories, accept the demilitarization of Kaliningrad, and recognize a neutral, internationally supervised Belarus in exchange for phased sanctions relief and security guarantees.</li>
+          <li><strong>Treaty of Canberra (Indo-Pacific):</strong> China signs an agreement to withdraw from occupied territories in Southeast Asia, accept Korean reunification under an internationally backed government, and demilitarize key zones of the South China Sea.</li>
+          <li><strong>Global:</strong> World War III is formally declared over. States begin negotiating a new international architecture designed to prevent a repeat of such a large-scale conflict.</li>
+          <li><strong>Caribbean:</strong> Chinese influence is effectively eliminated; the region is recognized as a secure Allied strategic zone integrated into long-term Atlantic defense planning.</li>
         </ul>
       </div>
 
-      <!-- 2038 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2038</h3>
-        <div class="tagline">Founding year of the new order</div>
+        <h4>Founding year of the new order</h4>
         <ul>
-          <li><span class="region-label">GSRS creation:</span> The Canberra–Warsaw Accords establish the Global Stability & Reconstruction System (GSRS), including a Global Security Council, a multinational Peace & Enforcement Force, a Global Reconstruction Bank, and an International Cyber & Space Authority.</li>
-          <li><span class="region-label">Reconstruction:</span> Large-scale reconstruction begins in the Baltics, Korea, Taiwan, Vietnam, Japan, and northern Australia, with funding and coordination from the new GRB.</li>
-          <li><span class="region-label">Security blocs:</span> The Pacific Security Bloc coalesces around the U.S., Canada, Australia, Japan, Korea, Taiwan, and key Southeast Asian states, while an evolved European Defense Union consolidates responsibility for European security.</li>
-          <li><span class="region-label">Caribbean:</span> The Caribbean Basin is formally integrated into GSRS maritime security planning as a critical node protecting the Americas and Atlantic trade routes.</li>
+          <li><strong>GSRS creation:</strong> The Canberra–Warsaw Accords establish the Global Stability &amp; Reconstruction System (GSRS), including a Global Security Council, a multinational Peace &amp; Enforcement Force, a Global Reconstruction Bank (GRB), and an International Cyber &amp; Space Authority.</li>
+          <li><strong>Reconstruction:</strong> Large-scale reconstruction begins in the Baltics, Korea, Taiwan, Vietnam, Japan, and northern Australia, with funding and coordination from the new GRB.</li>
+          <li><strong>Security blocs:</strong> The Pacific Security Bloc coalesces around the U.S., Canada, Australia, Japan, Korea, Taiwan, and key Southeast Asian states, while an evolved European Defense Union consolidates responsibility for European security.</li>
+          <li><strong>Caribbean:</strong> The Caribbean Basin is formally integrated into GSRS maritime security planning as a critical node protecting the Americas and Atlantic trade routes.</li>
         </ul>
       </div>
 
-      <!-- 2039 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2039</h3>
-        <div class="tagline">Early consolidation of peace</div>
+        <h4>Early consolidation of peace</h4>
         <ul>
-          <li><span class="region-label">Political transitions:</span> Russia moves through a fragile but real political transition toward a more pluralistic system; China begins reforms that curb hardline military influence and cautiously reopen its economy.</li>
-          <li><span class="region-label">Institution building:</span> GSRS peacekeepers supervise demilitarized zones, oversee arms reductions, and help manage the reintegration of former conflict zones into regional networks.</li>
-          <li><span class="region-label">Economic recovery:</span> Trade routes gradually normalize under new security guarantees. Allied investment flows into devastated regions, prioritizing resilient infrastructure and diversified supply chains.</li>
-          <li><span class="region-label">Caribbean role:</span> The Caribbean emerges as a stable logistics and surveillance hub, with upgraded ports and bases supporting GSRS Atlantic and hemispheric security missions.</li>
+          <li><strong>Political transitions:</strong> Russia moves through a fragile but real political transition toward a more pluralistic system; China begins reforms that curb hardline military influence and cautiously reopen its economy.</li>
+          <li><strong>Institution building:</strong> GSRS peacekeepers supervise demilitarized zones, oversee arms reductions, and help manage the reintegration of former conflict zones into regional networks.</li>
+          <li><strong>Economic recovery:</strong> Trade routes gradually normalize under new security guarantees. Allied investment flows into devastated regions, prioritizing resilient infrastructure and diversified supply chains.</li>
+          <li><strong>Caribbean role:</strong> The Caribbean emerges as a stable logistics and surveillance hub, with upgraded ports and bases supporting GSRS Atlantic and hemispheric security missions.</li>
         </ul>
       </div>
 
-      <!-- 2040 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2040</h3>
-        <div class="tagline">First fully stable year of the post-war era</div>
+        <h4>First fully stable year of the post-war era</h4>
         <ul>
-          <li><span class="region-label">Global stability:</span> No major interstate wars break out. Smaller conflicts are managed through GSRS mediation, sanctions, and, where necessary, limited peace enforcement operations.</li>
-          <li><span class="region-label">Cyber & space norms:</span> The International Cyber & Space Authority implements global rules for satellite deployment, anti-satellite testing, and state cyber behavior, reducing the risk of surprise strategic strikes.</li>
-          <li><span class="region-label">Education & memory:</span> New educational curricula emphasize the lessons of 2027–2037: the dangers of unchecked authoritarianism, alliance fragmentation, and unconstrained escalation.</li>
-          <li><span class="region-label">Allied leadership:</span> The U.S., Canada, Australia, Japan, and an integrated Europe share leadership in the GSRS framework, with India and key African and Latin American states taking on larger roles.</li>
+          <li><strong>Global stability:</strong> No major interstate wars break out. Smaller conflicts are managed through GSRS mediation, sanctions, and, where necessary, limited peace enforcement operations.</li>
+          <li><strong>Cyber &amp; space norms:</strong> The International Cyber &amp; Space Authority implements global rules for satellite deployment, anti-satellite testing, and state cyber behavior, reducing the risk of surprise strategic strikes.</li>
+          <li><strong>Education &amp; memory:</strong> New educational curricula emphasize the lessons of 2027–2037: the dangers of unchecked authoritarianism, alliance fragmentation, and unconstrained escalation.</li>
+          <li><strong>Allied leadership:</strong> The U.S., Canada, Australia, Japan, and an integrated Europe share leadership in the GSRS framework, with India and key African and Latin American states taking on larger roles.</li>
         </ul>
       </div>
 
-      <!-- 2041 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2041</h3>
-        <div class="tagline">Deepening reconstruction and regional integration</div>
+        <h4>Deepening reconstruction and regional integration</h4>
         <ul>
-          <li><span class="region-label">Rebuilding:</span> GRB projects expand, focusing on energy grids, transport networks, and digital infrastructure in post-war regions, all designed to be resilient to cyberattack and physical disruption.</li>
-          <li><span class="region-label">Regional defense:</span> The Pacific Security Bloc and European Defense Union coordinate procurement and training, gradually moving toward shared standards and joint early-warning systems.</li>
-          <li><span class="region-label">Maritime corridors:</span> Protected shipping lanes linking the Indian Ocean, Pacific, Caribbean, and Atlantic are formalized under GSRS oversight, anchoring global trade to stable security guarantees.</li>
-          <li><span class="region-label">Public sentiment:</span> Populations remain wary of renewed militarization, but broad majorities support strong, multilateral security institutions as a necessary safeguard.</li>
+          <li><strong>Rebuilding:</strong> GRB projects expand, focusing on energy grids, transport networks, and digital infrastructure in post-war regions, all designed to be resilient to cyberattack and physical disruption.</li>
+          <li><strong>Regional defense:</strong> The Pacific Security Bloc and European Defense Union coordinate procurement and training, gradually moving toward shared standards and joint early-warning systems.</li>
+          <li><strong>Maritime corridors:</strong> Protected shipping lanes linking the Indian Ocean, Pacific, Caribbean, and Atlantic are formalized under GSRS oversight, anchoring global trade to stable security guarantees.</li>
+          <li><strong>Public sentiment:</strong> Populations remain wary of renewed militarization, but broad majorities support strong, multilateral security institutions as a necessary safeguard.</li>
         </ul>
       </div>
 
-      <!-- 2042 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2042</h3>
-        <div class="tagline">The new international order becomes routine</div>
+        <h4>The new international order becomes routine</h4>
         <ul>
-          <li><span class="region-label">Institutional maturity:</span> GSRS develops standardized playbooks for crisis response, sanctions regimes, peacekeeping mandates, and cyber incidents, increasing predictability and trust among members.</li>
-          <li><span class="region-label">Former adversaries:</span> Russia and China remain under strict military constraints but slowly reintegrate into global trade and diplomacy, contingent on compliance with GSRS norms.</li>
-          <li><span class="region-label">Caribbean integration:</span> Caribbean states benefit from sustained development aid, secure sea lanes, and a clear security framework aligned with GSRS priorities.</li>
-          <li><span class="region-label">Global outlook:</span> Analysts begin referring to the Canberra–Warsaw system as the most robust collective security architecture in modern history, even as debates about its fairness and longevity continue.</li>
+          <li><strong>Institutional maturity:</strong> GSRS develops standardized playbooks for crisis response, sanctions regimes, peacekeeping mandates, and cyber incidents, increasing predictability and trust among members.</li>
+          <li><strong>Former adversaries:</strong> Russia and China remain under strict military constraints but slowly reintegrate into global trade and diplomacy, contingent on compliance with GSRS norms.</li>
+          <li><strong>Caribbean integration:</strong> Caribbean states benefit from sustained development aid, secure sea lanes, and a clear security framework aligned with GSRS priorities.</li>
+          <li><strong>Global outlook:</strong> Analysts begin referring to the Canberra–Warsaw system as the most robust collective security architecture in modern history, even as debates about its fairness and longevity continue.</li>
         </ul>
       </div>
 
-      <!-- 2043 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2043</h3>
-        <div class="tagline">The post-war generation starts to lead</div>
+        <h4>The post-war generation starts to lead</h4>
         <ul>
-          <li><span class="region-label">New leadership:</span> Individuals who were children or teenagers during the war begin to assume political, military, and technological leadership roles, bringing strong preferences for multilateral solutions and risk-aware planning.</li>
-          <li><span class="region-label">Defense posture:</span> Security planning emphasizes integrated cyber-space-missile defenses over large expeditionary ground forces, aiming to deter conflict before it starts.</li>
-          <li><span class="region-label">Economic cooperation:</span> Deep trade and technology partnerships knit together North America, Europe, the Pacific, and parts of Africa and Latin America under GSRS-compatible rules.</li>
-          <li><span class="region-label">Caribbean example:</span> The region is cited as a model of how a once-contested strategic space can be stabilized and woven into a cooperative security and economic framework.</li>
+          <li><strong>New leadership:</strong> Individuals who were children or teenagers during the war begin to assume political, military, and technological leadership roles, bringing strong preferences for multilateral solutions and risk-aware planning.</li>
+          <li><strong>Defense posture:</strong> Security planning emphasizes integrated cyber-space-missile defenses over large expeditionary ground forces, aiming to deter conflict before it starts.</li>
+          <li><strong>Economic cooperation:</strong> Deep trade and technology partnerships knit together North America, Europe, the Pacific, and parts of Africa and Latin America under GSRS-compatible rules.</li>
+          <li><strong>Caribbean example:</strong> The region is cited as a model of how a once-contested strategic space can be stabilized and woven into a cooperative security and economic framework.</li>
         </ul>
       </div>
 
-      <!-- 2044 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2044</h3>
-        <div class="tagline">Security architecture hardens as former adversaries cautiously liberalize</div>
+        <h4>Security architecture hardens as former adversaries cautiously liberalize</h4>
         <ul>
-          <li><span class="region-label">Security:</span> Long-range missile defense networks, AI-driven early warning, and coordinated naval patrols reduce the risk of surprise attacks in Europe, the Pacific, and the Caribbean.</li>
-          <li><span class="region-label">Russia & China:</span> Incremental political reforms and economic opening continue, though GSRS monitoring remains tight and skepticism about their long-term trajectory persists.</li>
-          <li><span class="region-label">GSRS debate:</span> Internal discussions begin about reforming representation, enhancing accountability, and further limiting unilateral action by major powers.</li>
-          <li><span class="region-label">Public discourse:</span> Scholars and strategists debate whether the system has truly ended the cycle of great-power war or merely postponed the next crisis.</li>
+          <li><strong>Security:</strong> Long-range missile defense networks, AI-driven early warning, and coordinated naval patrols reduce the risk of surprise attacks in Europe, the Pacific, and the Caribbean.</li>
+          <li><strong>Russia &amp; China:</strong> Incremental political reforms and economic opening continue, though GSRS monitoring remains tight and skepticism about their long-term trajectory persists.</li>
+          <li><strong>GSRS debate:</strong> Internal discussions begin about reforming representation, enhancing accountability, and further limiting unilateral action by major powers.</li>
+          <li><strong>Public discourse:</strong> Scholars and strategists debate whether the system has truly ended the cycle of great-power war or merely postponed the next crisis.</li>
         </ul>
       </div>
 
-      <!-- 2045 -->
-      <div class="year-block">
+      <div class="timeline-year">
         <h3>2045</h3>
-        <div class="tagline">Ten years after the war: reflection and long-term planning</div>
+        <h4>Ten years after the war: reflection and long-term planning</h4>
         <ul>
-          <li><span class="region-label">Anniversaries:</span> The 10th anniversary of the end of World War III is marked by global commemorations in the Baltics, Australia, Japan, Korea, Vietnam, North America, and the Caribbean.</li>
-          <li><span class="region-label">Assessment:</span> Independent reviews conclude that, although imperfect, the GSRS and associated regional blocs have prevented a return to large-scale interstate war and significantly reduced systemic risk.</li>
-          <li><span class="region-label">Reform agendas:</span> Conferences in Canberra, Warsaw, Ottawa, and Tokyo explore next steps: stronger global courts, deeper cyber and space norms, more inclusive representation for the Global South, and possible steps toward more formalized shared sovereignty.</li>
-          <li><span class="region-label">Historical framing:</span> The period from 2026 to 2045 is increasingly seen as a hinge between the unstable post-Cold War era and a more structured, cooperative, and technologically managed international order.</li>
+          <li><strong>Anniversaries:</strong> The 10th anniversary of the end of World War III is marked by global commemorations in the Baltics, Australia, Japan, Korea, Vietnam, North America, and the Caribbean.</li>
+          <li><strong>Assessment:</strong> Independent reviews conclude that, although imperfect, the GSRS and associated regional blocs have prevented a return to large-scale interstate war and significantly reduced systemic risk.</li>
+          <li><strong>Reform agendas:</strong> Conferences in Canberra, Warsaw, Ottawa, and Tokyo explore next steps: stronger global courts, deeper cyber and space norms, more inclusive representation for the Global South, and possible steps toward more formalized shared sovereignty.</li>
+          <li><strong>Historical framing:</strong> The period from 2026 to 2045 is increasingly seen as a hinge between the unstable post-Cold War era and a more structured, cooperative, and technologically managed international order.</li>
         </ul>
       </div>
-    </section>
-  </main>
 
-  <footer>
-    © Dan Fournel · fournel.org · Scenario & timeline under ongoing revision
-  </footer>
+      <!-- TIMELINE ENDS HERE -->
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Dan Fournel · fournel.org</span>
+  <span>World War III Scenario Timeline · hosted on GitHub Pages</span>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
-
