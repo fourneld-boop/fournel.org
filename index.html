@@ -2,573 +2,399 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dan Fournel – fournel.org</title>
+  <title>fournel.org – Projects, Timelines & Future Scenarios</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal site of Dan Fournel – projects, writing, and contact info." />
+  <meta name="description" content="The personal research portal of Dan Fournel – SF, history, technology, religion, future scenarios, and long-range timelines.">
 
   <style>
     :root {
-      --bg: #050b12;
-      --bg-alt: #0c1522;
-      --accent: #3fa9f5;
-      --accent-soft: rgba(63, 169, 245, 0.16);
-      --text: #f5f7fb;
-      --text-muted: #9ba4b6;
-      --border-soft: rgba(255, 255, 255, 0.06);
-      --max-width: 1000px;
-      --radius-lg: 18px;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #4fd1ff;
+      --accent-2: #a855ff;
+      --accent-soft: rgba(79, 209, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #151f33 0, #050b12 45%, #02040a 100%);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #3a1454 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Animated wormhole background */
+    .wormhole-layer {
+      position: fixed;
+      inset: -40%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(10, 185, 255, 0.18) 0, transparent 50%),
+        radial-gradient(circle at 30% 20%, rgba(178, 84, 255, 0.22) 0, transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(79, 209, 255, 0.18) 0, transparent 55%);
+      opacity: 0.85;
+      animation: pulseWormhole 10s ease-in-out infinite alternate;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .wormhole-core {
+      position: fixed;
+      left: 50%;
+      top: 45%;
+      width: 520px;
+      height: 520px;
+      margin-left: -260px;
+      margin-top: -260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(1, 8, 20, 0.6) 0, rgba(1, 8, 20, 0.98) 52%, #020612 70%),
+        conic-gradient(from 0deg, rgba(79,209,255,0.1), rgba(168,85,255,0.45), rgba(79,209,255,0.7), rgba(0,0,0,0.9), rgba(79,209,255,0.2));
+      filter: blur(2px);
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinWormhole 40s linear infinite;
     }
 
+    .wormhole-ring {
+      position: fixed;
+      left: 50%;
+      top: 45%;
+      width: 360px;
+      height: 360px;
+      margin-left: -180px;
+      margin-top: -180px;
+      border-radius: 50%;
+      border: 1px dashed rgba(158, 195, 255, 0.4);
+      box-shadow:
+        0 0 30px rgba(79, 209, 255, 0.5),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinRing 26s linear infinite reverse;
+    }
+
+    @keyframes spinWormhole {
+      from { transform: rotate(0deg) scale(1); }
+      to   { transform: rotate(360deg) scale(1.03); }
+    }
+
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+
+    @keyframes pulseWormhole {
+      from { opacity: 0.6; transform: scale(1); }
+      to   { opacity: 0.95; transform: scale(1.08); }
+    }
+
+    /* Layout & nav */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(
-        to bottom,
-        rgba(5, 11, 18, 0.92),
-        rgba(5, 11, 18, 0.85),
-        transparent
-      );
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(2, 6, 18, 0.87);
       border-bottom: 1px solid var(--border-soft);
     }
 
     .nav {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0.7rem 1.4rem;
+      padding: 0.7rem 1.5rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .nav-left {
-      display: flex;
       align-items: center;
-      gap: 0.6rem;
     }
 
-    .nav-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #ffffff, #c1ddff, #3a6fbf);
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 0 0 0 3px rgba(63, 169, 245, 0.3);
+    .nav-left { display: flex; gap: 0.7rem; align-items: center; }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
+        radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
+      box-shadow: 
+        0 0 0 2px rgba(255,255,255,0.6),
+        0 0 40px rgba(79,209,255,0.7);
     }
 
-    .nav-name {
+    .nav-title {
       font-weight: 600;
-      letter-spacing: 0.02em;
+      letter-spacing: .03em;
+      font-size: .95rem;
     }
-
-    .nav-name span {
-      color: var(--text-muted);
-      font-size: 0.8rem;
+    .nav-title span {
+      color: var(--muted);
       display: block;
-      margin-top: -0.15rem;
+      font-size: .75rem;
+      text-transform: uppercase;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 0.9rem;
-      font-size: 0.88rem;
-    }
-
+    .nav-links { display: flex; gap: 0.9rem; flex-wrap: wrap; }
     .nav-links a {
-      color: var(--text-muted);
-      padding: 0.25rem 0.5rem;
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
       border: 1px solid transparent;
-      text-decoration: none;
+      color: var(--muted);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
-
     .nav-links a:hover {
       color: var(--text);
-      border-color: var(--border-soft);
-      background: rgba(255, 255, 255, 0.02);
+      border-color: var(--accent-soft);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-1px);
     }
 
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 2.4rem 1.4rem 3.5rem;
+      padding: 2.7rem 1.5rem 4.3rem;
+      position: relative;
+      z-index: 1;
     }
 
+    /* Hero with subtle entrance animation */
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
-      gap: 2rem;
-      align-items: center;
-      margin-bottom: 2.8rem;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.18rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      color: var(--accent);
-      background: var(--accent-soft);
-      border: 1px solid rgba(63, 169, 245, 0.34);
-      margin-bottom: 0.7rem;
-    }
-
-    .hero-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #5cffb3;
-      box-shadow: 0 0 8px rgba(92, 255, 179, 0.9);
+      animation: fadeUp 0.9s ease-out forwards;
+      opacity: 0;
+      transform: translateY(12px);
     }
 
     .hero h1 {
-      font-size: clamp(2.1rem, 2.7vw + 1.5rem, 3rem);
-      margin: 0 0 0.6rem;
-      letter-spacing: 0.01em;
+      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.7rem);
+      margin-bottom: .7rem;
     }
-
-    .hero-subtitle {
+    .hero p {
       font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      max-width: 40rem;
+      line-height: 1.65;
+      max-width: 42rem;
+      color: var(--muted);
     }
 
-    .hero-subtitle span {
-      color: var(--accent);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 1.2rem;
-    }
-
-    .btn {
-      border-radius: 999px;
-      padding: 0.55rem 1.1rem;
-      font-size: 0.9rem;
-      border: 1px solid transparent;
-      cursor: pointer;
-      background: none;
-      color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #3fa9f5, #7b5cff);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.05);
-    }
-
-    .btn-ghost {
-      border-color: var(--border-soft);
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.01);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(63, 169, 245, 0.08);
-    }
-
-    .hero-meta {
-      margin-top: 0.9rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .hero-meta span {
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(0, 0, 0, 0.25);
-    }
-
-    .hero-card {
-      border-radius: var(--radius-lg);
-      padding: 1.1rem 1.2rem;
-      background: radial-gradient(circle at top left, #273552, #0b1320 55%, #040912);
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card h2 {
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-top: 0;
-    }
-
-    .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.3rem;
-      margin: 0.9rem 0 0.3rem;
-    }
-
-    .hero-stat {
-      min-width: 90px;
-    }
-
-    .hero-stat-label {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
-
-    .hero-stat-value {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-top: 0.15rem;
-    }
-
-    .hero-card-accent {
-      position: absolute;
-      inset: auto -40px -60px auto;
-      width: 160px;
-      height: 160px;
-      background: radial-gradient(circle, rgba(63, 169, 245, 0.3), transparent 65%);
-      opacity: 0.65;
-      pointer-events: none;
-    }
-
-    section {
-      margin-bottom: 2.4rem;
-    }
-
-    section h2 {
-      font-size: 1.25rem;
-      margin-bottom: 0.4rem;
-    }
-
-    section p.section-intro {
-      margin-top: 0;
-      font-size: 0.92rem;
-      color: var(--text-muted);
-    }
-
-    .grid {
+    /* Project cards grid */
+    .link-grid {
+      margin-top: 2.1rem;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.1rem;
-      margin-top: 1.1rem;
+      gap: 1.2rem;
     }
 
     .card {
-      border-radius: var(--radius-lg);
-      background: var(--bg-alt);
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius);
+      background: rgba(7, 14, 30, 0.94);
       border: 1px solid var(--border-soft);
-      padding: 1rem 1rem 1.05rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
-      font-size: 0.9rem;
+      box-shadow: var(--shadow);
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(14px) scale(0.98);
+      animation: cardIn 0.7s ease-out forwards;
+    }
+
+    /* Staggered card animation */
+    .card:nth-child(1) { animation-delay: 0.15s; }
+    .card:nth-child(2) { animation-delay: 0.25s; }
+    .card:nth-child(3) { animation-delay: 0.35s; }
+    .card:nth-child(4) { animation-delay: 0.45s; }
+    .card:nth-child(5) { animation-delay: 0.55s; }
+    .card:nth-child(6) { animation-delay: 0.65s; }
+    .card:nth-child(7) { animation-delay: 0.75s; }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(79,209,255,0.16), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translate3d(-10%, -10%, 0);
     }
 
     .card h3 {
-      margin: 0 0 0.3rem;
-      font-size: 1rem;
+      margin: 0 0 .3rem;
+      font-size: 1.1rem;
+      color: var(--accent);
     }
-
     .card p {
-      margin: 0.1rem 0 0.6rem;
-      color: var(--text-muted);
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.45;
     }
 
-    .card span.tag {
-      display: inline-flex;
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      font-size: 0.7rem;
-      color: var(--text-muted);
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      border-color: var(--accent);
+      background: rgba(8, 16, 40, 0.98);
     }
-
-    .list {
-      margin: 0.6rem 0 0;
-      padding-left: 1.2rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .list li + li {
-      margin-top: 0.25rem;
-    }
-
-    .contact {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      background: radial-gradient(circle at top left, #1a2840, #060b14 55%, #020408);
-      padding: 1.1rem 1.2rem 1.2rem;
-      box-shadow: var(--shadow-soft);
-      font-size: 0.9rem;
-    }
-
-    .contact a {
-      font-weight: 500;
+    .card:hover::before {
+      opacity: 1;
+      transform: translate3d(0,0,0);
     }
 
     footer {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 1.4rem 1.4rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 0.7rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.03);
-      padding-top: 0.9rem;
+      padding: 1.5rem;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
     }
 
-    footer span {
-      opacity: 0.8;
+    /* Entrance animations */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    @media (max-width: 768px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
       }
+    }
 
-      .hero-card {
-        order: -1;
+    @media (max-width: 720px) {
+      header {
+        position: static;
       }
-
       .nav {
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-        flex-wrap: wrap;
+        gap: 0.7rem;
       }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <nav class="nav">
-      <div class="nav-left">
-        <div class="nav-avatar"></div>
-        <div class="nav-name">
-          Dan Fournel
-          <span>fournel.org</span>
-        </div>
+
+<!-- Animated wormhole background elements -->
+<div class="wormhole-layer"></div>
+<div class="wormhole-core"></div>
+<div class="wormhole-ring"></div>
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>Personal Research Portal</span>
       </div>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#writing">Writing</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
+    </div>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="future.htm">Future</a>
+      <a href="ww3.htm">WW3</a>
+      <a href="religion.htm">Religion</a>
+      <a href="bahai.htm">Bahai Future</a>
+      <a href="index.htm">About</a>
+    </div>
+  </nav>
+</header>
 
-  <main>
-    <section class="hero" id="top">
-      <div>
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          <span>Online & tinkering with ideas</span>
-        </div>
-        <h1>Welcome to the NEXUS, I’m Dan.</h1>
-      <p class="hero-subtitle">
-  I’m a SF and History buff based in British Columbia, working at the intersection of
- <span> <a href="tech.htm" style="color: var(--accent); text-decoration: none;">technology</a></span>, <span> <a href="history.htm" style="color: var(--accent); text-decoration: none;">history</a></span> and  <span> <a href="future.htm" style="color: var(--accent); text-decoration: none;">future scenarios</a></span>.
-  This site collects my projects, notes, and things I’m currently exploring.
-</p>
+<main>
 
+  <section class="hero">
+    <h1>Welcome to fournel.org</h1>
+    <p>
+      I’m a SF and history buff based in British Columbia, working at the intersection of  
+      <a href="home.htm">site-wide experiments</a>,  
+      <a href="history.htm">deep history timelines</a>,  
+      <a href="tech.htm">technology arcs</a>,  
+      <a href="future.htm">future scenarios</a>,  
+      <a href="ww3.htm">World War III modelling</a>,  
+      <a href="religion.htm">religious history</a>,  
+      and <a href="bahai.htm">Bahai-inspired future stages</a>.  
+      This site collects my projects, timelines, speculative futures, research notes, and long-range scenario explorations.
+    </p>
+  </section>
 
-        </p>
+  <section>
+    <div class="link-grid">
 
-        <div class="hero-actions">
-          <!-- Update this mailto with your real email -->
-          <a class="btn btn-primary" href="#contact">
-            Get in touch →
-          </a>
-          <!-- Update these links as needed -->
-          <a class="btn btn-ghost" href="https://github.com/fourneld-boop" target="_blank" rel="noopener">
-            GitHub profile
-          </a>
-        </div>
+      <a href="home.htm" class="card">
+        <h3>Home</h3>
+        <p>Portal page linking into all timelines &amp; projects.</p>
+      </a>
 
-        <div class="hero-meta">
-          <span>📍 Canada</span>
-          <span>💻 Personal experiments & prototypes</span>
-        </div>
-      </div>
+      <a href="history.htm" class="card">
+        <h3>History Timelines</h3>
+        <p>Major world events from 10,000 BC to the present.</p>
+      </a>
 
-      <aside class="hero-card">
-        <div class="hero-card-accent"></div>
-        <h2>Currently exploring</h2>
-        <p>
-          Things that interest me right now. This changes often.
-        </p>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-label">Topics</div>
-            <div class="hero-stat-value">Futures, IT, maps</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-label">Stack</div>
-            <div class="hero-stat-value">Git, shell, web</div>
-          </div>
-        </div>
-        <p style="margin-top: 0.6rem;">
-          If you enjoy speculative timelines, practical IT fixes, or small web tools, you’ll probably
-          find something familiar here.
-        </p>
-      </aside>
-    </section>
+      <a href="tech.htm" class="card">
+        <h3>Technology Timeline</h3>
+        <p>From stone tools to 1,000,000 years in the future.</p>
+      </a>
 
-    <section id="about">
-      <h2>About</h2>
-      <p class="section-intro">
-        A very short version of who I am and what I spend time on.
-      </p>
-      <div class="grid">
-        <div class="card">
-          <h3>Background</h3>
-          <p>
-            <!-- Customize this -->
-            I work with computers, networks, and people—helping keep systems running while thinking
-            about where technology and society are heading next.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Interests</h3>
-          <ul class="list">
-            <li>IT troubleshooting & automation</li>
-            <li>Long-term geopolitical and economic scenarios</li>
-            <li>Maps, flags, and visual design experiments</li>
-            <li>Storytelling and speculative fiction</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      <a href="future.htm" class="card">
+        <h3>Future Scenarios</h3>
+        <p>Long-range political, economic &amp; civilizational modelling.</p>
+      </a>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <p class="section-intro">
-        A sample of things I’ve been building, documenting, or experimenting with. Replace these with
-        your real projects or ideas.
-      </p>
+      <a href="ww3.htm" class="card">
+        <h3>WW3 Scenario</h3>
+        <p>Detailed conflict modelling and post-war global order.</p>
+      </a>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Personal knowledge garden</h3>
-          <span class="tag">notes & scenarios</span>
-          <p>
-            A living collection of notes on technology, politics, and future-worldbuilding—half lab
-            notebook, half thought dump.
-          </p>
-        </div>
+      <a href="religion.htm" class="card">
+        <h3>Religious History</h3>
+        <p>50,000 years of global religious development.</p>
+      </a>
 
-        <div class="card">
-          <h3>Home lab & tooling</h3>
-          <span class="tag">IT & automation</span>
-          <p>
-            PowerShell snippets, scripts, and small tools that reduce friction for day-to-day IT work,
-            backups, and diagnostics.
-          </p>
-        </div>
+      <a href="bahai.htm" class="card">
+        <h3>Bahai Future</h3>
+        <p>Future stages – Lesser Peace, Great Peace, Most Great Peace.</p>
+      </a>
 
-        <div class="card">
-          <h3>Maps & flags</h3>
-          <span class="tag">design experiments</span>
-          <p>
-            Visual experiments with alternate political maps, regional identities, and hypothetical
-            flags for future unions.
-          </p>
-        </div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="writing">
-      <h2>Writing</h2>
-      <p class="section-intro">
-        Links to posts, threads, or documents I’m comfortable sharing publicly.
-      </p>
-      <ul class="list">
-        <!-- Replace these with real links when you have them -->
-        <li>
-          <strong>Coming soon:</strong> public notes on long-range scenarios and Canadian regional futures.
-        </li>
-        <li>
-          You can also find smaller updates and experiments on
-          <a href="https://github.com/fourneld-boop" target="_blank" rel="noopener">my GitHub profile</a>.
-        </li>
-      </ul>
-    </section>
+</main>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact">
-        <p>
-          The easiest way to reach me is by email. I read everything, even if I’m slow to reply.
-        </p>
-        <p>
-          <!-- Put your real email here -->
-          📫 <strong>Email:</strong>
-          <a href="mailto:fourneld@gmail.com">fourneld@gmail.com.com</a>
-        </p>
-        <p>
-          If you’re emailing about a specific project, include some context in the subject line (e.g.
-          “timeline idea” or “IT troubleshooting”).
-        </p>
-      </div>
-    </section>
-  </main>
+<footer>
+  © <span id="year"></span> Dan Fournel — fournel.org  
+  <br>Built &amp; published on GitHub Pages
+</footer>
 
-  <footer>
-    <span>© <span id="year"></span> Dan Fournel</span>
-    <span>Built with static HTML on GitHub Pages.</span>
-  </footer>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
-  <script>
-    // Keep year in footer up to date
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
