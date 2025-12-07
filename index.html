@@ -22,8 +22,6 @@
       --max-width: 1040px;
     }
 
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -35,10 +33,11 @@
       overflow-x: hidden;
     }
 
+    * { box-sizing: border-box; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Animated wormhole background */
+    /* Wormhole Animated Background */
     .wormhole-layer {
       position: fixed;
       inset: -40%;
@@ -105,7 +104,7 @@
       to   { opacity: 0.95; transform: scale(1.08); }
     }
 
-    /* Layout & nav */
+    /* Header / Nav */
     header {
       position: sticky; top: 0; z-index: 10;
       backdrop-filter: blur(16px);
@@ -131,7 +130,7 @@
       background:
         radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
         radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
-      box-shadow: 
+      box-shadow:
         0 0 0 2px rgba(255,255,255,0.6),
         0 0 40px rgba(79,209,255,0.7);
     }
@@ -154,7 +153,7 @@
       border-radius: 999px;
       border: 1px solid transparent;
       color: var(--muted);
-      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      transition: 0.2s ease;
     }
     .nav-links a:hover {
       color: var(--text);
@@ -171,7 +170,7 @@
       z-index: 1;
     }
 
-    /* Hero with subtle entrance animation */
+    /* Hero */
     .hero {
       animation: fadeUp 0.9s ease-out forwards;
       opacity: 0;
@@ -189,7 +188,7 @@
       color: var(--muted);
     }
 
-    /* Project cards grid */
+    /* Grid */
     .link-grid {
       margin-top: 2.1rem;
       display: grid;
@@ -203,36 +202,18 @@
       background: rgba(7, 14, 30, 0.94);
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
-      transition:
-        transform 0.28s ease,
-        box-shadow 0.28s ease,
-        border-color 0.28s ease,
-        background 0.28s ease;
+      transition: 0.28s ease;
       position: relative;
-      overflow: hidden;
       opacity: 0;
       transform: translateY(14px) scale(0.98);
       animation: cardIn 0.7s ease-out forwards;
     }
 
-    /* Staggered card animation */
-    .card:nth-child(1) { animation-delay: 0.15s; }
-    .card:nth-child(2) { animation-delay: 0.25s; }
-    .card:nth-child(3) { animation-delay: 0.35s; }
-    .card:nth-child(4) { animation-delay: 0.45s; }
-    .card:nth-child(5) { animation-delay: 0.55s; }
-    .card:nth-child(6) { animation-delay: 0.65s; }
-    .card:nth-child(7) { animation-delay: 0.75s; }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 0 0, rgba(79,209,255,0.16), transparent 55%);
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transform: translate3d(-10%, -10%, 0);
-    }
+    .card:nth-child(1) { animation-delay: .15s; }
+    .card:nth-child(2) { animation-delay: .25s; }
+    .card:nth-child(3) { animation-delay: .35s; }
+    .card:nth-child(4) { animation-delay: .45s; }
+    .card:nth-child(5) { animation-delay: .55s; }
 
     .card h3 {
       margin: 0 0 .3rem;
@@ -243,18 +224,13 @@
       margin: 0;
       color: var(--muted);
       font-size: .9rem;
-      line-height: 1.45;
     }
 
     .card:hover {
       transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
       border-color: var(--accent);
-      background: rgba(8, 16, 40, 0.98);
-    }
-    .card:hover::before {
-      opacity: 1;
-      transform: translate3d(0,0,0);
+      background: rgba(8,16,40,0.98);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
     }
 
     footer {
@@ -270,37 +246,19 @@
       z-index: 1;
     }
 
-    /* Entrance animations */
     @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes cardIn {
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    @media (max-width: 720px) {
-      header {
-        position: static;
-      }
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.7rem;
-      }
-    }
   </style>
 </head>
 
 <body>
 
-<!-- Animated wormhole background elements -->
 <div class="wormhole-layer"></div>
 <div class="wormhole-core"></div>
 <div class="wormhole-ring"></div>
@@ -314,14 +272,14 @@
         <span>Personal Research Portal</span>
       </div>
     </div>
+
+    <!-- Updated nav: removed ww3 & bahai -->
     <div class="nav-links">
       <a href="home.htm">Home</a>
       <a href="history.htm">History</a>
       <a href="tech.htm">Technology</a>
       <a href="future.htm">Future</a>
-      <a href="ww3.htm">WW3</a>
       <a href="religion.htm">Religion</a>
-      <a href="bahai.htm">Bahai Future</a>
       <a href="index.htm">About</a>
     </div>
   </nav>
@@ -337,9 +295,7 @@
       <a href="history.htm">deep history timelines</a>,  
       <a href="tech.htm">technology arcs</a>,  
       <a href="future.htm">future scenarios</a>,  
-      <a href="ww3.htm">World War III modelling</a>,  
-      <a href="religion.htm">religious history</a>,  
-      and <a href="bahai.htm">Bahai-inspired future stages</a>.  
+      <a href="religion.htm">religious history</a>.  
       This site collects my projects, timelines, speculative futures, research notes, and long-range scenario explorations.
     </p>
   </section>
@@ -359,7 +315,7 @@
 
       <a href="tech.htm" class="card">
         <h3>Technology Timeline</h3>
-        <p>From stone tools to 1,000,000 years in the future.</p>
+        <p>From stone tools to deep future epochs.</p>
       </a>
 
       <a href="future.htm" class="card">
@@ -367,19 +323,9 @@
         <p>Long-range political, economic &amp; civilizational modelling.</p>
       </a>
 
-      <a href="ww3.htm" class="card">
-        <h3>WW3 Scenario</h3>
-        <p>Detailed conflict modelling and post-war global order.</p>
-      </a>
-
       <a href="religion.htm" class="card">
         <h3>Religious History</h3>
         <p>50,000 years of global religious development.</p>
-      </a>
-
-      <a href="bahai.htm" class="card">
-        <h3>Bahai Future</h3>
-        <p>Future stages – Lesser Peace, Great Peace, Most Great Peace.</p>
       </a>
 
     </div>
