@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Bahai Future Timeline – fournel.org</title>
+  <title>fournel.org – Projects, Timelines & Future Scenarios</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="A speculative but realistic future timeline (2025–3000) exploring political, economic, and social developments inspired by Bahai concepts of the Lesser Peace, a World Super-State, the Great Peace, and the Most Great Peace.">
+  <meta name="description" content="The personal research portal of Dan Fournel – SF, history, technology, religion, future scenarios, and long-range timelines.">
 
   <style>
     :root {
@@ -23,41 +22,93 @@
       --max-width: 1040px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       background:
         radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
         radial-gradient(circle at 90% 0, #3a1454 0, transparent 55%),
         radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
+    * { box-sizing: border-box; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Wormhole Animated Background */
+    .wormhole-layer {
+      position: fixed;
+      inset: -40%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(10, 185, 255, 0.18) 0, transparent 50%),
+        radial-gradient(circle at 30% 20%, rgba(178, 84, 255, 0.22) 0, transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(79, 209, 255, 0.18) 0, transparent 55%);
+      opacity: 0.85;
+      animation: pulseWormhole 10s ease-in-out infinite alternate;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .wormhole-core {
+      position: fixed;
+      left: 50%;
+      top: 45%;
+      width: 520px;
+      height: 520px;
+      margin-left: -260px;
+      margin-top: -260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(1, 8, 20, 0.6) 0, rgba(1, 8, 20, 0.98) 52%, #020612 70%),
+        conic-gradient(from 0deg, rgba(79,209,255,0.1), rgba(168,85,255,0.45), rgba(79,209,255,0.7), rgba(0,0,0,0.9), rgba(79,209,255,0.2));
+      filter: blur(2px);
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinWormhole 40s linear infinite;
     }
 
+    .wormhole-ring {
+      position: fixed;
+      left: 50%;
+      top: 45%;
+      width: 360px;
+      height: 360px;
+      margin-left: -180px;
+      margin-top: -180px;
+      border-radius: 50%;
+      border: 1px dashed rgba(158, 195, 255, 0.4);
+      box-shadow:
+        0 0 30px rgba(79, 209, 255, 0.5),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinRing 26s linear infinite reverse;
+    }
+
+    @keyframes spinWormhole {
+      from { transform: rotate(0deg) scale(1); }
+      to   { transform: rotate(360deg) scale(1.03); }
+    }
+
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+
+    @keyframes pulseWormhole {
+      from { opacity: 0.6; transform: scale(1); }
+      to   { opacity: 0.95; transform: scale(1.08); }
+    }
+
+    /* Header / Nav */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      position: sticky; top: 0; z-index: 10;
       backdrop-filter: blur(16px);
-      background: linear-gradient(
-        to bottom,
-        rgba(2, 6, 18, 0.96),
-        rgba(2, 6, 18, 0.88),
-        transparent
-      );
+      background: rgba(2, 6, 18, 0.87);
       border-bottom: 1px solid var(--border-soft);
     }
 
@@ -66,890 +117,230 @@
       margin: 0 auto;
       padding: 0.7rem 1.5rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      align-items: center;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
+    .nav-left { display: flex; gap: 0.7rem; align-items: center; }
 
     .nav-logo {
-      position: relative;
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 999px;
       background:
         radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
         radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
       box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.7),
-        0 0 40px rgba(79, 209, 255, 0.7);
-      overflow: hidden;
-    }
-
-    .nav-logo::after {
-      content: "";
-      position: absolute;
-      inset: 7px;
-      border-radius: 999px;
-      border: 2px solid rgba(5, 10, 25, 0.9);
-      box-shadow: 0 0 12px rgba(2, 6, 18, 0.8) inset;
+        0 0 0 2px rgba(255,255,255,0.6),
+        0 0 40px rgba(79,209,255,0.7);
     }
 
     .nav-title {
       font-weight: 600;
-      letter-spacing: 0.03em;
-      font-size: 0.95rem;
+      letter-spacing: .03em;
+      font-size: .95rem;
     }
-
     .nav-title span {
-      display: block;
-      font-size: 0.75rem;
       color: var(--muted);
-      letter-spacing: 0.08em;
+      display: block;
+      font-size: .75rem;
       text-transform: uppercase;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 0.9rem;
-      font-size: 0.86rem;
-      flex-wrap: wrap;
-    }
-
+    .nav-links { display: flex; gap: 0.9rem; flex-wrap: wrap; }
     .nav-links a {
       padding: 0.25rem 0.7rem;
       border-radius: 999px;
       border: 1px solid transparent;
       color: var(--muted);
+      transition: 0.2s ease;
     }
-
     .nav-links a:hover {
-      border-color: var(--border-soft);
       color: var(--text);
-      background: rgba(255, 255, 255, 0.02);
-      text-decoration: none;
+      border-color: var(--accent-soft);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-1px);
     }
 
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 2.2rem 1.5rem 3.3rem;
+      padding: 2.7rem 1.5rem 4.3rem;
+      position: relative;
+      z-index: 1;
     }
 
+    /* Hero */
     .hero {
-      margin-bottom: 2.3rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
-      gap: 1.8rem;
-      align-items: flex-start;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.18rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(79, 209, 255, 0.4);
-      background: rgba(10, 27, 58, 0.9);
-      font-size: 0.7rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .hero-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #5cffb3;
-      box-shadow: 0 0 10px rgba(92, 255, 179, 0.9);
+      animation: fadeUp 0.9s ease-out forwards;
+      opacity: 0;
+      transform: translateY(12px);
     }
 
     .hero h1 {
-      margin: 0.7rem 0 0.4rem;
-      font-size: clamp(2rem, 2.4vw + 1.3rem, 2.6rem);
-      letter-spacing: 0.01em;
+      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.7rem);
+      margin-bottom: .7rem;
     }
-
-    .hero-subtitle {
-      margin: 0;
-      font-size: 0.98rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 40rem;
-    }
-
-    .hero-subtitle span {
-      color: var(--accent);
-    }
-
-    .hero-actions {
-      margin-top: 1.1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.3rem;
-      padding: 0.55rem 1.1rem;
-      font-size: 0.9rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      background: none;
-      color: var(--text);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: var(--shadow);
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      text-decoration: none;
-    }
-
-    .btn-ghost {
-      border-color: var(--border-soft);
-      color: var(--muted);
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-soft);
-      text-decoration: none;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.6rem;
-      font-size: 0.8rem;
-    }
-
-    .chip {
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(6, 12, 34, 0.9);
-      color: var(--muted);
-    }
-
-    .hero-meta {
-      margin-top: 0.9rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .hero-meta span {
-      padding: 0.28rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(4, 10, 26, 0.92);
-    }
-
-    .hero-card {
-      border-radius: var(--radius);
-      padding: 1.05rem 1.15rem;
-      background: radial-gradient(circle at 25% 15%, #4fd1ff, transparent 55%),
-                  radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
-                  radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
-      border: 1px solid rgba(79, 209, 255, 0.4);
-      box-shadow: var(--shadow);
-      font-size: 0.86rem;
-      color: #e5ecff;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card h2 {
-      margin: 0 0 0.4rem;
-      font-size: 1.02rem;
-    }
-
-    .hero-card p {
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    .hero-card ul {
-      margin: 0.5rem 0 0;
-      padding-left: 1.2rem;
-    }
-
-    .hero-card li + li {
-      margin-top: 0.2rem;
-    }
-
-    .hero-card-lines {
-      position: absolute;
-      inset: auto -40px -90px auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 1px dashed rgba(255, 255, 255, 0.25);
-    }
-
-    .hero-card-lines::before,
-    .hero-card-lines::after {
-      content: "";
-      position: absolute;
-      inset: 16px;
-      border-radius: 50%;
-      border: 1px dashed rgba(255, 255, 255, 0.25);
-    }
-
-    .hero-card-lines::after {
-      inset: 36px;
-    }
-
-    .hero-card-node {
-      position: absolute;
-      right: 50px;
-      bottom: 70px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 30% 30%, #ffffff, #b9e8ff 42%, transparent 60%),
-        conic-gradient(from 0deg, #020612, #3b98ff, #020612, #a855ff, #020612);
-      box-shadow:
-        0 0 18px rgba(79, 209, 255, 0.85),
-        0 0 70px rgba(15, 23, 42, 1);
-    }
-
-    section {
-      margin-bottom: 2.1rem;
-    }
-
-    section h2 {
-      font-size: 1.25rem;
-      margin-bottom: 0.4rem;
-    }
-
-    section p.section-intro {
-      margin-top: 0;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .timeline-wrapper {
-      border-radius: var(--radius);
-      background: var(--bg-alt);
-      border: 1px solid var(--border-soft);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
-      padding: 1.1rem 1.2rem 1.3rem;
-      max-height: 75vh;
-      overflow: auto;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-
-    .timeline-wrapper h2 {
-      margin-top: 0;
-      margin-bottom: 0.4rem;
-      font-size: 1.05rem;
-      color: var(--text);
-    }
-
-    .timeline-wrapper p {
-      margin-top: 0;
-      margin-bottom: 0.8rem;
-    }
-
-    .timeline-era {
-      margin-top: 1.1rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .timeline-era h3 {
-      margin: 0 0 0.15rem;
+    .hero p {
       font-size: 1rem;
-      color: var(--text);
-    }
-
-    .timeline-era h4 {
-      margin: 0;
-      font-size: 0.9rem;
-      font-weight: 500;
+      line-height: 1.65;
+      max-width: 42rem;
       color: var(--muted);
     }
 
-    .timeline-era ul {
-      margin: 0.4rem 0 0;
-      padding-left: 1.2rem;
+    /* Grid */
+    .link-grid {
+      margin-top: 2.1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
     }
 
-    .timeline-era li + li {
-      margin-top: 0.25rem;
+    .card {
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius);
+      background: rgba(7, 14, 30, 0.94);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      transition: 0.28s ease;
+      position: relative;
+      opacity: 0;
+      transform: translateY(14px) scale(0.98);
+      animation: cardIn 0.7s ease-out forwards;
+    }
+
+    .card:nth-child(1) { animation-delay: .15s; }
+    .card:nth-child(2) { animation-delay: .25s; }
+    .card:nth-child(3) { animation-delay: .35s; }
+    .card:nth-child(4) { animation-delay: .45s; }
+    .card:nth-child(5) { animation-delay: .55s; }
+
+    .card h3 {
+      margin: 0 0 .3rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: var(--accent);
+      background: rgba(8,16,40,0.98);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
     }
 
     footer {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 1.5rem 1.6rem;
-      font-size: 0.8rem;
+      padding: 1.5rem;
       color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 0.8rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding-top: 0.9rem;
+      font-size: .8rem;
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
     }
 
-    @media (max-width: 840px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: -1;
-      }
-
-      header {
-        position: static;
-      }
-
-      .timeline-wrapper {
-        max-height: none;
-      }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
+
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
   </style>
 </head>
+
 <body>
+
+<div class="wormhole-layer"></div>
+<div class="wormhole-core"></div>
+<div class="wormhole-ring"></div>
+
 <header>
   <nav class="nav">
     <div class="nav-left">
       <div class="nav-logo"></div>
       <div class="nav-title">
         fournel.org
-        <span>Bahai Future Timeline</span>
+        <span>Personal Research Portal</span>
       </div>
     </div>
+
+    <!-- Updated nav: removed ww3 & bahai -->
     <div class="nav-links">
       <a href="home.htm">Home</a>
       <a href="history.htm">History</a>
       <a href="tech.htm">Technology</a>
-      <a href="religion.htm">Religion</a>
-      <a href="bahai.htm">Bahai Future</a>
       <a href="future.htm">Future</a>
-      <a href="ww3.htm">WW3 Timeline</a>
-      <a href="index.html">About</a>
+      <a href="religion.htm">Religion</a>
+      <a href="index.htm">About</a>
     </div>
   </nav>
 </header>
 
 <main>
+
   <section class="hero">
-    <div>
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span>2025 – 3000 AD · speculative</span>
-      </div>
-      <h1>Bahai-Inspired Future Stages of Civilization</h1>
-      <p class="hero-subtitle">
-        A long-range scenario exploring how humanity might move from today’s fragmented world
-        toward the <span>Lesser Peace</span>, a <span>World Super-State</span>, the
-        <span>Great Peace</span>, and early hints of the <span>Most Great Peace</span> –
-        in political, economic, and social terms.
-      </p>
-
-      <div class="hero-actions">
-        <a href="religion.htm" class="btn btn-primary">← Religious history</a>
-        <a href="future.htm" class="btn btn-ghost">Other future scenarios →</a>
-      </div>
-
-      <div class="chips">
-        <span class="chip">Scenario only · not prophecy</span>
-        <span class="chip">Decades: 2025–2100</span>
-        <span class="chip">Centuries: 2100–3000</span>
-      </div>
-    </div>
-
-    <aside class="hero-card">
-      <h2>What this page is (and isn’t)</h2>
-      <p>
-        This timeline treats Bahai concepts of the <em>Lesser Peace</em>,
-        <em>World Super-State</em>, <em>Great Peace</em>, and <em>Most Great Peace</em>
-        as lenses for thinking about long-term global trends. It is:
-      </p>
-      <ul>
-        <li>a thought experiment, not a forecast or official interpretation;</li>
-        <li>one plausible path among many possible futures;</li>
-        <li>focused on politics, economics, and society, not doctrine.</li>
-      </ul>
-      <div class="hero-card-lines"></div>
-      <div class="hero-card-node"></div>
-    </aside>
+    <h1>Welcome to fournel.org</h1>
+    <p>
+      I’m a SF and history buff based in British Columbia, working at the intersection of  
+      <a href="home.htm">site-wide experiments</a>,  
+      <a href="history.htm">deep history timelines</a>,  
+      <a href="tech.htm">technology arcs</a>,  
+      <a href="future.htm">future scenarios</a>,  
+      <a href="religion.htm">religious history</a>.  
+      This site collects my projects, timelines, speculative futures, research notes, and long-range scenario explorations.
+    </p>
   </section>
 
   <section>
-    <div class="timeline-wrapper" aria-label="Bahai-inspired civilizational timeline from 2025 to 3000 AD">
-      <h2>Timeline: 2025–3000 AD</h2>
-      <p class="section-intro">
-        Decade by decade from 2025 to 2100, then century by century to 3000. Each step
-        imagines how political, economic, and social dynamics could gradually move
-        toward greater unity. Everything beyond the present is speculative.
-      </p>
+    <div class="link-grid">
 
-      <!-- 2025–2099 BY DECADE -->
+      <a href="home.htm" class="card">
+        <h3>Home</h3>
+        <p>Portal page linking into all timelines &amp; projects.</p>
+      </a>
 
-      <div class="timeline-era">
-        <h3>2025–2029 · Early Preconditions for the Lesser Peace</h3>
-        <h4>Shocks, reluctant cooperation, and moral questioning</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Major-power tensions and regional wars continue, but
-            climate disasters, cyber incidents, and pandemics push states into deeper cooperation
-            on risk management and crisis response.
-          </li>
-          <li>
-            <strong>Economy:</strong> AI and automation disrupt labour markets. Some states
-            expand social protection and experiment with new tax regimes on large digital
-            and multinational actors.
-          </li>
-          <li>
-            <strong>Society:</strong> Youth movements, human-rights coalitions, and religious
-            communities highlight themes of global justice, stewardship, and solidarity.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> No <em>Lesser Peace</em> yet, but a growing recognition
-            that survival depends on cooperation, not just competition.
-          </li>
-        </ul>
-      </div>
+      <a href="history.htm" class="card">
+        <h3>History Timelines</h3>
+        <p>Major world events from 10,000 BC to the present.</p>
+      </a>
 
-      <div class="timeline-era">
-        <h3>2030–2039 · Proto-Lesser Peace Dynamics</h3>
-        <h4>Regional compacts and shared risk frameworks</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Regional unions strengthen collective-security and
-            mediation mechanisms. Large wars are still possible, but seen as increasingly
-            reckless in a tightly connected world.
-          </li>
-          <li>
-            <strong>Economy:</strong> Carbon pricing, resilience bonds, and global funds
-            for adaptation become more common, especially after a series of climate-driven emergencies.
-          </li>
-          <li>
-            <strong>Society:</strong> Interfaith and intercultural initiatives move from
-            the margins into mainstream civic life, especially in diverse cities.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> A pattern of pragmatic cooperation deepens; the
-            scaffolding for a political <em>Lesser Peace</em> begins to emerge.
-          </li>
-        </ul>
-      </div>
+      <a href="tech.htm" class="card">
+        <h3>Technology Timeline</h3>
+        <p>From stone tools to deep future epochs.</p>
+      </a>
 
-      <div class="timeline-era">
-        <h3>2040–2049 · Shock, Reform, and Narrow Escapes</h3>
-        <h4>Danger pushes toward reluctant peace</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> A near-catastrophic crisis involving cyber, AI,
-            or space systems forces emergency diplomacy. In the aftermath, new treaties
-            limit certain weapons and create stronger verification regimes.
-          </li>
-          <li>
-            <strong>Economy:</strong> Recognition that instability anywhere can disrupt
-            supply chains and finance leads to more inclusive economic governance
-            and debt-relief frameworks.
-          </li>
-          <li>
-            <strong>Society:</strong> Large segments of the public in many countries
-            now see major-power war as morally unacceptable and materially suicidal.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> The world edges closer to a political
-            <em>Lesser Peace</em> based on fear of mutual harm and awareness of interdependence.
-          </li>
-        </ul>
-      </div>
+      <a href="future.htm" class="card">
+        <h3>Future Scenarios</h3>
+        <p>Long-range political, economic &amp; civilizational modelling.</p>
+      </a>
 
-      <div class="timeline-era">
-        <h3>2050–2059 · Emergent Lesser Peace</h3>
-        <h4>Institutionalising basic political peace</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Revised global charters and regional agreements make
-            aggressive war harder to wage. Collective-security arrangements and arbitration
-            become more routine.
-          </li>
-          <li>
-            <strong>Economy:</strong> Coordinated climate policy and regulation of global
-            finance reduce some systemic risks, though inequality persists.
-          </li>
-          <li>
-            <strong>Society:</strong> Global-citizenship education and narratives of a
-            single human family become more common, alongside local service projects.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> This decade plausibly corresponds to an early
-            form of the <em>Lesser Peace</em>: a mainly political peace sustained by law,
-            interests, and institutions.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2060–2069 · Stabilising the Lesser Peace</h3>
-        <h4>From ad-hoc fixes to a coherent peace architecture</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Regional unions coordinate more closely with
-            reformed global bodies on security, advanced-tech governance, and migration.
-          </li>
-          <li>
-            <strong>Economy:</strong> Global frameworks for AI, biotech, and data are
-            refined to prevent abuses while enabling innovation. Extreme poverty drops further.
-          </li>
-          <li>
-            <strong>Society:</strong> Interfaith and intercultural literacy become
-            basic civic skills; local assemblies and councils focus on building cohesive communities.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> The <em>Lesser Peace</em> is now recognizable:
-            major wars are rare, heavily constrained, and widely delegitimised.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2070–2079 · Early World-Commonwealth Features</h3>
-        <h4>Steps toward a planetary political order</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Some regional blocs adopt semi-federal structures.
-            A strengthened world assembly with limited but real powers emerges.
-          </li>
-          <li>
-            <strong>Economy:</strong> Global minimum standards for labour, environment,
-            and taxation reduce the worst “race to the bottom” behaviour.
-          </li>
-          <li>
-            <strong>Society:</strong> More people see themselves as part of overlapping
-            communities: local, national, regional, and global, without feeling forced
-            to choose just one.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> Early ingredients of a future <em>World Super-State</em>
-            appear above the level of nation-states.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2080–2089 · Shared Law &amp; Global Commons</h3>
-        <h4>World-level rules for dangerous domains</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Binding regimes now govern nuclear weapons,
-            high-risk AI, geoengineering, and orbital infrastructure, overseen by a
-            world court and assembly.
-          </li>
-          <li>
-            <strong>Economy:</strong> A global floor of social protection is recognised –
-            basic health, food, shelter, and education for all, co-financed through
-            national and world-level resources.
-          </li>
-          <li>
-            <strong>Society:</strong> Multi-ethnic, multi-faith cities are the norm;
-            anti-discrimination norms are widely internalised.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> The skeleton of a <em>World Super-State</em>
-            becomes clearer: layered, federal, and focused on shared risks and commons.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2090–2099 · Transitional World Super-State</h3>
-        <h4>From alliance of states to world commonwealth</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> A “World Commonwealth Charter” (or similar) is
-            adopted by most states and unions, establishing a world executive, legislature,
-            and judiciary with defined, limited competences.
-          </li>
-          <li>
-            <strong>Economy:</strong> Markets operate within strong global ethical
-            guardrails; exploitation and ecologically destructive practices are increasingly constrained.
-          </li>
-          <li>
-            <strong>Society:</strong> People expect large problems to be handled at world level.
-            Religious communities, including Bahai communities, contribute to the underlying
-            moral language of unity and justice.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> A plausible phase of the <em>World Super-State</em>:
-            still imperfect, but clearly beyond a mere network of treaties.
-          </li>
-        </ul>
-      </div>
-
-      <!-- 2100–3000 BY CENTURY -->
-
-      <div class="timeline-era">
-        <h3>2100–2199 · 22nd Century · Foundations of the Great Peace</h3>
-        <h4>From enforced peace to partially internalised peace</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> The world commonwealth weathers legitimacy crises
-            and learns to balance global authority with local and national autonomy.
-          </li>
-          <li>
-            <strong>Economy:</strong> Intergenerational justice and ecological regeneration
-            are explicit policy criteria; multi-century restoration projects are launched.
-          </li>
-          <li>
-            <strong>Society:</strong> Education stresses service, cooperation, and equality.
-            Bahai communities and others help build grassroots cultures of consultation and unity.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> The <em>Great Peace</em> begins to appear:
-            institutions and culture move beyond mere non-war toward active unity.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2200–2299 · 23rd Century · Cultural Integration</h3>
-        <h4>Multiple worldviews under one civilisational roof</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Representation at world level is more democratic
-            and inclusive; cultural and religious councils advise on long-term impacts.
-          </li>
-          <li>
-            <strong>Economy:</strong> Global inheritance norms, commons-based ownership,
-            and robust local economies help narrow extreme wealth gaps.
-          </li>
-          <li>
-            <strong>Society:</strong> Hybrid identities are standard. Different ethical
-            frameworks coexist within a shared commitment to human dignity and justice.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> The <em>Great Peace</em> is visible as a stable,
-            evolving pattern rather than a fragile experiment.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2300–2399 · 24th Century · Shared Global Ethic</h3>
-        <h4>A common moral vocabulary emerges</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> The existence of a world commonwealth is a given;
-            debate focuses on reform, not abolition.
-          </li>
-          <li>
-            <strong>Economy:</strong> Success is measured by well-being, resilience,
-            and cultural flourishing, not just output.
-          </li>
-          <li>
-            <strong>Society:</strong> A shared narrative of humanity’s journey from
-            division to unity circulates in education and art, interpreted through
-            diverse spiritual and philosophical lenses.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> The <em>Great Peace</em> is well established:
-            structures and culture both reflect the oneness of humankind.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2400–2499 · 25th Century · Spiritual Civilization Deepens</h3>
-        <h4>From external order to inner orientation</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Governance grapples with subtler issues:
-            preventing complacency and ensuring institutions remain servants, not masters.
-          </li>
-          <li>
-            <strong>Economy:</strong> Material needs are largely met; emphasis shifts
-            toward meaningful work, creativity, and service.
-          </li>
-          <li>
-            <strong>Society:</strong> Questions of purpose, character, and spiritual
-            growth loom larger. Bahai teachings and others offer ways to integrate
-            science, ethics, and inner life.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> This aligns well with an advanced <em>Great Peace</em>:
-            a civilisation shaped increasingly by spiritual principles.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2500–2599 · 26th Century · Early Hints of the Most Great Peace</h3>
-        <h4>Aligning capability with conscience</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Conflicts persist but are mostly non-violent,
-            channelled through law and consultation. World-level authority is viewed
-            as a form of trusteeship.
-          </li>
-          <li>
-            <strong>Economy:</strong> Structural safeguards and culture reduce destructive
-            booms and busts; moderation and balance are widely valued.
-          </li>
-          <li>
-            <strong>Society:</strong> Communities prize virtues as much as innovation.
-            Spiritual practices are integrated into ordinary life in diverse ways.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> While the full <em>Most Great Peace</em>
-            is beyond any human scenario, this century shows early resonance:
-            growing harmony between inner life and outer order.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2600–2699 · 27th Century · Mature Stewardship</h3>
-        <h4>Handling advanced power with long-term care</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Humanity wields immense power – terrestrial
-            and possibly off-world – but uses it with increasing restraint and foresight.
-          </li>
-          <li>
-            <strong>Economy:</strong> Post-scarcity dynamics coexist with chosen
-            simplicity; societies intentionally limit certain forms of consumption.
-          </li>
-          <li>
-            <strong>Society:</strong> Ideas like “service to humanity” and “planetary
-            trusteeship” are deeply internalised norms.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> The <em>Most Great Peace</em> can be glimpsed
-            in the stable alignment of advanced capability with moral maturity.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2700–2799 · 28th Century · Millennial Planning</h3>
-        <h4>Civilisation organised on thousand-year horizons</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> World and regional institutions sponsor projects
-            spanning many generations: ecosystem restoration, knowledge preservation,
-            and safe handling of high-risk technologies.
-          </li>
-          <li>
-            <strong>Economy:</strong> Finance and governance mechanisms are tuned to
-            multi-century stability rather than short-term gain.
-          </li>
-          <li>
-            <strong>Society:</strong> People see themselves as stewards in a long
-            chain of generations. Spiritual and philosophical traditions provide
-            language for this responsibility.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> Such long-horizon stewardship is consistent
-            with advanced stages of the <em>Most Great Peace</em>.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2800–2899 · 29th Century · Diversity Within Stable Unity</h3>
-        <h4>Many paths under a shared ethical canopy</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> Regions maintain distinct governance styles
-            within global norms that protect rights and prevent systemic violence.
-          </li>
-          <li>
-            <strong>Economy:</strong> Cooperative, market-regulated, and commons-based
-            models coexist; exploitative systems are constrained by law and culture.
-          </li>
-          <li>
-            <strong>Society:</strong> Religious and worldview diversity remains rich,
-            but rivalry is largely replaced by cooperation and mutual respect.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> The <em>Most Great Peace</em> includes mature
-            diversity that no longer threatens underlying unity.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2900–2999 · 30th Century · Quiet Strength of a Unified World</h3>
-        <h4>Everyday life in long-lasting peace</h4>
-        <ul>
-          <li>
-            <strong>Politics:</strong> World institutions are renewed and reformed
-            periodically, but remain trusted and stable. Local self-government is vibrant.
-          </li>
-          <li>
-            <strong>Economy:</strong> Material security is widespread. The main
-            questions are how to use abundance wisely and preserve beauty and meaning.
-          </li>
-          <li>
-            <strong>Society:</strong> Most people grow up with a lived sense that
-            “humanity is one family.” Personal and collective challenges are addressed
-            within a framework that assumes cooperation as the default.
-          </li>
-          <li>
-            <strong>Bahai lens:</strong> No scenario can capture the full depth of
-            the <em>Most Great Peace</em>, but this century can be imagined as one
-            snapshot: outer life broadly aligned with an inner ethic of oneness.
-          </li>
-        </ul>
-      </div>
-
-      <div class="timeline-era">
-        <h3>Beyond 3000 AD · Open Horizons</h3>
-        <h4>Further chapters unwritten</h4>
-        <ul>
-          <li>
-            History continues. New challenges, renewals, and transformations arise.
-            Bahai teachings and other spiritual and philosophical traditions would
-            keep offering guidance as humanity navigates later stages of its story.
-          </li>
-        </ul>
-      </div>
+      <a href="religion.htm" class="card">
+        <h3>Religious History</h3>
+        <p>50,000 years of global religious development.</p>
+      </a>
 
     </div>
   </section>
+
 </main>
 
 <footer>
-  <span>© <span id="year"></span> Dan Fournel · fournel.org</span>
-  <span>Bahai Future Timeline · hosted on GitHub Pages</span>
+  © <span id="year"></span> Dan Fournel — fournel.org  
+  <br>Built &amp; published on GitHub Pages
 </footer>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
