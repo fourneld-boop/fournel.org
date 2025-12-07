@@ -5,7 +5,7 @@
   <title>Future Scenarios – fournel.org</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-        content="Hub for future scenarios on fournel.org – World War III timelines, Bahai-inspired world order futures, and long-range political, technological, and civilizational models.">
+        content="Hub for future scenarios on fournel.org – World War III timelines, Bahai-inspired futures, and long-range political, technological, and religious modelling.">
 
   <style>
     :root {
@@ -42,12 +42,11 @@
       color: var(--accent);
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
 
-    /* Wormhole-style background */
+    /* Wormhole background */
     .wormhole-layer {
       position: fixed;
       inset: -40%;
@@ -103,12 +102,10 @@
       from { transform: rotate(0deg) scale(1); }
       to   { transform: rotate(360deg) scale(1.03); }
     }
-
     @keyframes spinRing {
       from { transform: rotate(0deg); }
       to   { transform: rotate(-360deg); }
     }
-
     @keyframes pulseWormhole {
       from { opacity: 0.6; transform: scale(1); }
       to   { opacity: 0.95; transform: scale(1.08); }
@@ -157,7 +154,6 @@
       letter-spacing: 0.03em;
       font-size: 0.95rem;
     }
-
     .nav-title span {
       color: var(--muted);
       display: block;
@@ -198,10 +194,10 @@
 
     /* Hero */
     .hero {
-      margin-bottom: 2.2rem;
+      margin-bottom: 2.3rem;
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
-      gap: 1.7rem;
+      gap: 1.8rem;
       align-items: flex-start;
       animation: fadeUp 0.9s ease-out forwards;
       opacity: 0;
@@ -275,7 +271,6 @@
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       box-shadow: var(--shadow);
     }
-
     .btn-primary:hover {
       filter: brightness(1.05);
       text-decoration: none;
@@ -287,7 +282,6 @@
       color: var(--muted);
       background: rgba(0, 0, 0, 0.2);
     }
-
     .btn-ghost:hover {
       border-color: var(--accent);
       color: var(--accent);
@@ -315,17 +309,14 @@
       margin: 0 0 0.4rem;
       font-size: 1.02rem;
     }
-
     .hero-card p {
       margin: 0;
       line-height: 1.5;
     }
-
     .hero-card ul {
       margin: 0.5rem 0 0;
       padding-left: 1.2rem;
     }
-
     .hero-card li + li {
       margin-top: 0.2rem;
     }
@@ -338,7 +329,6 @@
       border-radius: 50%;
       border: 1px dashed rgba(255, 255, 255, 0.25);
     }
-
     .hero-card-lines::before,
     .hero-card-lines::after {
       content: "";
@@ -347,11 +337,9 @@
       border-radius: 50%;
       border: 1px dashed rgba(255, 255, 255, 0.25);
     }
-
     .hero-card-lines::after {
       inset: 36px;
     }
-
     .hero-card-node {
       position: absolute;
       right: 50px;
@@ -429,7 +417,6 @@
       font-size: 1.08rem;
       color: var(--accent);
     }
-
     .card p {
       margin: 0;
       color: var(--muted);
@@ -453,4 +440,354 @@
       transform: translateY(-6px) scale(1.01);
       border-color: var(--accent);
       background: rgba(8, 16, 40, 0.98);
-      box-shadow: 0 20px 50px rgba(0, 
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      transform: translate3d(0,0,0);
+    }
+
+    .timeline-wrapper {
+      margin-top: 1rem;
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.2rem 1.3rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-height: 70vh;
+      overflow: auto;
+    }
+
+    .timeline-era {
+      margin-top: 0.9rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-era h3 {
+      margin: 0 0 0.1rem;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .timeline-era h4 {
+      margin: 0 0 0.2rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .timeline-era ul {
+      margin: 0.3rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .timeline-era li + li {
+      margin-top: 0.22rem;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.4rem 1.5rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 840px) {
+      header {
+        position: static;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        order: -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wormhole-layer"></div>
+<div class="wormhole-core"></div>
+<div class="wormhole-ring"></div>
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>Future Scenario Hub</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="future.htm">Future</a>
+      <a href="ww3.htm">WW3 Timeline</a>
+      <a href="bahai.htm">Bahai Future</a>
+      <a href="religion.htm">Religion</a>
+      <a href="index.htm">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Scenarios · Timelines · Alternate Paths</span>
+      </div>
+
+      <h1>Future Scenarios &amp; Long-Range Worlds</h1>
+
+      <p class="hero-subtitle">
+        This page is the hub for speculative futures on fournel.org. It links detailed crisis
+        modelling in <a href="ww3.htm"><span>World War III</span></a>, a long-range
+        <a href="bahai.htm"><span>Bahai-inspired future</span></a>, and supporting timelines
+        in <a href="history.htm"><span>history</span></a>, <a href="tech.htm"><span>technology</span></a>,
+        and <a href="religion.htm"><span>religion</span></a>. None of this is prediction –
+        it’s a lab for testing how different assumptions about politics, tech, and faith
+        might play out.
+      </p>
+
+      <div class="hero-actions">
+        <a href="ww3.htm" class="btn btn-primary">Open WW3 Scenario →</a>
+        <a href="bahai.htm" class="btn btn-ghost">Bahai Future Timeline →</a>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <h2>How the future pages fit together</h2>
+      <p>
+        Each file is a different “lens” on the future:
+      </p>
+      <ul>
+        <li><strong>ww3.htm</strong> – high-stakes conflict and reconstruction.</li>
+        <li><strong>bahai.htm</strong> – staged world order evolution (2025–3000).</li>
+        <li><strong>tech.htm</strong> – deep-time technology envelope.</li>
+        <li><strong>history.htm</strong> – long historical analogies and echoes.</li>
+        <li><strong>religion.htm</strong> – religious baselines feeding into culture.</li>
+      </ul>
+      <p style="margin-top:0.45rem;">
+        <strong>future.htm</strong> is the map that shows how they lock together.
+      </p>
+      <div class="hero-card-lines"></div>
+      <div class="hero-card-node"></div>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Scenario Index</h2>
+    <p class="section-intro">
+      Start with a scenario that matches the question you care about: great-power war,
+      long-range world order, technology envelopes, or religious transformation.
+    </p>
+
+    <div class="scenario-grid">
+
+      <a href="ww3.htm" class="card">
+        <h3>World War III Timeline (ww3.htm)</h3>
+        <p>
+          A structured conflict scenario: build-up, outbreak, escalation across theatres,
+          and a post-war settlement that forces a redesign of the international system.
+          Good for stress-testing assumptions about deterrence, alliances, and resilience.
+        </p>
+        <span class="tag">2020s–2100s · war &amp; reconstruction</span>
+      </a>
+
+      <a href="bahai.htm" class="card">
+        <h3>Bahai Future Timeline (bahai.htm)</h3>
+        <p>
+          A long-run scenario inspired by Bahai concepts of the Lesser Peace, a World
+          Super-State, the Great Peace, and early hints of the Most Great Peace,
+          spanning 2025–3000. Focused on politics, economics, and social order.
+        </p>
+        <span class="tag">2025–3000 · world order</span>
+      </a>
+
+      <a href="tech.htm" class="card">
+        <h3>Technology Arcs (tech.htm)</h3>
+        <p>
+          Situates all futures inside a technological envelope: from stone tools through
+          AI, space, biotech, and speculative ultra-long-term capabilities. Useful for
+          checking whether a given scenario is technologically plausible.
+        </p>
+        <span class="tag">deep time · capability bounds</span>
+      </a>
+
+      <a href="history.htm" class="card">
+        <h3>Historical Echoes (history.htm)</h3>
+        <p>
+          Uses long historical patterns – empires, federations, collapses, reforms –
+          as a comparison set for modern and future experiments in unity and governance.
+          “We’ve seen versions of this movie before.”
+        </p>
+        <span class="tag">10,000 BC–present · analogies</span>
+      </a>
+
+      <a href="religion.htm" class="card">
+        <h3>Religious Baselines (religion.htm)</h3>
+        <p>
+          A wide sweep of religious history over ~50,000 years. Sets the stage for
+          how belief systems, institutions, and ethics might interact with future
+          political and technological change.
+        </p>
+        <span class="tag">spiritual &amp; cultural context</span>
+      </a>
+
+      <a href="index.htm" class="card">
+        <h3>About &amp; Methods (index.htm)</h3>
+        <p>
+          Notes on why these scenarios were built, the limitations of long-range
+          modelling, and how to read these pages without confusing them for predictions.
+        </p>
+        <span class="tag">meta · scenario craft</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Meta-Timeline: How the Futures Branch</h2>
+    <p class="section-intro">
+      This isn’t another detailed timeline – it’s a simple “spine” that shows where
+      the WW3 and Bahai futures diverge, and how <code>tech.htm</code>,
+      <code>history.htm</code>, and <code>religion.htm</code> connect to both.
+    </p>
+
+    <div class="timeline-wrapper" aria-label="High-level meta timeline connecting future.htm, ww3.htm, bahai.htm, tech.htm, history.htm, and religion.htm">
+      <div class="timeline-era">
+        <h3>2025–2040 · Shared Pre-Crisis World</h3>
+        <h4>Common starting conditions for all scenarios</h4>
+        <ul>
+          <li>
+            Climate stress, technological disruption, and geopolitical rivalry dominate.
+            Both <a href="ww3.htm">ww3.htm</a> and <a href="bahai.htm">bahai.htm</a> assume
+            a turbulent, multi-polar world.
+          </li>
+          <li>
+            <a href="tech.htm">tech.htm</a> provides the capability floor: AI, automation,
+            bioscience, space infrastructure, and cyber tools are maturing rapidly.
+          </li>
+          <li>
+            <a href="religion.htm">religion.htm</a> and <a href="history.htm">history.htm</a>
+            provide the long memory: past empires, reform movements, and religious
+            transformations shape how societies interpret the crisis.
+          </li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2040–2070 · Divergence: WW3 vs. Managed Crisis</h3>
+        <h4>Two main branches</h4>
+        <ul>
+          <li>
+            <strong>WW3 branch:</strong> In <a href="ww3.htm">ww3.htm</a>, deterrence fails,
+            conflict escalates into a global war, and the international system is forcibly
+            rebuilt after catastrophic loss.
+          </li>
+          <li>
+            <strong>Bahai branch:</strong> In <a href="bahai.htm">bahai.htm</a>, crises stop
+            short of all-out war. Painful lessons, near misses, and partial breakdowns
+            drive states toward a pragmatic <em>Lesser Peace</em>.
+          </li>
+          <li>
+            Both branches draw on the same tech envelope (<a href="tech.htm">tech.htm</a>)
+            but use it differently: in one case as a weapon set, in the other as a tool
+            for coordination and monitoring.
+          </li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2070–2150 · Post-Conflict Orders</h3>
+        <h4>Reconstruction, reform, and global architecture</h4>
+        <ul>
+          <li>
+            <strong>After WW3 (ww3.htm):</strong> Post-war architecture is heavy on
+            security guarantees, demilitarisation, and enforced constraints. A new
+            world order emerges out of trauma.
+          </li>
+          <li>
+            <strong>Bahai pathway (bahai.htm):</strong> The world commonwealth evolves
+            more incrementally, formalising a <em>World Super-State</em> with layered
+            authority and stronger emphasis on consultation and justice.
+          </li>
+          <li>
+            <a href="history.htm">history.htm</a> is relevant here: both orders echo past
+            attempts at empires, federations, and leagues – but with higher stakes.
+          </li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2150–3000 · Long-Range World Order</h3>
+        <h4>Where bahai.htm becomes the main spine</h4>
+        <ul>
+          <li>
+            Beyond roughly the mid-2100s, <a href="bahai.htm">bahai.htm</a> carries the
+            primary long-run storyline: Great Peace, deeper spiritual civilisation, and
+            early attributes of the Most Great Peace.
+          </li>
+          <li>
+            <a href="tech.htm">tech.htm</a> bounds what is physically and technically
+            plausible in those centuries – including potential off-world infrastructure.
+          </li>
+          <li>
+            <a href="religion.htm">religion.htm</a> suggests how religious traditions,
+            including the Bahai Faith, might inform ethics, law, and culture in such
+            a world, even as new movements appear.
+          </li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>Beyond 3000 · Open Scenario Space</h3>
+        <h4>Not covered here (yet)</h4>
+        <ul>
+          <li>
+            Deliberately left blank. Any scenarios beyond 3000 AD would likely live
+            in their own dedicated pages, branching from the endpoints of
+            <a href="bahai.htm">bahai.htm</a> and <a href="tech.htm">tech.htm</a>.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Dan Fournel · fournel.org · Future Scenarios
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
