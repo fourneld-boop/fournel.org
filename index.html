@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>fournel.org – Projects, Timelines & Future Scenarios</title>
+  <title>Future Scenarios – fournel.org</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The personal research portal of Dan Fournel – SF, history, technology, religion, future scenarios, and long-range timelines.">
+  <meta name="description"
+        content="Hub for future scenarios on fournel.org – World War III timelines, Bahai-inspired futures, and long-range political, technological, and religious modelling.">
 
   <style>
     :root {
@@ -22,6 +23,10 @@
       --max-width: 1040px;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -33,28 +38,32 @@
       overflow-x: hidden;
     }
 
-    * { box-sizing: border-box; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
 
-    /* Wormhole Animated Background */
+    /* Wormhole background */
     .wormhole-layer {
       position: fixed;
       inset: -40%;
       z-index: -2;
       pointer-events: none;
       background:
-        radial-gradient(circle at 50% 50%, rgba(10, 185, 255, 0.18) 0, transparent 50%),
-        radial-gradient(circle at 30% 20%, rgba(178, 84, 255, 0.22) 0, transparent 55%),
-        radial-gradient(circle at 70% 80%, rgba(79, 209, 255, 0.18) 0, transparent 55%);
+        radial-gradient(circle at 40% 20%, rgba(10, 185, 255, 0.18) 0, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(178, 84, 255, 0.22) 0, transparent 55%),
+        radial-gradient(circle at 20% 75%, rgba(79, 209, 255, 0.16) 0, transparent 55%);
       opacity: 0.85;
-      animation: pulseWormhole 10s ease-in-out infinite alternate;
+      animation: pulseWormhole 11s ease-in-out infinite alternate;
     }
 
     .wormhole-core {
       position: fixed;
       left: 50%;
-      top: 45%;
+      top: 42%;
       width: 520px;
       height: 520px;
       margin-left: -260px;
@@ -74,7 +83,7 @@
     .wormhole-ring {
       position: fixed;
       left: 50%;
-      top: 45%;
+      top: 42%;
       width: 360px;
       height: 360px;
       margin-left: -180px;
@@ -86,29 +95,29 @@
         0 0 80px rgba(0, 0, 0, 0.9) inset;
       z-index: -1;
       pointer-events: none;
-      animation: spinRing 26s linear infinite reverse;
+      animation: spinRing 28s linear infinite reverse;
     }
 
     @keyframes spinWormhole {
       from { transform: rotate(0deg) scale(1); }
       to   { transform: rotate(360deg) scale(1.03); }
     }
-
     @keyframes spinRing {
       from { transform: rotate(0deg); }
       to   { transform: rotate(-360deg); }
     }
-
     @keyframes pulseWormhole {
       from { opacity: 0.6; transform: scale(1); }
       to   { opacity: 0.95; transform: scale(1.08); }
     }
 
-    /* Header / Nav */
+    /* Header / nav */
     header {
-      position: sticky; top: 0; z-index: 10;
+      position: sticky;
+      top: 0;
+      z-index: 10;
       backdrop-filter: blur(16px);
-      background: rgba(2, 6, 18, 0.87);
+      background: rgba(2, 6, 18, 0.9);
       border-bottom: 1px solid var(--border-soft);
     }
 
@@ -117,11 +126,16 @@
       margin: 0 auto;
       padding: 0.7rem 1.5rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    .nav-left { display: flex; gap: 0.7rem; align-items: center; }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
 
     .nav-logo {
       width: 36px;
@@ -131,132 +145,389 @@
         radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
         radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
       box-shadow:
-        0 0 0 2px rgba(255,255,255,0.6),
-        0 0 40px rgba(79,209,255,0.7);
+        0 0 0 2px rgba(255, 255, 255, 0.6),
+        0 0 40px rgba(79, 209, 255, 0.7);
     }
 
     .nav-title {
       font-weight: 600;
-      letter-spacing: .03em;
-      font-size: .95rem;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
     }
     .nav-title span {
       color: var(--muted);
       display: block;
-      font-size: .75rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
     }
 
-    .nav-links { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+    }
+
     .nav-links a {
       padding: 0.25rem 0.7rem;
       border-radius: 999px;
       border: 1px solid transparent;
       color: var(--muted);
-      transition: 0.2s ease;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
+
     .nav-links a:hover {
       color: var(--text);
       border-color: var(--accent-soft);
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       transform: translateY(-1px);
+      text-decoration: none;
     }
 
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 2.7rem 1.5rem 4.3rem;
+      padding: 2.6rem 1.5rem 4rem;
       position: relative;
       z-index: 1;
     }
 
     /* Hero */
     .hero {
+      margin-bottom: 2.3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
       animation: fadeUp 0.9s ease-out forwards;
       opacity: 0;
       transform: translateY(12px);
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.7rem);
-      margin-bottom: .7rem;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(79, 209, 255, 0.4);
+      background: rgba(10, 27, 58, 0.94);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
-    .hero p {
-      font-size: 1rem;
-      line-height: 1.65;
-      max-width: 42rem;
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #5cffb3;
+      box-shadow: 0 0 10px rgba(92, 255, 179, 0.9);
+    }
+
+    .hero h1 {
+      margin: 0.7rem 0 0.4rem;
+      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.6rem);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 40rem;
+    }
+
+    .hero-subtitle span {
+      color: var(--accent);
+    }
+
+    .hero-actions {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      background:
+        radial-gradient(circle at 25% 15%, #4fd1ff, transparent 55%),
+        radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
+        radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
+      border: 1px solid rgba(79, 209, 255, 0.4);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #e5ecff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+    }
+    .hero-card p {
+      margin: 0;
+      line-height: 1.5;
+    }
+    .hero-card ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.2rem;
+    }
+    .hero-card li + li {
+      margin-top: 0.2rem;
+    }
+
+    .hero-card-lines {
+      position: absolute;
+      inset: auto -40px -90px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+    .hero-card-lines::before,
+    .hero-card-lines::after {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+    .hero-card-lines::after {
+      inset: 36px;
+    }
+    .hero-card-node {
+      position: absolute;
+      right: 50px;
+      bottom: 70px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, #b9e8ff 42%, transparent 60%),
+        conic-gradient(from 0deg, #020612, #3b98ff, #020612, #a855ff, #020612);
+      box-shadow:
+        0 0 18px rgba(79, 209, 255, 0.85),
+        0 0 70px rgba(15, 23, 42, 1);
+    }
+
+    section {
+      margin-bottom: 2.1rem;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      font-size: 0.9rem;
       color: var(--muted);
     }
 
-    /* Grid */
-    .link-grid {
-      margin-top: 2.1rem;
+    .scenario-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.2rem;
+      margin-top: 1.1rem;
     }
 
     .card {
-      padding: 1rem 1.2rem;
+      padding: 1rem 1.15rem;
       border-radius: var(--radius);
-      background: rgba(7, 14, 30, 0.94);
+      background: rgba(7, 14, 30, 0.96);
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
-      transition: 0.28s ease;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
       position: relative;
+      overflow: hidden;
       opacity: 0;
       transform: translateY(14px) scale(0.98);
       animation: cardIn 0.7s ease-out forwards;
     }
 
-    .card:nth-child(1) { animation-delay: .15s; }
-    .card:nth-child(2) { animation-delay: .25s; }
-    .card:nth-child(3) { animation-delay: .35s; }
-    .card:nth-child(4) { animation-delay: .45s; }
-    .card:nth-child(5) { animation-delay: .55s; }
+    .card:nth-child(1) { animation-delay: 0.18s; }
+    .card:nth-child(2) { animation-delay: 0.26s; }
+    .card:nth-child(3) { animation-delay: 0.34s; }
+    .card:nth-child(4) { animation-delay: 0.42s; }
+    .card:nth-child(5) { animation-delay: 0.50s; }
+    .card:nth-child(6) { animation-delay: 0.58s; }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(79,209,255,0.16), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translate3d(-10%, -10%, 0);
+    }
 
     .card h3 {
-      margin: 0 0 .3rem;
-      font-size: 1.1rem;
+      margin: 0 0 0.3rem;
+      font-size: 1.08rem;
       color: var(--accent);
     }
     .card p {
       margin: 0;
       color: var(--muted);
-      font-size: .9rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .card span.tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
     }
 
     .card:hover {
       transform: translateY(-6px) scale(1.01);
       border-color: var(--accent);
-      background: rgba(8,16,40,0.98);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      background: rgba(8, 16, 40, 0.98);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      transform: translate3d(0,0,0);
+    }
+
+    .timeline-wrapper {
+      margin-top: 1rem;
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.2rem 1.3rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-height: 70vh;
+      overflow: auto;
+    }
+
+    .timeline-era {
+      margin-top: 0.9rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-era h3 {
+      margin: 0 0 0.1rem;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .timeline-era h4 {
+      margin: 0 0 0.2rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .timeline-era ul {
+      margin: 0.3rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .timeline-era li + li {
+      margin-top: 0.22rem;
     }
 
     footer {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 1.5rem;
+      padding: 1.4rem 1.5rem 1.6rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      font-size: .8rem;
-      border-top: 1px solid var(--border-soft);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
-      opacity: 0.9;
       position: relative;
       z-index: 1;
     }
 
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes cardIn {
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
+    @media (max-width: 840px) {
+      header {
+        position: static;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        order: -1;
+      }
+    }
   </style>
 </head>
-
 <body>
 
 <div class="wormhole-layer"></div>
@@ -269,78 +540,254 @@
       <div class="nav-logo"></div>
       <div class="nav-title">
         fournel.org
-        <span>Personal Research Portal</span>
+        <span>Future Scenario Hub</span>
       </div>
     </div>
-
-    <!-- Updated nav: removed ww3 & bahai -->
     <div class="nav-links">
       <a href="home.htm">Home</a>
       <a href="history.htm">History</a>
       <a href="tech.htm">Technology</a>
       <a href="future.htm">Future</a>
+      <a href="ww3.htm">WW3 Timeline</a>
+      <a href="bahai.htm">Bahai Future</a>
       <a href="religion.htm">Religion</a>
-      <a href="index.htm">About</a>
+      <a href="about.htm">About</a>
     </div>
   </nav>
 </header>
 
 <main>
-
   <section class="hero">
-    <h1>Welcome to fournel.org</h1>
-    <p>
-      I’m a SF and history buff based in British Columbia, working at the intersection of  
-      <a href="home.htm">site-wide experiments</a>,  
-      <a href="history.htm">deep history timelines</a>,  
-      <a href="tech.htm">technology arcs</a>,  
-      <a href="future.htm">future scenarios</a>,  
-      <a href="religion.htm">religious history</a>.  
-      This site collects my projects, timelines, speculative futures, research notes, and long-range scenario explorations.
-    </p>
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Scenarios · Timelines · Alternate Paths</span>
+      </div>
+
+      <h1>Future Scenarios &amp; Long-Range Worlds</h1>
+
+      <p class="hero-subtitle">
+        This page is the hub for speculative futures on fournel.org. It links detailed crisis
+        modelling in <a href="ww3.htm"><span>World War III</span></a>, a long-range
+        <a href="bahai.htm"><span>Bahai-inspired future</span></a>, and supporting timelines
+        in <a href="history.htm"><span>history</span></a>, <a href="tech.htm"><span>technology</span></a>,
+        and <a href="religion.htm"><span>religion</span></a>. None of this is prediction –
+        it’s a lab for testing how different assumptions about politics, tech, and faith
+        might play out.
+      </p>
+
+      <div class="hero-actions">
+        <a href="ww3.htm" class="btn btn-primary">Open WW3 Scenario →</a>
+        <a href="bahai.htm" class="btn btn-ghost">Bahai Future Timeline →</a>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <h2>How the future pages fit together</h2>
+      <p>
+        Each file is a different “lens” on the future:
+      </p>
+      <ul>
+        <li><strong>ww3.htm</strong> – high-stakes conflict and reconstruction.</li>
+        <li><strong>bahai.htm</strong> – staged world order evolution (2025–3000).</li>
+        <li><strong>tech.htm</strong> – deep-time technology envelope.</li>
+        <li><strong>history.htm</strong> – long historical analogies and echoes.</li>
+        <li><strong>religion.htm</strong> – religious baselines feeding into culture.</li>
+      </ul>
+      <p style="margin-top:0.45rem;">
+        <strong>future.htm</strong> is the map that shows how they lock together.
+      </p>
+      <div class="hero-card-lines"></div>
+      <div class="hero-card-node"></div>
+    </aside>
   </section>
 
   <section>
-    <div class="link-grid">
+    <h2>Scenario Index</h2>
+    <p class="section-intro">
+      Start with a scenario that matches the question you care about: great-power war,
+      long-range world order, technology envelopes, or religious transformation.
+    </p>
 
-      <a href="home.htm" class="card">
-        <h3>Home</h3>
-        <p>Portal page linking into all timelines &amp; projects.</p>
+    <div class="scenario-grid">
+
+      <a href="ww3.htm" class="card">
+        <h3>World War III Timeline (ww3.htm)</h3>
+        <p>
+          A structured conflict scenario: build-up, outbreak, escalation across theatres,
+          and a post-war settlement that forces a redesign of the international system.
+          Good for stress-testing assumptions about deterrence, alliances, and resilience.
+        </p>
+        <span class="tag">2020s–2100s · war &amp; reconstruction</span>
       </a>
 
-      <a href="history.htm" class="card">
-        <h3>History Timelines</h3>
-        <p>Major world events from 10,000 BC to the present.</p>
+      <a href="bahai.htm" class="card">
+        <h3>Bahai Future Timeline (bahai.htm)</h3>
+        <p>
+          A long-run scenario inspired by Bahai concepts of the Lesser Peace, a World
+          Super-State, the Great Peace, and early hints of the Most Great Peace,
+          spanning 2025–3000. Focused on politics, economics, and social order.
+        </p>
+        <span class="tag">2025–3000 · world order</span>
       </a>
 
       <a href="tech.htm" class="card">
-        <h3>Technology Timeline</h3>
-        <p>From stone tools to deep future epochs.</p>
+        <h3>Technology Arcs (tech.htm)</h3>
+        <p>
+          Situates all futures inside a technological envelope: from stone tools through
+          AI, space, biotech, and speculative ultra-long-term capabilities. Useful for
+          checking whether a given scenario is technologically plausible.
+        </p>
+        <span class="tag">deep time · capability bounds</span>
       </a>
 
-      <a href="future.htm" class="card">
-        <h3>Future Scenarios</h3>
-        <p>Long-range political, economic &amp; civilizational modelling.</p>
+      <a href="history.htm" class="card">
+        <h3>Historical Echoes (history.htm)</h3>
+        <p>
+          Uses long historical patterns – empires, federations, collapses, reforms –
+          as a comparison set for modern and future experiments in unity and governance.
+          “We’ve seen versions of this movie before.”
+        </p>
+        <span class="tag">10,000 BC–present · analogies</span>
       </a>
 
       <a href="religion.htm" class="card">
-        <h3>Religious History</h3>
-        <p>50,000 years of global religious development.</p>
+        <h3>Religious Baselines (religion.htm)</h3>
+        <p>
+          A wide sweep of religious history over ~50,000 years. Sets the stage for
+          how belief systems, institutions, and ethics might interact with future
+          political and technological change.
+        </p>
+        <span class="tag">spiritual &amp; cultural context</span>
+      </a>
+
+      <a href="about.htm" class="card">
+        <h3>About &amp; Methods (about.htm)</h3>
+        <p>
+          Notes on why these scenarios were built, the limitations of long-range
+          modelling, and how to read these pages without confusing them for predictions.
+        </p>
+        <span class="tag">meta · scenario craft</span>
       </a>
 
     </div>
   </section>
 
+  <section>
+    <h2>Meta-Timeline: How the Futures Branch</h2>
+    <p class="section-intro">
+      This isn’t another detailed timeline – it’s a simple “spine” that shows where
+      the WW3 and Bahai futures diverge, and how <code>tech.htm</code>,
+      <code>history.htm</code>, and <code>religion.htm</code> connect to both.
+    </p>
+
+    <div class="timeline-wrapper" aria-label="High-level meta timeline connecting future.htm, ww3.htm, bahai.htm, tech.htm, history.htm, and religion.htm">
+      <div class="timeline-era">
+        <h3>2025–2040 · Shared Pre-Crisis World</h3>
+        <h4>Common starting conditions for all scenarios</h4>
+        <ul>
+          <li>
+            Climate stress, technological disruption, and geopolitical rivalry dominate.
+            Both <a href="ww3.htm">ww3.htm</a> and <a href="bahai.htm">bahai.htm</a> assume
+            a turbulent, multi-polar world.
+          </li>
+          <li>
+            <a href="tech.htm">tech.htm</a> provides the capability floor: AI, automation,
+            bioscience, space infrastructure, and cyber tools are maturing rapidly.
+          </li>
+          <li>
+            <a href="religion.htm">religion.htm</a> and <a href="history.htm">history.htm</a>
+            provide the long memory: past empires, reform movements, and religious
+            transformations shape how societies interpret the crisis.
+          </li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2040–2070 · Divergence: WW3 vs. Managed Crisis</h3>
+        <h4>Two main branches</h4>
+        <ul>
+          <li>
+            <strong>WW3 branch:</strong> In <a href="ww3.htm">ww3.htm</a>, deterrence fails,
+            conflict escalates into a global war, and the international system is forcibly
+            rebuilt after catastrophic loss.
+          </li>
+          <li>
+            <strong>Bahai branch:</strong> In <a href="bahai.htm">bahai.htm</a>, crises stop
+            short of all-out war. Painful lessons, near misses, and partial breakdowns
+            drive states toward a pragmatic <em>Lesser Peace</em>.
+          </li>
+          <li>
+            Both branches draw on the same tech envelope (<a href="tech.htm">tech.htm</a>)
+            but use it differently: in one case as a weapon set, in the other as a tool
+            for coordination and monitoring.
+          </li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2070–2150 · Post-Conflict Orders</h3>
+        <h4>Reconstruction, reform, and global architecture</h4>
+        <ul>
+          <li>
+            <strong>After WW3 (ww3.htm):</strong> Post-war architecture is heavy on
+            security guarantees, demilitarisation, and enforced constraints. A new
+            world order emerges out of trauma.
+          </li>
+          <li>
+            <strong>Bahai pathway (bahai.htm):</strong> The world commonwealth evolves
+            more incrementally, formalising a <em>World Super-State</em> with layered
+            authority and stronger emphasis on consultation and justice.
+          </li>
+          <li>
+            <a href="history.htm">history.htm</a> is relevant here: both orders echo past
+            attempts at empires, federations, and leagues – but with higher stakes.
+          </li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2150–3000 · Long-Range World Order</h3>
+        <h4>Where bahai.htm becomes the main spine</h4>
+        <ul>
+          <li>
+            Beyond roughly the mid-2100s, <a href="bahai.htm">bahai.htm</a> carries the
+            primary long-run storyline: Great Peace, deeper spiritual civilisation, and
+            early attributes of the Most Great Peace.
+          </li>
+          <li>
+            <a href="tech.htm">tech.htm</a> bounds what is physically and technically
+            plausible in those centuries – including potential off-world infrastructure.
+          </li>
+          <li>
+            <a href="religion.htm">religion.htm</a> suggests how religious traditions,
+            including the Bahai Faith, might inform ethics, law, and culture in such
+            a world, even as new movements appear.
+          </li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>Beyond 3000 · Open Scenario Space</h3>
+        <h4>Not covered here (yet)</h4>
+        <ul>
+          <li>
+            Deliberately left blank. Any scenarios beyond 3000 AD would likely live
+            in their own dedicated pages, branching from the endpoints of
+            <a href="bahai.htm">bahai.htm</a> and <a href="tech.htm">tech.htm</a>.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
-  © <span id="year"></span> Dan Fournel — fournel.org  
-  <br>Built &amp; published on GitHub Pages
+  © <span id="year"></span> Dan Fournel · fournel.org · Future Scenarios
 </footer>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>
