@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About – fournel.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="About Dan Fournel – the human behind fournel.org, a personal research and scenario lab based in British Columbia.">
+
+  <style>
+    :root {
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #4fd1ff;
+      --accent-2: #a855ff;
+      --accent-soft: rgba(79, 209, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #3a1454 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Wormhole */
+    .wormhole-layer {
+      position: fixed;
+      inset: -40%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 40% 20%, rgba(10, 185, 255, 0.18) 0, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(178, 84, 255, 0.22) 0, transparent 55%),
+        radial-gradient(circle at 20% 75%, rgba(79, 209, 255, 0.16) 0, transparent 55%);
+      opacity: 0.85;
+      animation: pulseWormhole 11s ease-in-out infinite alternate;
+    }
+
+    .wormhole-core {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 520px;
+      height: 520px;
+      margin-left: -260px;
+      margin-top: -260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(1, 8, 20, 0.6) 0, rgba(1, 8, 20, 0.98) 52%, #020612 70%),
+        conic-gradient(from 0deg, rgba(79,209,255,0.1), rgba(168,85,255,0.45), rgba(79,209,255,0.7), rgba(0,0,0,0.9), rgba(79,209,255,0.2));
+      filter: blur(2px);
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinWormhole 40s linear infinite;
+    }
+
+    .wormhole-ring {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 360px;
+      height: 360px;
+      margin-left: -180px;
+      margin-top: -180px;
+      border-radius: 50%;
+      border: 1px dashed rgba(158, 195, 255, 0.4);
+      box-shadow:
+        0 0 30px rgba(79, 209, 255, 0.5),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinRing 28s linear infinite reverse;
+    }
+
+    @keyframes spinWormhole {
+      from { transform: rotate(0deg) scale(1); }
+      to   { transform: rotate(360deg) scale(1.03); }
+    }
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+    @keyframes pulseWormhole {
+      from { opacity: 0.6; transform: scale(1); }
+      to   { opacity: 0.95; transform: scale(1.08); }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(2, 6, 18, 0.9);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
+        radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.6),
+        0 0 40px rgba(79, 209, 255, 0.7);
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+    .nav-title span {
+      color: var(--muted);
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: var(--accent-soft);
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.6rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+      gap: 1.8rem;
+      margin-bottom: 2.4rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.9s ease-out forwards;
+    }
+
+    .hero h1 {
+      margin: 0 0 0.6rem;
+      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.5rem);
+    }
+
+    .hero p {
+      margin: 0.2rem 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 42rem;
+    }
+
+    .hero p strong {
+      color: var(--text);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1.1rem 1.15rem;
+      background:
+        radial-gradient(circle at 25% 15%, #4fd1ff, transparent 55%),
+        radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
+        radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
+      border: 1px solid rgba(79, 209, 255, 0.4);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #e5ecff;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+    }
+
+    section {
+      margin-bottom: 2.2rem;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.35rem;
+    }
+
+    section p {
+      margin: 0.25rem 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.3rem;
+    }
+
+    ul {
+      margin: 0.35rem 0 0.2rem;
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    li + li { margin-top: 0.16rem; }
+
+    .card {
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius);
+      background: rgba(7, 14, 30, 0.96);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: var(--accent);
+      background: rgba(8,16,40,0.98);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.8);
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.4rem 1.5rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 840px) {
+      header { position: static; }
+      .hero { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wormhole-layer"></div>
+<div class="wormhole-core"></div>
+<div class="wormhole-ring"></div>
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>About</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="future.htm">Future</a>
+      <a href="ww3.htm">WW3 Timeline</a>
+      <a href="bahai.htm">Bahai Future</a>
+      <a href="religion.htm">Religion</a>
+      <a href="about.htm">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <h1>About Dan &amp; fournel.org</h1>
+      <p>
+        <strong>Short version:</strong> I’m Dan, a curious generalist based in British Columbia
+        who works in technology by day and plays with history, timelines, and speculative
+        futures in my spare time.
+      </p>
+      <p>
+        fournel.org is my personal research and experiment lab. It’s where I stash long-range
+        scenario work, deep-time timelines, and notes that don’t quite fit anywhere else.
+      </p>
+    </div>
+
+    <aside class="hero-card">
+      <h2>What this site is</h2>
+      <p>• A place to test ideas about history, technology, religion, and the future.</p>
+      <p>• A personal notebook that happens to be public and versioned on GitHub.</p>
+      <p>• A sandbox for visual experiments: wormholes, maps, timelines, and scenarios.</p>
+      <p style="margin-top:0.45rem;">
+        It’s not a prediction engine or an academic journal – just one person exploring
+        “what if?” in a structured way.
+      </p>
+    </aside>
+  </section>
+
+  <section>
+    <h2>What I’m interested in</h2>
+    <div class="two-column">
+      <div class="card">
+        <h3>Long-range thinking</h3>
+        <ul>
+          <li>How today’s choices show up in 10, 50, or 100 years.</li>
+          <li>World order, regional blocs, and possible paths to greater cooperation.</li>
+          <li>Scenarios that mix realism with just enough science fiction to be fun.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Technology &amp; infrastructure</h3>
+        <ul>
+          <li>Deep-time technology arcs (see <a href="tech.htm">Technology Timeline</a>).</li>
+          <li>Practical IT, networks, automation, and tools people actually use.</li>
+          <li>Human–AI collaboration and how it reshapes everyday work.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>History &amp; religion</h3>
+        <ul>
+          <li>Patterns in empires, federations, collapses, and reform movements.</li>
+          <li>Comparative religious history and long-run ethical frameworks.</li>
+          <li>How past spiritual and political experiments can inform future ones.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Local &amp; personal</h3>
+        <ul>
+          <li>British Columbia as a real place with real constraints and opportunities.</li>
+          <li>Family, community, and how big-picture ideas filter down to daily life.</li>
+          <li>Using small experimental projects to learn faster.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How the pages fit together</h2>
+    <p>
+      If you’re trying to make sense of what’s here, this is roughly how I think about
+      the different pages:
+    </p>
+
+    <div class="two-column">
+      <div class="card">
+        <ul>
+          <li><a href="home.htm"><strong>home.htm</strong></a> – Portal into the whole site.</li>
+          <li><a href="history.htm"><strong>history.htm</strong></a> – Long-run historical events and eras.</li>
+          <li><a href="tech.htm"><strong>tech.htm</strong></a> – Technology through deep time.</li>
+          <li><a href="religion.htm"><strong>religion.htm</strong></a> – Religious timelines and context.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <ul>
+          <li><a href="future.htm"><strong>future.htm</strong></a> – Hub for future scenarios.</li>
+          <li><a href="ww3.htm"><strong>ww3.htm</strong></a> – One specific high-stakes conflict scenario.</li>
+          <li><a href="bahai.htm"><strong>bahai.htm</strong></a> – Long-range Bahai-inspired world-order scenario.</li>
+          <li><a href="index.htm"><strong>index.htm</strong></a> – The “front door” for the site.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact / elsewhere</h2>
+    <p>
+      This site is hosted on GitHub Pages. You can usually find the code and changes at:
+    </p>
+    <p>
+      <a href="https://github.com/fourneld-boop/fournel.org" target="_blank" rel="noopener">
+        github.com/fourneld-boop/fournel.org
+      </a>
+    </p>
+    <p>
+      If you know me in real life and want to chat about any of this, you already know how to reach me.  
+      Otherwise, GitHub is the simplest way to open an issue or suggest tweaks.
+    </p>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Dan Fournel · fournel.org
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
