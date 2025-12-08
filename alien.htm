@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alien Contact 2026 Scenario – fournel.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="A structured scenario where humanity confirms contact with an alien civilisation in 2026, with a timeline of political, technological and cultural changes through 2100.">
+
+  <style>
+    :root {
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #4fd1ff;
+      --accent-2: #22c55e;
+      --accent-soft: rgba(79, 209, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #14532d 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Wormhole background */
+    .wormhole-layer {
+      position: fixed;
+      inset: -40%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 40% 20%, rgba(10, 185, 255, 0.18) 0, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(34, 197, 94, 0.22) 0, transparent 55%),
+        radial-gradient(circle at 20% 75%, rgba(79, 209, 255, 0.16) 0, transparent 55%);
+      opacity: 0.85;
+      animation: pulseWormhole 11s ease-in-out infinite alternate;
+    }
+
+    .wormhole-core {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 520px;
+      height: 520px;
+      margin-left: -260px;
+      margin-top: -260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(1, 8, 20, 0.6) 0, rgba(1, 8, 20, 0.98) 52%, #020612 70%),
+        conic-gradient(from 0deg, rgba(79,209,255,0.1), rgba(34,197,94,0.45), rgba(79,209,255,0.7), rgba(0,0,0,0.9), rgba(79,209,255,0.2));
+      filter: blur(2px);
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinWormhole 40s linear infinite;
+    }
+
+    .wormhole-ring {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 360px;
+      height: 360px;
+      margin-left: -180px;
+      margin-top: -180px;
+      border-radius: 50%;
+      border: 1px dashed rgba(158, 195, 255, 0.4);
+      box-shadow:
+        0 0 30px rgba(79, 209, 255, 0.5),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinRing 28s linear infinite reverse;
+    }
+
+    @keyframes spinWormhole {
+      from { transform: rotate(0deg) scale(1); }
+      to   { transform: rotate(360deg) scale(1.03); }
+    }
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+    @keyframes pulseWormhole {
+      from { opacity: 0.6; transform: scale(1); }
+      to   { opacity: 0.95; transform: scale(1.08); }
+    }
+
+    /* Header / nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(2, 6, 18, 0.9);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
+        radial-gradient(circle at 70% 75%, #bbf7d0, #4fd1ff 55%, #020612 78%);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.6),
+        0 0 40px rgba(74, 222, 128, 0.7);
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+    .nav-title span {
+      color: var(--muted);
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: var(--accent-soft);
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.6rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 2.3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+      animation: fadeUp 0.9s ease-out forwards;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(74, 222, 128, 0.7);
+      background: rgba(7, 30, 20, 0.96);
+      font-size: 0.7rem;
+      color: #a7f3d0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero h1 {
+      margin: 0.7rem 0 0.4rem;
+      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.6rem);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 40rem;
+    }
+
+    .hero-subtitle span {
+      color: var(--accent);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      background:
+        radial-gradient(circle at 25% 15%, #4ade80, transparent 55%),
+        radial-gradient(circle at 80% 90%, #22d3ee, transparent 65%),
+        radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
+      border: 1px solid rgba(74, 222, 128, 0.5);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #e0ffef;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+    }
+    .hero-card p {
+      margin: 0;
+      line-height: 1.5;
+    }
+    .hero-card ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.2rem;
+    }
+    .hero-card li + li {
+      margin-top: 0.2rem;
+    }
+
+    section { margin-bottom: 2.1rem; }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .timeline-wrapper {
+      margin-top: 1rem;
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.2rem 1.3rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-height: 70vh;
+      overflow: auto;
+    }
+
+    .timeline-era {
+      margin-top: 0.8rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-era h3 {
+      margin: 0 0 0.1rem;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .timeline-era ul {
+      margin: 0.25rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .timeline-era li + li {
+      margin-top: 0.18rem;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.4rem 1.5rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wormhole-layer"></div>
+<div class="wormhole-core"></div>
+<div class="wormhole-ring"></div>
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>Alien Contact 2026 Scenario</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="future.htm">Future</a>
+      <a href="skynet.htm">Skynet</a>
+      <a href="alien.htm">Aliens</a>
+      <a href="ww3.htm">WW3</a>
+      <a href="bahai.htm">Bahai Future</a>
+      <a href="religion.htm">Religion</a>
+      <a href="about.htm">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>First Contact · 2026</span>
+      </div>
+
+      <h1>When the Sky Answers Back</h1>
+
+      <p class="hero-subtitle">
+        In this scenario, humanity confirms contact with an extra-solar civilisation
+        in <strong>2026</strong>. The aliens are not invaders but distant neighbours:
+        patient, technologically mature, and cautious about how much they reveal.
+        There is no magic reset or instant utopia – just a long, messy adjustment from
+        <span>2000–2100</span> as politics, economics, science and religion absorb
+        the fact that we are no longer alone.
+      </p>
+    </div>
+
+    <aside class="hero-card">
+      <h2>Core Assumptions</h2>
+      <ul>
+        <li>Contact begins with an unmistakably artificial signal, followed by tightly
+            controlled information exchanges, not giant ships in the sky.</li>
+        <li>The aliens are far away (tens of light-years) but use advanced relays /
+            probes to shorten communication loops to months or less.</li>
+        <li>They avoid direct interference with human conflicts, but drop hints about
+            physics, biology, and governance that slowly reshape our trajectory.</li>
+        <li>Different societies react very differently – some embrace collaboration,
+            others double down on nationalism or apocalyptic narratives.</li>
+      </ul>
+      <p style="margin-top:0.5rem;">
+        Read this alongside <a href="future.htm">future.htm</a> for how alien contact
+        branches the wider scenario tree, and with <a href="religion.htm">religion.htm</a>
+        and <a href="tech.htm">tech.htm</a> for the background context.
+      </p>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Timeline: 2000–2100 (Alien Contact Branch)</h2>
+    <p class="section-intro">
+      Early years quietly build the detection infrastructure. The key break comes in
+      <strong>2026</strong> with confirmed contact, then a multi-decade negotiation over
+      information, culture, and power.
+    </p>
+
+    <div class="timeline-wrapper">
+
+      <div class="timeline-era">
+        <h3>2000–2010 · Quiet Build-up</h3>
+        <ul>
+          <li><strong>2000–2004:</strong> Space telescopes refine exoplanet detection;
+              early “Earth-like” candidates appear in the data.</li>
+          <li><strong>2005–2008:</strong> Radio SETI and optical SETI projects struggle
+              for funding but continue collecting huge archives of raw sky noise.</li>
+          <li><strong>2009–2010:</strong> The explosion of cloud computing and big-data
+              tools makes it feasible to re-analyse decades of SETI data with
+              machine-learning methods, though few outside the community notice.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2011–2019 · Better Eyes, Better Ears</h3>
+        <ul>
+          <li><strong>2011–2014:</strong> New observatories and survey missions map
+              thousands of exoplanets; habitable-zone worlds become routine discoveries.</li>
+          <li><strong>2015–2017:</strong> Deep-learning applied to SETI archives starts
+              flagging odd narrowband spikes and strange repeating patterns –
+              “interesting” but not conclusive.</li>
+          <li><strong>2018–2019:</strong> A small international group quietly sets up
+              a cross-observatory verification protocol for any truly anomalous signals,
+              trying to avoid false alarms.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2020–2025 · Hints and Near-Misses</h3>
+        <ul>
+          <li><strong>2020:</strong> Pandemic conditions push more astronomy and SETI work
+              into automated pipelines and remote collaboration.</li>
+          <li><strong>2021:</strong> A repeating narrowband signal from a sun-like star is
+              flagged, then explained as an unusual terrestrial interference pattern.
+              The false alarm strengthens verification protocols.</li>
+          <li><strong>2022–2023:</strong> AI tools find several “almost artificial”
+              signals – patterns that look engineered but can still be squeezed into
+              exotic natural explanations.</li>
+          <li><strong>2024–2025:</strong> A small subset of researchers begins to suspect
+              that someone out there might be deliberately staying just below
+              the threshold of unambiguous detection, “knocking softly.”</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2026 · Contact</h3>
+        <ul>
+          <li>An observatory network picks up a narrowband transmission that:
+            <ul>
+              <li>comes from the direction of a known habitable-zone exoplanet, and</li>
+              <li>encodes a mathematically elegant sequence (prime factors, geometry,
+                  and a simple pictorial language) that no natural process can mimic.</li>
+            </ul>
+          </li>
+          <li>Independent observatories on multiple continents confirm within hours.
+              For the first time, the verification team unanimously agrees:
+              <strong>this is artificial.</strong></li>
+          <li>After intense debate, a carefully crafted reply – co-authored by a UN
+              working group and major space agencies – is transmitted, acknowledging
+              receipt and inviting continued conversation.</li>
+          <li>The signal stream then shifts into a slower, structured pattern clearly
+              designed to be decodable with human-level maths and physics.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2027–2030 · Negotiating the Conversation</h3>
+        <ul>
+          <li><strong>2027:</strong> Governments scramble to create ad-hoc “contact
+              protocols.” Some push for secrecy, others for radical openness. Leaks
+              make secrecy impossible within months.</li>
+          <li><strong>2028:</strong> A basic symbolic bridge is established: both sides
+              can describe numbers, chemistry, star catalogues, and orbital mechanics.
+              The aliens identify their star and rough technological age.</li>
+          <li><strong>2029:</strong> Religious and ideological responses diverge:
+              some see the contact as validation of their beliefs, others as a threat.
+              Fringe movements proclaim the aliens as saviours or demons.</li>
+          <li><strong>2030:</strong> The first clear “gift” arrives: a compact description
+              of a new class of materials / energy-storage principles that looks
+              experimentally testable but not trivial to weaponise. It passes a
+              global ethics review by a slim margin.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2031–2040 · Technologies and Tensions</h3>
+        <ul>
+          <li><strong>2031–2033:</strong> Labs reproduce parts of the alien materials
+              science, leading to better batteries, radiation shielding, and space
+              hardware. Patents, profits, and accusations of hoarding follow quickly.</li>
+          <li><strong>2034:</strong> A “Contact Compact” is signed by a coalition of
+              states, committing them to share core alien-derived discoveries
+              and to involve international panels before applying them to weapons.</li>
+          <li><strong>2035–2037:</strong> The aliens refuse to answer detailed military
+              questions or to take sides in human conflicts. Their replies emphasise
+              long-term risk management, ecological stability, and the dangers of
+              rapid self-modification.</li>
+          <li><strong>2038–2040:</strong> Space programmes accelerate. Using alien-inspired
+              tech, humans build more capable telescopes, asteroid deflection tests,
+              and the first serious prototypes of interstellar precursor probes.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2041–2060 · Deep Cultural Shockwaves</h3>
+        <ul>
+          <li><strong>2041–2045:</strong> Theology, philosophy, and political theory
+              undergo a renaissance. New denominations and secular movements form
+              around different interpretations of alien motives and ethics.</li>
+          <li><strong>2046:</strong> A short message from the aliens hints that they
+              themselves went through multiple near-extinction events before learning
+              to manage planetary-scale risks. They provide no details, only a warning
+              about “fast wars and slow poisons.”</li>
+          <li><strong>2047–2050:</strong> Alien data about biospheres and evolutionary
+              paths elsewhere reshapes biology and astrobiology. Humanity learns that
+              intelligent species are rare, but not unique.</li>
+          <li><strong>2051–2060:</strong> Education systems incorporate “cosmic civics”:
+              long-term thinking, planetary stewardship, and game-theoretic models of
+              interspecies contact. Not everyone buys in, but a growing fraction of
+              young people see themselves as actors on a galactic stage.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2061–2080 · Joint Projects at a Distance</h3>
+        <ul>
+          <li><strong>2061–2065:</strong> Humans and aliens agree on a slow, conservative
+              roadmap for cooperation: no biological samples, no direct AI blueprints,
+              but shared work on astronomy, climate stabilisation, and impact defence.</li>
+          <li><strong>2066–2070:</strong> A network of telescopes and relay craft is
+              deployed around the Solar System to serve as a “galactic bulletin board.”
+              Humans host part of the network; the aliens host another part elsewhere.</li>
+          <li><strong>2071–2075:</strong> First joint data releases map nearby star
+              systems in unprecedented detail. Some exoplanets are flagged as “cultural
+              preserves” where interference is discouraged.</li>
+          <li><strong>2076–2080:</strong> Contact has become normalised: most people
+              have grown up with the idea of alien neighbours. Conspiracy theories
+              persist, but the baseline assumption is that humanity is being very
+              slowly mentored rather than invaded.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2081–2100 · A Planet in a Larger Story</h3>
+        <ul>
+          <li><strong>2081–2088:</strong> Human politics still has conflict, but overt
+              large-scale wars become rarer; the shadow of “how we look to the
+              neighbours” and the risks of destabilising shared projects act as
+              a brake on escalation.</li>
+          <li><strong>2089:</strong> A new generation of alien messages suggests that
+              other young civilisations are also in contact with the network, though
+              no direct co-ordinates are given.</li>
+          <li><strong>2090–2095:</strong> Preliminary designs for a human-built,
+              alien-advised fusion-propelled probe to a nearby star system are
+              finalised. Launch is expected in the early 2100s.</li>
+          <li><strong>2096–2100:</strong> By the turn of the century, humanity has not
+              met aliens face-to-face, but lives in an information-linked neighbourhood.
+              Earth is still messy, political, and human – but now unmistakably part
+              of a wider, slowly unfolding galactic drama.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Dan Fournel · fournel.org · Alien Contact 2026 Scenario
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
