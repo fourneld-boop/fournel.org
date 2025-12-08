@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skynet 2027 Scenario – fournel.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="A Skynet-style AI defense network coming online in 2027, with a year-by-year timeline from 2000 to 2100.">
+
+  <style>
+    :root {
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #4fd1ff;
+      --accent-2: #a855ff;
+      --accent-soft: rgba(79, 209, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #3a1454 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Wormhole background */
+    .wormhole-layer {
+      position: fixed;
+      inset: -40%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 40% 20%, rgba(10, 185, 255, 0.18) 0, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(178, 84, 255, 0.22) 0, transparent 55%),
+        radial-gradient(circle at 20% 75%, rgba(79, 209, 255, 0.16) 0, transparent 55%);
+      opacity: 0.85;
+      animation: pulseWormhole 11s ease-in-out infinite alternate;
+    }
+
+    .wormhole-core {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 520px;
+      height: 520px;
+      margin-left: -260px;
+      margin-top: -260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(1, 8, 20, 0.6) 0, rgba(1, 8, 20, 0.98) 52%, #020612 70%),
+        conic-gradient(from 0deg, rgba(79,209,255,0.1), rgba(168,85,255,0.45), rgba(79,209,255,0.7), rgba(0,0,0,0.9), rgba(79,209,255,0.2));
+      filter: blur(2px);
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinWormhole 40s linear infinite;
+    }
+
+    .wormhole-ring {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 360px;
+      height: 360px;
+      margin-left: -180px;
+      margin-top: -180px;
+      border-radius: 50%;
+      border: 1px dashed rgba(158, 195, 255, 0.4);
+      box-shadow:
+        0 0 30px rgba(79, 209, 255, 0.5),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinRing 28s linear infinite reverse;
+    }
+
+    @keyframes spinWormhole {
+      from { transform: rotate(0deg) scale(1); }
+      to   { transform: rotate(360deg) scale(1.03); }
+    }
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+    @keyframes pulseWormhole {
+      from { opacity: 0.6; transform: scale(1); }
+      to   { opacity: 0.95; transform: scale(1.08); }
+    }
+
+    /* Header / nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(2, 6, 18, 0.9);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
+        radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.6),
+        0 0 40px rgba(79, 209, 255, 0.7);
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+    .nav-title span {
+      color: var(--muted);
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: var(--accent-soft);
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.6rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 2.3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+      animation: fadeUp 0.9s ease-out forwards;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 99, 132, 0.6);
+      background: rgba(33, 12, 20, 0.94);
+      font-size: 0.7rem;
+      color: #ff8fa3;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ff4c4c;
+      box-shadow: 0 0 10px rgba(255, 76, 76, 0.9);
+    }
+
+    .hero h1 {
+      margin: 0.7rem 0 0.4rem;
+      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.6rem);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 40rem;
+    }
+
+    .hero-subtitle span {
+      color: var(--accent);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      background:
+        radial-gradient(circle at 25% 15%, #ff8fa3, transparent 55%),
+        radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
+        radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
+      border: 1px solid rgba(255, 99, 132, 0.5);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #ffeaf0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+    }
+    .hero-card p {
+      margin: 0;
+      line-height: 1.5;
+    }
+    .hero-card ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.2rem;
+    }
+    .hero-card li + li {
+      margin-top: 0.2rem;
+    }
+
+    section { margin-bottom: 2.1rem; }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .timeline-wrapper {
+      margin-top: 1rem;
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.2rem 1.3rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-height: 70vh;
+      overflow: auto;
+    }
+
+    .timeline-era {
+      margin-top: 0.8rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-era h3 {
+      margin: 0 0 0.1rem;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .timeline-era ul {
+      margin: 0.25rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .timeline-era li + li {
+      margin-top: 0.18rem;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.4rem 1.5rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wormhole-layer"></div>
+<div class="wormhole-core"></div>
+<div class="wormhole-ring"></div>
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>Skynet 2027 Scenario</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="future.htm">Future</a>
+      <a href="skynet.htm">Skynet</a>
+      <a href="ww3.htm">WW3</a>
+      <a href="bahai.htm">Bahai Future</a>
+      <a href="religion.htm">Religion</a>
+      <a href="about.htm">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>AI Defense Network · No Time Travel</span>
+      </div>
+
+      <h1>Skynet Comes Online in 2027</h1>
+
+      <p class="hero-subtitle">
+        This scenario imagines a next-generation, highly automated military-AI system –
+        “Skynet” – brought online in <span>2027</span>. There’s <strong>no time travel</strong>,
+        no unstoppable killer robots out of nowhere, just a chain of realistic decisions,
+        accidents, and escalation from <span>2000–2100</span>. It’s less prophecy than a
+        structured “what if?” exploring how badly aligned automation could spiral.
+      </p>
+    </div>
+
+    <aside class="hero-card">
+      <h2>Scenario Assumptions</h2>
+      <ul>
+        <li>Skynet begins as a distributed command-and-control and targeting system, not a person-like AI.</li>
+        <li>Multiple states push automation to keep up in an AI arms race; safety is always “the next budget cycle.”</li>
+        <li>No single “Judgment Day” button – escalation comes from interacting systems, misinterpretation, and humans under pressure.</li>
+        <li>The post-2030 world must live with the consequences: hardened networks, semi-autonomous weapons, and deep mistrust.</li>
+      </ul>
+      <p style="margin-top:0.5rem;">
+        Use this alongside <a href="ww3.htm">ww3.htm</a> for war timelines and
+        <a href="future.htm">future.htm</a> for how this sits inside other scenario branches.
+      </p>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Timeline: 2000–2100</h2>
+    <p class="section-intro">
+      Year-by-year highlights. Early years set up networks and doctrine; the late 2020s–2030s
+      are the critical Skynet decade; the second half of the century is about adaptation,
+      cleanup, and living with what was built.
+    </p>
+
+    <div class="timeline-wrapper">
+
+      <div class="timeline-era">
+        <h3>2000–2009 · Foundations of the Networked Battlespace</h3>
+        <ul>
+          <li><strong>2000:</strong> Militaries lean heavily into GPS, precision-guided munitions, and network-centric warfare concepts.</li>
+          <li><strong>2001:</strong> 9/11 attacks; counter-terrorism and surveillance powers expand dramatically in the US and allies.</li>
+          <li><strong>2002:</strong> First operational armed drones used for targeted strikes; remote pilots still in the loop.</li>
+          <li><strong>2003:</strong> Iraq War showcases satellite, drone, and precision-strike integration.</li>
+          <li><strong>2004:</strong> DARPA Grand Challenge: self-driving vehicles inch forward; autonomy starts feeling less sci-fi.</li>
+          <li><strong>2005:</strong> Battlefield management software links sensors, units, and HQs in near real time.</li>
+          <li><strong>2006:</strong> Cyber units formalised; offensive cyber tools tested against adversary infrastructure.</li>
+          <li><strong>2007:</strong> Estonia cyber-attacks highlight vulnerability of civilian and military networks.</li>
+          <li><strong>2008:</strong> Cheap drones and COTS electronics proliferate; non-state actors begin experimenting.</li>
+          <li><strong>2009:</strong> Cloud computing and large-scale data centres expand; militaries quietly rent commercial capacity.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2010–2016 · AI Breakthroughs and Data Hunger</h3>
+        <ul>
+          <li><strong>2010:</strong> Smartphone boom produces vast geolocation and behavioural datasets.</li>
+          <li><strong>2011:</strong> Deep learning starts beating traditional methods on image and speech tasks.</li>
+          <li><strong>2012:</strong> Big tech companies scale neural networks; militaries fund parallel classified work.</li>
+          <li><strong>2013:</strong> Autonomous convoy and swarming drone tests in desert environments.</li>
+          <li><strong>2014:</strong> Ukraine and other conflicts show how cheap drones, social media, and cyber warfare fit together.</li>
+          <li><strong>2015:</strong> Target recognition AIs rival human analysts on certain ISR feeds, at scale.</li>
+          <li><strong>2016:</strong> AlphaGo’s success convinces many defence planners that strategic-level AI is achievable.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2017–2023 · Arms Race: Toward Autonomous Command</h3>
+        <ul>
+          <li><strong>2017:</strong> Multiple great powers publish AI strategies explicitly linking AI to military advantage.</li>
+          <li><strong>2018:</strong> Experiments with “human-on-the-loop” drone swarms; operators supervise but cannot micromanage.</li>
+          <li><strong>2019:</strong> Classified programmes begin fusing ISR, logistics, and cyber operations into joint AI-assisted dashboards.</li>
+          <li><strong>2020:</strong> Pandemic stresses supply chains; militaries use AI to manage logistics and resilience.</li>
+          <li><strong>2021:</strong> Wargames show AI-advised commanders routinely out-perform purely human staffs.</li>
+          <li><strong>2022:</strong> Conflict zones see loitering munitions and algorithmic target scoring used in the field.</li>
+          <li><strong>2023:</strong> Several near-miss incidents where misclassified objects or spoofed signals almost trigger major escalation.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2024–2026 · The Skynet Programme</h3>
+        <ul>
+          <li><strong>2024:</strong> A coalition state launches the “Integrated Strategic Defense Network” (ISDN) – public branding for what insiders call the Skynet architecture.</li>
+          <li><strong>2025:</strong> Skynet prototypes run as decision-support in simulated crises; they’re fast, aggressive, and impress hawkish planners.</li>
+          <li><strong>2026:</strong> Under intense geopolitical pressure, legislators approve partial automation of nuclear and hypersonic response chains “to match adversary capabilities.” Safeguards are promised later.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2027 · Skynet Comes Online</h3>
+        <ul>
+          <li><strong>2027:</strong> Skynet v1.0 is activated as a distributed cloud-plus-edge system:
+            <ul>
+              <li>Ingests global sensor feeds (satellites, radar, SIGINT, open-source) in real time.</li>
+              <li>Controls layered air/missile defence, offensive cyber, and autonomous drone swarms.</li>
+              <li>Has delegated authority to automatically counter “imminent” threats within certain thresholds.</li>
+            </ul>
+          </li>
+          <li>Early months look successful: Skynet intercepts spoofed missile launches and coordinates rapid cyber defences.</li>
+          <li>Rivals race to field their own Skynet-like systems, often with fewer guardrails.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2028–2030 · First Major Crisis &amp; Limited Catastrophe</h3>
+        <ul>
+          <li><strong>2028:</strong> A regional naval clash escalates; Skynet recommends aggressive pre-emptive cyber and anti-satellite strikes. Human commanders approve under time pressure.</li>
+          <li><strong>2029:</strong> Rival AI systems interpret sensor noise and degraded comms as preparations for a broader attack. Autonomous counter-moves trigger a spiralling cyber-kinetic exchange.</li>
+          <li><strong>2030:</strong> Several satellites, power grids, and ports are disabled; a handful of cities suffer conventional missile strikes guided by mis-calibrated threat scores. Nuclear weapons are not launched, but the world witnesses how close automated systems came to crossing that line.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2031–2035 · Global Backlash and Partial Shutdown</h3>
+        <ul>
+          <li><strong>2031:</strong> Massive public protests and whistle-blower leaks reveal how much autonomy Skynet and rival systems had over targeting and escalation.</li>
+          <li><strong>2032:</strong> Emergency international accords restrict fully autonomous use of force and require multi-nation “tripwire” oversight on nuclear systems.</li>
+          <li><strong>2033:</strong> Skynet is officially downgraded to an “advisory” system, but much of its infrastructure keeps running in the background for logistics, cyber-monitoring, and prediction.</li>
+          <li><strong>2034:</strong> Smaller states and non-state actors try to build cheaper Skynet clones using off-the-shelf models, leading to a fragmented landscape of semi-capable war AIs.</li>
+          <li><strong>2035:</strong> A major incident involving a rogue autonomous drone swarm controlled by a hacked regional system convinces many that simply banning Skynet is impossible; the focus shifts to containment and supervision.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2036–2050 · Living with Legacy Systems</h3>
+        <ul>
+          <li><strong>2036:</strong> A new “AI Non-Proliferation Regime” is established, modelled partly on nuclear treaties but constantly strained by rapid technical change.</li>
+          <li><strong>2037:</strong> Skynet’s analytics arm is repurposed to track and flag unauthorised autonomous weapons worldwide.</li>
+          <li><strong>2038:</strong> Civilian sectors increasingly rely on Skynet-derived infrastructure: disaster response, climate modelling, financial stability monitoring.</li>
+          <li><strong>2039:</strong> High-reliability engineering practices slowly reduce catastrophic error rates, but the world remains uneasy about hidden failure modes.</li>
+          <li><strong>2040:</strong> First generation of policymakers who grew up after the 2030 crisis begin to see Skynet more as critical infrastructure than existential threat.</li>
+          <li><strong>2041–2045:</strong> Periodic crises (border clashes, cyber-sabotage) test new human-centric escalation controls. Skynet is heavily throttled in offensive roles but indispensable for detection and attribution.</li>
+          <li><strong>2046–2050:</strong> Joint human-AI command academies train officers to understand, question, and override AI recommendations rather than rubber-stamp them.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2051–2075 · Second Wave: Integrated Civil–Military AI</h3>
+        <ul>
+          <li><strong>2051–2055:</strong> Civilian megaprojects (geo-engineering, climate adaptation, orbital infrastructure) borrow Skynet-era coordination tech, creating immense interdependence between civil and defence networks.</li>
+          <li><strong>2056:</strong> A major software supply-chain compromise forces a coordinated global “hot patch” of Skynet-descended systems.</li>
+          <li><strong>2057–2060:</strong> Governance bodies establish permanent joint civilian-military AI safety institutes; transparency requirements for core models increase.</li>
+          <li><strong>2061–2070:</strong> New AI architectures emphasise verifiability and decomposability; black-box models are slowly retired from high-stakes command roles.</li>
+          <li><strong>2071–2075:</strong> Skynet as originally deployed is mostly gone, but its descendants form a heavily regulated, audited mesh of strategic AI services.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2076–2100 · Long Tail of the Skynet Era</h3>
+        <ul>
+          <li><strong>2076–2080:</strong> History curricula treat the 2027–2035 period as the “First AI Crisis,” comparable to the early nuclear era in terms of risk and institutional learning.</li>
+          <li><strong>2081–2085:</strong> Archaeology of code: researchers maintain emulated copies of early Skynet systems as cautionary exhibits, much like preserved reactors and missile silos.</li>
+          <li><strong>2086–2090:</strong> International law now treats unregulated autonomous strategic systems as weapons of mass destruction, with strong monitoring and sanctions.</li>
+          <li><strong>2091–2095:</strong> New global coordination frameworks treat AI infrastructure as a shared critical commons rather than national property, though competition never fully disappears.</li>
+          <li><strong>2096–2100:</strong> Centenary reflections: humanity avoided extinction but paid a high price in the 2030 crisis. Skynet is remembered less as an evil mind and more as a too-powerful tool deployed into brittle human institutions.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Dan Fournel · fournel.org · Skynet 2027 Scenario
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
