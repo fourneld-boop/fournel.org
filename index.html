@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>fournel.org – Index</title>
+  <title>fournel.org – Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-        content="Dan Fournel’s personal hub for history, technology, future scenarios, religion, and long-range timelines.">
+        content="Dan Fournel’s personal home page for history, technology, future scenarios, religion, and long-range timelines.">
 
   <style>
     :root {
@@ -330,62 +330,37 @@
       color: var(--muted);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.1rem;
-      margin-top: 1rem;
-    }
-
-    .card {
-      padding: 1rem 1.15rem;
+    .time-section {
       border-radius: var(--radius);
       background: rgba(15, 23, 42, 0.94);
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card h3 {
-      margin: 0 0 0.35rem;
-      font-size: 1.02rem;
-      color: var(--accent);
-    }
-
-    .card p {
-      margin: 0;
+      padding: 1.3rem 1.4rem 1.4rem;
+      font-size: 0.92rem;
+      line-height: 1.7;
       color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.5;
     }
 
-    .card span.tag {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.18rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      font-size: 0.75rem;
+    .time-section p {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    blockquote {
+      margin: 0.6rem 0 0.9rem;
+      padding-left: 0.9rem;
+      border-left: 3px solid rgba(148, 163, 253, 0.7);
+      color: #e5e7ff;
+      font-style: italic;
+    }
+
+    blockquote footer {
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
     }
 
-    .card:hover {
-      transform: translateY(-6px) scale(1.01);
-      border-color: var(--accent);
-      background: rgba(15, 23, 42, 0.98);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-      text-decoration: none;
-    }
-
-    footer {
+    footer.site-footer {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 1.4rem 1.5rem 1.6rem;
@@ -421,22 +396,15 @@
       <div class="nav-logo"></div>
       <div class="nav-title">
         fournel.org
-        <span>History · Technology · Futures</span>
+        <span>Home · History · Technology · Futures</span>
       </div>
     </div>
     <div class="nav-links">
-      <a href="index.htm">Index</a>
-      <a href="home.htm">Home</a>
-      <a href="about.htm">About</a>
+      <a href="index.htm">Home</a>
       <a href="history.htm">History</a>
       <a href="tech.htm">Technology</a>
       <a href="future.htm">Future</a>
-      <a href="religion.htm">Religion</a>
-      <a href="ww3.htm">WW3</a>
-      <a href="skynet.htm">Skynet</a>
-      <a href="alien.htm">Aliens</a>
-      <a href="alien_attack.htm">Alien Attack</a>
-      <a href="bahai.htm">Bahai Future</a>
+      <a href="about.htm">About</a>
     </div>
   </nav>
 </header>
@@ -446,15 +414,15 @@
     <div>
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        <span>Personal Wormhole · Dan Fournel</span>
+        <span>Personal Home Page · Dan Fournel</span>
       </div>
 
-      <h1>Hi, I’m Dan – this is my wormhole of ideas.</h1>
+      <h1>Welcome to my corner of spacetime.</h1>
 
       <p class="hero-lede">
         I’m a SF and history buff based in British Columbia, working at the intersection of
         <a href="tech.htm"><span>technology</span></a>,
-        small-scale <a href="home.htm"><span>experiments</span></a>,
+        small-scale experiments,
         long-range <a href="future.htm"><span>future scenarios</span></a>,
         <a href="religion.htm"><span>religious study</span></a>,
         and deep-time <a href="history.htm"><span>historical timelines</span></a>.
@@ -465,123 +433,81 @@
         <a href="future.htm" class="btn btn-primary">Jump to Future Scenarios →</a>
         <a href="history.htm" class="btn btn-ghost">Browse History Timelines</a>
         <a href="tech.htm" class="btn btn-ghost">Explore Tech Arcs</a>
+        <a href="about.htm" class="btn btn-ghost">About This Site</a>
       </div>
     </div>
 
     <aside class="hero-card">
-      <h2>What you’ll find here</h2>
+      <h2>Your starting point</h2>
       <p>
-        Think of fournel.org as a personal control room for alternate histories and futures:
+        This home page is meant to be a launch pad. From here you can:
       </p>
       <ul>
-        <li><strong>History &amp; religion:</strong> long sweeps from 10,000 BC to now,
-            including a dedicated <a href="religion.htm">religious timeline</a>.</li>
-        <li><strong>Technology:</strong> a deep-time view from stone tools to far-future
-            capabilities in <a href="tech.htm">tech.htm</a>.</li>
-        <li><strong>Scenarios:</strong> structured futures like
-            <a href="ww3.htm">World War III</a>,
-            <a href="skynet.htm">Skynet 2027</a>,
-            <a href="alien.htm">Alien Contact 2026</a>,
-            <a href="alien_attack.htm">Alien Attack 2026</a>, and
-            <a href="bahai.htm">Bahai-inspired world order</a>.</li>
-        <li><strong>About &amp; meta:</strong> how and why these timelines were put together
-            in <a href="about.htm">about.htm</a>.</li>
+        <li>Use <a href="history.htm">history.htm</a> to anchor everything in deep time.</li>
+        <li>Check <a href="tech.htm">tech.htm</a> for what’s technologically plausible.</li>
+        <li>Visit <a href="future.htm">future.htm</a> for structured future scenarios
+            (war, AI, aliens, and long-run world order).</li>
+        <li>Drop by <a href="about.htm">about.htm</a> to see how these pieces fit together
+            and what assumptions they rest on.</li>
       </ul>
     </aside>
   </section>
 
   <section>
-    <h2>Entry Points</h2>
+    <h2>The Shape of Time</h2>
     <p class="section-intro">
-      A quick map of the main pages if you’d rather dive into one thread than read everything.
+      Most of this site is about timelines, but timelines are just one way of drawing time.
+      Below are a few perspectives that sit quietly behind the scenarios and histories here.
     </p>
 
-    <div class="grid">
-      <a href="history.htm" class="card">
-        <h3>History (history.htm)</h3>
-        <p>
-          Major global events from 10,000 BC to the present, with an eye toward how empires,
-          federations, and collapses echo into our future experiments in world order.
-        </p>
-        <span class="tag">long timeline · analogies</span>
-      </a>
+    <div class="time-section">
+      <p>
+        Time can feel like an arrow, a circle, or a branching tree. Timelines lean toward
+        the arrow: one thing after another. History often suggests circles: patterns that
+        repeat with different actors and technologies. And speculative futures are almost
+        always branching trees – many possibilities growing out of the same trunk.
+      </p>
 
-      <a href="tech.htm" class="card">
-        <h3>Technology (tech.htm)</h3>
-        <p>
-          A sweep from stone tools and early energy systems to modern computing,
-          AI, space tech, and speculative capabilities out to 100,000+ years.
-        </p>
-        <span class="tag">capability envelope</span>
-      </a>
+      <blockquote>
+        “Time is the moving image of eternity.”
+        <footer>— Plato, <em>Timaeus</em></footer>
+      </blockquote>
 
-      <a href="future.htm" class="card">
-        <h3>Future Scenarios (future.htm)</h3>
-        <p>
-          The central hub for speculative futures, connecting war, AI, aliens,
-          religious evolution, and long-run world order into a single meta-timeline.
-        </p>
-        <span class="tag">scenario hub</span>
-      </a>
+      <p>
+        Philosophers and storytellers have fought with time for a long while. Is it a real
+        dimension like space, or a way our brains keep events from blurring together? When
+        you lay history, technology, religion, and future scenarios side by side, each field
+        answers that question slightly differently.
+      </p>
 
-      <a href="ww3.htm" class="card">
-        <h3>World War III (ww3.htm)</h3>
-        <p>
-          A structured 21st-century great-power war and reconstruction scenario – useful
-          for stress-testing deterrence, alliances, and institutional resilience.
-        </p>
-        <span class="tag">crisis modelling</span>
-      </a>
+      <blockquote>
+        “The present is the point at which time touches eternity.”
+        <footer>— C. S. Lewis</footer>
+      </blockquote>
 
-      <a href="skynet.htm" class="card">
-        <h3>Skynet 2027 (skynet.htm)</h3>
-        <p>
-          A grounded, no-time-travel take on an automated defence network that
-          mismanages escalation in the late 2020s and reshapes politics through 2100.
-        </p>
-        <span class="tag">AI &amp; automation</span>
-      </a>
+      <p>
+        Science fiction adds another twist: futures are not predictions, they’re experiments.
+        Each scenario on this site is a kind of thought laboratory – asking, “If these forces
+        continue or collide, what kinds of worlds might emerge, and what would it feel like
+        to live there?”
+      </p>
 
-      <a href="alien.htm" class="card">
-        <h3>Alien Contact 2026 (alien.htm)</h3>
-        <p>
-          First contact via unmistakably artificial signals and a cautious,
-          negotiated relationship with a distant civilisation.
-        </p>
-        <span class="tag">first contact</span>
-      </a>
+      <blockquote>
+        “The future is already here – it’s just not evenly distributed.”
+        <footer>— William Gibson</footer>
+      </blockquote>
 
-      <a href="alien_attack.htm" class="card">
-        <h3>Alien Attack 2026 (alien_attack.htm)</h3>
-        <p>
-          A hostile branch where a message declares “YOUR WORLD IS NOW OURS” and a hidden
-          armada in the outer Solar System begins a realistic planetary takeover.
-        </p>
-        <span class="tag">hostile takeover</span>
-      </a>
-
-      <a href="bahai.htm" class="card">
-        <h3>Bahai Future (bahai.htm)</h3>
-        <p>
-          A staged evolution from the Lesser Peace toward a more integrated world
-          commonwealth, running out to 3000 AD and beyond.
-        </p>
-        <span class="tag">world order</span>
-      </a>
-
-      <a href="religion.htm" class="card">
-        <h3>Religion Timeline (religion.htm)</h3>
-        <p>
-          From early ritual and myth to major world religions and newer movements,
-          including the Bahai Faith, over roughly 50,000 years.
-        </p>
-        <span class="tag">belief &amp; culture</span>
-      </a>
+      <p>
+        As you read, you’re invited to treat time not as a fixed track, but as a design
+        space. Every page here – whether it’s about stone tools, Skynet, alien contact, or
+        Bahai-inspired world order – is really asking one question: given where we’ve been,
+        what kind of future do we want to build next?
+      </p>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="site-footer">
   © <span id="year"></span> Dan Fournel · fournel.org
 </footer>
 
