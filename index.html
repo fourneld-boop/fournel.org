@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>fournel.org – Projects, Timelines & Future Scenarios</title>
+  <title>fournel.org – Wormhole Index</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-        content="The personal research portal of Dan Fournel – SF, history, technology, religion, future scenarios, and long-range timelines.">
+        content="Dan Fournel’s personal hub for history, technology, future scenarios, religion, and long-range timelines.">
 
   <style>
     :root {
@@ -17,7 +17,7 @@
       --accent-soft: rgba(79, 209, 255, 0.14);
       --text: #f4f7ff;
       --muted: #9ba4c4;
-      --border-soft: rgba(255, 255, 255, 0.08);
+      --border-soft: rgba(255, 255, 255, 0.12);
       --radius: 18px;
       --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
       --max-width: 1040px;
@@ -25,50 +25,82 @@
 
     * { box-sizing: border-box; }
 
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: var(--bg);
       color: var(--text);
+      background: var(--bg);
       overflow-x: hidden;
+      position: relative;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    /* Wormhole background using your image */
+    /* Wormhole GIF background */
     .wormhole-bg {
       position: fixed;
       inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background: #020612;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      z-index: -3;
+      background: #000;
       overflow: hidden;
     }
 
-    .wormhole-bg img {
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      opacity: 0.55;          /* tweak if too bright/dim */
-      filter: saturate(1.2);
+    .wormhole-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("images/wormhole.gif") center center / cover no-repeat fixed;
+      /* If your GIF is in a different path, update the URL above */
+      filter: blur(2px);
+      transform: scale(1.05);
     }
 
-    /* Header / Nav */
+    /* Dark + colour overlay so text stays readable */
+    .wormhole-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 0, rgba(15, 118, 255, 0.35), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(56, 189, 248, 0.25), transparent 60%),
+        linear-gradient(to bottom, rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.9));
+      opacity: 0.95;
+    }
+
+    /* Subtle moving stars layer */
+    .stars {
+      position: fixed;
+      inset: -50%;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 20% 20%, rgba(255,255,255,0.5), transparent 60%),
+        radial-gradient(1.5px 1.5px at 80% 10%, rgba(190,230,255,0.5), transparent 60%),
+        radial-gradient(2px 2px at 60% 80%, rgba(191,219,254,0.45), transparent 60%),
+        radial-gradient(1.2px 1.2px at 10% 70%, rgba(209,250,229,0.35), transparent 60%);
+      animation: driftStars 50s linear infinite;
+      opacity: 0.45;
+    }
+
+    @keyframes driftStars {
+      from { transform: translate3d(0,0,0); }
+      to   { transform: translate3d(80px, 120px, 0); }
+    }
+
+    /* Header / nav */
     header {
       position: sticky;
       top: 0;
       z-index: 10;
-      backdrop-filter: blur(16px);
-      background: rgba(2, 6, 18, 0.87);
+      backdrop-filter: blur(18px);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.88));
       border-bottom: 1px solid var(--border-soft);
     }
 
@@ -77,8 +109,8 @@
       margin: 0 auto;
       padding: 0.7rem 1.5rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 1rem;
     }
 
@@ -93,28 +125,28 @@
       height: 36px;
       border-radius: 999px;
       background:
-        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 45%, transparent 60%),
-        radial-gradient(circle at 70% 75%, #ffb3ff, #4fd1ff 55%, #020612 78%);
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 48%, transparent 62%),
+        radial-gradient(circle at 70% 75%, #a855ff, #22d3ee 55%, #020617 80%);
       box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.6),
-        0 0 40px rgba(79, 209, 255, 0.7);
+        0 0 0 2px rgba(255, 255, 255, 0.75),
+        0 0 40px rgba(59, 130, 246, 0.7);
     }
 
     .nav-title {
       font-weight: 600;
-      letter-spacing: .03em;
-      font-size: .95rem;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
     }
     .nav-title span {
       color: var(--muted);
       display: block;
-      font-size: .75rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
-      gap: 0.9rem;
+      gap: 0.85rem;
       flex-wrap: wrap;
       font-size: 0.86rem;
     }
@@ -124,13 +156,13 @@
       border-radius: 999px;
       border: 1px solid transparent;
       color: var(--muted);
-      transition: 0.2s ease;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
     .nav-links a:hover {
       color: var(--text);
       border-color: var(--accent-soft);
-      background: rgba(255,255,255,0.05);
+      background: rgba(15, 23, 42, 0.8);
       transform: translateY(-1px);
       text-decoration: none;
     }
@@ -138,137 +170,239 @@
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 2.7rem 1.5rem 4.3rem;
+      padding: 2.6rem 1.5rem 4rem;
       position: relative;
       z-index: 1;
     }
 
     /* Hero */
     .hero {
+      margin-bottom: 2.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
       animation: fadeUp 0.9s ease-out forwards;
       opacity: 0;
       transform: translateY(12px);
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.7rem);
-      margin-bottom: .7rem;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      background: rgba(8, 47, 73, 0.96);
+      font-size: 0.7rem;
+      color: #bae6fd;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
     }
 
-    .hero p {
-      font-size: 1rem;
-      line-height: 1.65;
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero h1 {
+      margin: 0.8rem 0 0.35rem;
+      font-size: clamp(2.1rem, 2.3vw + 1.3rem, 2.7rem);
+    }
+
+    .hero-lede {
+      margin: 0;
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.75;
       max-width: 42rem;
+    }
+
+    .hero-lede span {
+      color: var(--accent);
+    }
+
+    .hero-lede a {
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.78);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      background:
+        radial-gradient(circle at 25% 15%, #4fd1ff, transparent 55%),
+        radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(15,23,42,0.98), rgba(3,7,18,0.98) 70%);
+      border: 1px solid rgba(148, 163, 253, 0.6);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #e5e7ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+    }
+    .hero-card p {
+      margin: 0;
+      line-height: 1.5;
+    }
+    .hero-card ul {
+      margin: 0.55rem 0 0;
+      padding-left: 1.2rem;
+    }
+    .hero-card li + li { margin-top: 0.2rem; }
+
+    section { margin-bottom: 2.2rem; }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      font-size: 0.9rem;
       color: var(--muted);
     }
 
-    /* Grid */
-    .link-grid {
-      margin-top: 2.1rem;
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.1rem;
+      margin-top: 1rem;
     }
 
     .card {
-      padding: 1rem 1.2rem;
+      padding: 1rem 1.15rem;
       border-radius: var(--radius);
-      background: rgba(7, 14, 30, 0.94);
+      background: rgba(15, 23, 42, 0.94);
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
       transition:
-        transform 0.28s ease,
-        box-shadow 0.28s ease,
-        border-color 0.28s ease,
-        background 0.28s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
       position: relative;
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(14px) scale(0.98);
-      animation: cardIn 0.7s ease-out forwards;
-    }
-
-    .card:nth-child(1) { animation-delay: .15s; }
-    .card:nth-child(2) { animation-delay: .25s; }
-    .card:nth-child(3) { animation-delay: .35s; }
-    .card:nth-child(4) { animation-delay: .45s; }
-    .card:nth-child(5) { animation-delay: .55s; }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 0 0, rgba(79,209,255,0.16), transparent 55%);
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transform: translate3d(-10%, -10%, 0);
     }
 
     .card h3 {
-      margin: 0 0 .3rem;
-      font-size: 1.1rem;
+      margin: 0 0 0.35rem;
+      font-size: 1.02rem;
       color: var(--accent);
     }
 
     .card p {
       margin: 0;
       color: var(--muted);
-      font-size: .9rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .card span.tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
     }
 
     .card:hover {
       transform: translateY(-6px) scale(1.01);
       border-color: var(--accent);
-      background: rgba(8,16,40,0.98);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-      transform: translate3d(0,0,0);
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+      text-decoration: none;
     }
 
     footer {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 1.5rem;
+      padding: 1.4rem 1.5rem 1.6rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      font-size: .8rem;
-      border-top: 1px solid var(--border-soft);
+      border-top: 1px solid rgba(15, 23, 42, 0.8);
       text-align: center;
-      opacity: 0.9;
       position: relative;
       z-index: 1;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.96), rgba(3,7,18,0.96));
     }
 
-    /* Animations */
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes cardIn {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @media (max-width: 720px) {
+    @media (max-width: 840px) {
       header { position: static; }
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.7rem;
-      }
+      .hero { grid-template-columns: minmax(0, 1fr); }
+      .hero-card { order: -1; }
     }
   </style>
 </head>
-
 <body>
 
-<!-- Wormhole background using your image -->
-<div class="wormhole-bg">
-  <!-- Update this src to match the filename you use in /images/ -->
-  <img src="images/wormhole-index.gif"
-       alt="Blue wormhole background">
-</div>
+<div class="wormhole-bg"></div>
+<div class="wormhole-overlay"></div>
+<div class="stars"></div>
 
 <header>
   <nav class="nav">
@@ -276,69 +410,168 @@
       <div class="nav-logo"></div>
       <div class="nav-title">
         fournel.org
-        <span>Personal Research Portal</span>
+        <span>History · Technology · Futures</span>
       </div>
     </div>
-
     <div class="nav-links">
+      <a href="index.htm">Index</a>
       <a href="home.htm">Home</a>
+      <a href="about.htm">About</a>
       <a href="history.htm">History</a>
       <a href="tech.htm">Technology</a>
       <a href="future.htm">Future</a>
       <a href="religion.htm">Religion</a>
-      <a href="about.htm">About</a>
+      <a href="ww3.htm">WW3</a>
+      <a href="skynet.htm">Skynet</a>
+      <a href="alien.htm">Aliens</a>
+      <a href="alien_attack.htm">Alien Attack</a>
+      <a href="bahai.htm">Bahai Future</a>
     </div>
   </nav>
 </header>
 
 <main>
   <section class="hero">
-    <h1>Welcome to fournel.org</h1>
-    <p>
-      I’m a SF and history buff based in British Columbia, working at the intersection of
-      <a href="home.htm">site-wide experiments</a>,
-      <a href="history.htm">deep history timelines</a>,
-      <a href="tech.htm">technology arcs</a>,
-      <a href="future.htm">future scenarios</a>, and
-      <a href="religion.htm">religious history</a>.
-      This site collects my projects, timelines, speculative futures, research notes, and
-      long-range scenario explorations.
-    </p>
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Personal Wormhole · Dan Fournel</span>
+      </div>
+
+      <h1>Hi, I’m Dan – this is my wormhole of ideas.</h1>
+
+      <p class="hero-lede">
+        I’m a SF and history buff based in British Columbia, working at the intersection of
+        <a href="tech.htm"><span>technology</span></a>,
+        small-scale <a href="home.htm"><span>experiments</span></a>,
+        long-range <a href="future.htm"><span>future scenarios</span></a>,
+        <a href="religion.htm"><span>religious study</span></a>,
+        and deep-time <a href="history.htm"><span>historical timelines</span></a>.
+        This site collects projects, notes, and speculative worlds I’m currently exploring.
+      </p>
+
+      <div class="hero-actions">
+        <a href="future.htm" class="btn btn-primary">Jump to Future Scenarios →</a>
+        <a href="history.htm" class="btn btn-ghost">Browse History Timelines</a>
+        <a href="tech.htm" class="btn btn-ghost">Explore Tech Arcs</a>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <h2>What you’ll find here</h2>
+      <p>
+        Think of fournel.org as a personal control room for alternate histories and futures:
+      </p>
+      <ul>
+        <li><strong>History &amp; religion:</strong> long sweeps from 10,000 BC to now,
+            including a dedicated <a href="religion.htm">religious timeline</a>.</li>
+        <li><strong>Technology:</strong> a deep-time view from stone tools to far-future
+            capabilities in <a href="tech.htm">tech.htm</a>.</li>
+        <li><strong>Scenarios:</strong> structured futures like
+            <a href="ww3.htm">World War III</a>,
+            <a href="skynet.htm">Skynet 2027</a>,
+            <a href="alien.htm">Alien Contact 2026</a>,
+            <a href="alien_attack.htm">Alien Attack 2026</a>, and
+            <a href="bahai.htm">Bahai-inspired world order</a>.</li>
+        <li><strong>About &amp; meta:</strong> how and why these timelines were put together
+            in <a href="about.htm">about.htm</a>.</li>
+      </ul>
+    </aside>
   </section>
 
   <section>
-    <div class="link-grid">
-      <a href="home.htm" class="card">
-        <h3>Home</h3>
-        <p>Portal page linking into all timelines &amp; projects.</p>
-      </a>
+    <h2>Entry Points</h2>
+    <p class="section-intro">
+      A quick map of the main pages if you’d rather dive into one thread than read everything.
+    </p>
 
+    <div class="grid">
       <a href="history.htm" class="card">
-        <h3>History Timelines</h3>
-        <p>Major world events from 10,000 BC to the present.</p>
+        <h3>History (history.htm)</h3>
+        <p>
+          Major global events from 10,000 BC to the present, with an eye toward how empires,
+          federations, and collapses echo into our future experiments in world order.
+        </p>
+        <span class="tag">long timeline · analogies</span>
       </a>
 
       <a href="tech.htm" class="card">
-        <h3>Technology Timeline</h3>
-        <p>From stone tools to deep future epochs.</p>
+        <h3>Technology (tech.htm)</h3>
+        <p>
+          A sweep from stone tools and early energy systems to modern computing,
+          AI, space tech, and speculative capabilities out to 100,000+ years.
+        </p>
+        <span class="tag">capability envelope</span>
       </a>
 
       <a href="future.htm" class="card">
-        <h3>Future Scenarios</h3>
-        <p>Long-range political, economic &amp; civilizational modelling.</p>
+        <h3>Future Scenarios (future.htm)</h3>
+        <p>
+          The central hub for speculative futures, connecting war, AI, aliens,
+          religious evolution, and long-run world order into a single meta-timeline.
+        </p>
+        <span class="tag">scenario hub</span>
+      </a>
+
+      <a href="ww3.htm" class="card">
+        <h3>World War III (ww3.htm)</h3>
+        <p>
+          A structured 21st-century great-power war and reconstruction scenario – useful
+          for stress-testing deterrence, alliances, and institutional resilience.
+        </p>
+        <span class="tag">crisis modelling</span>
+      </a>
+
+      <a href="skynet.htm" class="card">
+        <h3>Skynet 2027 (skynet.htm)</h3>
+        <p>
+          A grounded, no-time-travel take on an automated defence network that
+          mismanages escalation in the late 2020s and reshapes politics through 2100.
+        </p>
+        <span class="tag">AI &amp; automation</span>
+      </a>
+
+      <a href="alien.htm" class="card">
+        <h3>Alien Contact 2026 (alien.htm)</h3>
+        <p>
+          First contact via unmistakably artificial signals and a cautious,
+          negotiated relationship with a distant civilisation.
+        </p>
+        <span class="tag">first contact</span>
+      </a>
+
+      <a href="alien_attack.htm" class="card">
+        <h3>Alien Attack 2026 (alien_attack.htm)</h3>
+        <p>
+          A hostile branch where a message declares “YOUR WORLD IS NOW OURS” and a hidden
+          armada in the outer Solar System begins a realistic planetary takeover.
+        </p>
+        <span class="tag">hostile takeover</span>
+      </a>
+
+      <a href="bahai.htm" class="card">
+        <h3>Bahai Future (bahai.htm)</h3>
+        <p>
+          A staged evolution from the Lesser Peace toward a more integrated world
+          commonwealth, running out to 3000 AD and beyond.
+        </p>
+        <span class="tag">world order</span>
       </a>
 
       <a href="religion.htm" class="card">
-        <h3>Religious History</h3>
-        <p>50,000 years of global religious development.</p>
+        <h3>Religion Timeline (religion.htm)</h3>
+        <p>
+          From early ritual and myth to major world religions and newer movements,
+          including the Bahai Faith, over roughly 50,000 years.
+        </p>
+        <span class="tag">belief &amp; culture</span>
       </a>
     </div>
   </section>
 </main>
 
 <footer>
-  © <span id="year"></span> Dan Fournel — fournel.org  
-  <br>Built &amp; published on GitHub Pages
+  © <span id="year"></span> Dan Fournel · fournel.org
 </footer>
 
 <script>
