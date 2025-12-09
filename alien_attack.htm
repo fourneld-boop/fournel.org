@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alien Attack 2026 Scenario – fournel.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="A hostile first-contact scenario where a distant civilisation claims Earth in 2026 and a previously hidden armada begins a technologically realistic takeover of our planet.">
+
+  <style>
+    :root {
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #fb7185; /* hostile red-pink accent */
+      --accent-2: #f97316;
+      --accent-soft: rgba(248, 113, 113, 0.16);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0, #211827 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #3b0f17 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0b1827 0, #020612 70%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Wormhole / threat background */
+    .wormhole-layer {
+      position: fixed;
+      inset: -40%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 40% 20%, rgba(248, 113, 113, 0.20) 0, transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(248, 250, 109, 0.16) 0, transparent 55%),
+        radial-gradient(circle at 20% 75%, rgba(248, 113, 113, 0.16) 0, transparent 55%);
+      opacity: 0.8;
+      animation: pulseWormhole 11s ease-in-out infinite alternate;
+    }
+
+    .wormhole-core {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 520px;
+      height: 520px;
+      margin-left: -260px;
+      margin-top: -260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(1, 8, 20, 0.7) 0, rgba(1, 8, 20, 1) 52%, #020612 70%),
+        conic-gradient(from 0deg, rgba(248,113,113,0.6), rgba(248,250,109,0.4), rgba(0,0,0,0.9), rgba(248,113,113,0.8));
+      filter: blur(2px);
+      opacity: 0.55;
+      mix-blend-mode: screen;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinWormhole 40s linear infinite;
+    }
+
+    .wormhole-ring {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 360px;
+      height: 360px;
+      margin-left: -180px;
+      margin-top: -180px;
+      border-radius: 50%;
+      border: 1px dashed rgba(248, 113, 113, 0.45);
+      box-shadow:
+        0 0 30px rgba(248, 113, 113, 0.6),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinRing 28s linear infinite reverse;
+    }
+
+    @keyframes spinWormhole {
+      from { transform: rotate(0deg) scale(1); }
+      to   { transform: rotate(360deg) scale(1.03); }
+    }
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+    @keyframes pulseWormhole {
+      from { opacity: 0.6; transform: scale(1); }
+      to   { opacity: 0.95; transform: scale(1.08); }
+    }
+
+    /* Header / nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(2, 6, 18, 0.9);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #fecaca 45%, transparent 60%),
+        radial-gradient(circle at 70% 75%, #fed7aa, #fb7185 55%, #020612 78%);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.6),
+        0 0 40px rgba(248, 113, 113, 0.7);
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+    .nav-title span {
+      color: var(--muted);
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: var(--accent-soft);
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.6rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 2.3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+      animation: fadeUp 0.9s ease-out forwards;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 113, 113, 0.8);
+      background: rgba(36, 12, 18, 0.96);
+      font-size: 0.7rem;
+      color: #fecaca;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.9);
+    }
+
+    .hero h1 {
+      margin: 0.7rem 0 0.4rem;
+      font-size: clamp(2rem, 2.2vw + 1.3rem, 2.6rem);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 40rem;
+    }
+
+    .hero-subtitle span {
+      color: var(--accent);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1.05rem 1.15rem;
+      background:
+        radial-gradient(circle at 25% 15%, #fb7185, transparent 55%),
+        radial-gradient(circle at 80% 90%, #f97316, transparent 65%),
+        radial-gradient(circle at 50% 50%, #020612, #060e26 70%);
+      border: 1px solid rgba(248, 113, 113, 0.55);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #ffe4e6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+    }
+    .hero-card p {
+      margin: 0;
+      line-height: 1.5;
+    }
+    .hero-card ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.2rem;
+    }
+    .hero-card li + li {
+      margin-top: 0.2rem;
+    }
+
+    section { margin-bottom: 2.1rem; }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .timeline-wrapper {
+      margin-top: 1rem;
+      border-radius: var(--radius);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.2rem 1.3rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-height: 70vh;
+      overflow: auto;
+    }
+
+    .timeline-era {
+      margin-top: 0.8rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-era h3 {
+      margin: 0 0 0.1rem;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .timeline-era ul {
+      margin: 0.25rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .timeline-era li + li {
+      margin-top: 0.18rem;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.4rem 1.5rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wormhole-layer"></div>
+<div class="wormhole-core"></div>
+<div class="wormhole-ring"></div>
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>Alien Attack 2026 Scenario</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="home.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="future.htm">Future</a>
+      <a href="skynet.htm">Skynet</a>
+      <a href="alien.htm">Aliens</a>
+      <a href="alien_attack.htm">Alien Attack</a>
+      <a href="ww3.htm">WW3</a>
+      <a href="bahai.htm">Bahai Future</a>
+      <a href="religion.htm">Religion</a>
+      <a href="about.htm">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Hostile First Contact · 2026</span>
+      </div>
+
+      <h1>“Your World Is Now Ours”</h1>
+
+      <p class="hero-subtitle">
+        In this science-fiction branch, a signal from a star <strong>130 light-years</strong> away
+        reaches Earth in <strong>2026</strong>. It is broadcast into our networks in dozens of
+        languages, simultaneously: <span><em>“YOUR WORLD IS NOW OURS.”</em></span> Within a year,
+        a vast armada that has clearly been in the outer Solar System for decades steps out of
+        hiding and begins a technologically realistic takeover: orbital bombardment, drone
+        occupation, hackable infrastructure – no magic, no hand-waving faster-than-light travel,
+        just the consequences of being late to notice that someone else has been here first.
+      </p>
+    </div>
+
+    <aside class="hero-card">
+      <h2>Core Assumptions</h2>
+      <ul>
+        <li>The radio message left their system ~1896; they have known about Earth for over a century.</li>
+        <li>A slow-generation fleet arrived in the outer system long before 2026, hiding among comets
+            and dark objects, using low-signature propulsion and cold, stealthy hulls.</li>
+        <li>The 2026 declaration is psychological – not the start of their journey, but the moment they
+            reveal a conquest that was already underway.</li>
+        <li>The aliens are technologically ahead, but not godlike: they use physical weapons, network
+            attacks, advanced robotics, and logistics we can at least comprehend.</li>
+      </ul>
+      <p style="margin-top:0.5rem;">
+        This branch focuses on a practical takeover from <strong>2000–2100</strong>, and can be read
+        alongside <a href="tech.htm">tech.htm</a> for capability envelopes and <a href="ww3.htm">ww3.htm</a>
+        for human-only great-power stress tests.
+      </p>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Timeline: 2000–2100 (Alien Attack Branch)</h2>
+    <p class="section-intro">
+      Early years quietly build the space and network infrastructure the invaders will later hijack.
+      The break comes in <strong>2026–2027</strong>, when the declaration arrives and the hidden armada
+      steps into the open.
+    </p>
+
+    <div class="timeline-wrapper">
+
+      <div class="timeline-era">
+        <h3>2000–2015 · Setting the Stage (Without Knowing It)</h3>
+        <ul>
+          <li><strong>2000–2007:</strong> GPS, satellites, and global fibre networks knit the planet
+              into a single tightly coupled system. What’s good for commerce will later be good for
+              occupation.</li>
+          <li><strong>2008–2012:</strong> Drones, precision weapons, and network-centric warfare concepts
+              mature in human militaries. Our doctrines assume we control the orbital high ground.</li>
+          <li><strong>2013–2015:</strong> CubeSats and commercial launches proliferate. Space becomes
+              crowded with small, cheap, poorly defended hardware whose telemetry and protocols are
+              visible to any quiet observer in-system.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2016–2025 · The Unseen Fleet Waits</h3>
+        <ul>
+          <li><strong>2016–2019:</strong> Deep-space surveys pick up anomalies in the outer Solar System –
+              odd thermal signatures in the Oort Cloud and scattered Kuiper Belt objects. They are
+              written off as calibration errors or unexplained astrophysical curiosities.</li>
+          <li><strong>2020–2022:</strong> AI-assisted sky surveys quietly flag a small set of objects with
+              suspiciously stable relative positions and unusual reflectivity. Papers are drafted,
+              peer-reviewed, then buried in noise; no one has a budget to follow up properly.</li>
+          <li><strong>2023–2025:</strong> Deep-space probes are proposed but delayed. Geopolitics, pandemics,
+              and climate concerns keep attention firmly on Earth. At the edge of the system, an alien
+              armada slowly adjusts its orbits, matching inclinations and phasing itself for inward
+              transfer burns timed for the late 2020s.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2026 · The Message</h3>
+        <ul>
+          <li><strong>January 2026:</strong> Radio telescopes detect a narrowband signal from a known
+              star ~130 light-years away. Before the usual verification protocols can complete, the
+              same signal appears embedded in terrestrial infrastructure – hijacking satellite
+              downlinks, digital billboards, streaming services, and emergency broadcast systems.</li>
+          <li>The message is simple, repeated in dozens of human languages and symbolic logics:
+              <strong>“YOUR WORLD IS NOW OURS.”</strong></li>
+          <li>Analysis shows the embedded terrestrial copies are being injected by unknown transmitters
+              in high orbits, piggybacking on our own constellations. Someone is already here.</li>
+          <li>Governments attempt to take networks offline; the message keeps reappearing for several
+              hours, then abruptly stops. The original deep-space signal continues as a faint,
+              steady beacon – a time-stamp from 1896 saying: “we knew you were here, and we’re coming.”</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2027 · The Armada Reveals Itself</h3>
+        <ul>
+          <li><strong>Early 2027:</strong> Infrared and radar sensors, now on high alert, finally pick up
+              large objects decelerating from the outer system on high-energy transfer orbits –
+              thousands of kilometres of metal and composite structures riding on fusion or
+              beamed-power drives, shedding waste heat through huge, faint radiators.</li>
+          <li>They were never 130 light-years away. The radio message was a psychological opening
+              salvo and a receipt: the fleet has been here for years, possibly decades, coasting
+              in the dark.</li>
+          <li><strong>Mid 2027:</strong> The armada brakes into the inner system, using Jupiter and
+              other planets for gravity assists. A wave of smaller craft detaches and accelerates
+              toward cislunar space, matching orbits with GPS, communications, and surveillance
+              satellites.</li>
+          <li><strong>Late 2027:</strong> Without firing a shot, the aliens begin physically capturing
+              and modifying human satellites, attaching parasite modules that can spoof signals,
+              shut down coverage, or feed false data. Ground controllers see glitches, resets,
+              and telemetry that “doesn’t make sense.”</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2028 · Orbital Strangulation</h3>
+        <ul>
+          <li><strong>January–March 2028:</strong> Major spacefaring nations attempt to launch defensive
+              interceptors and anti-satellite weapons. Many launch vehicles fail mysteriously at
+              critical points in flight – guidance corrupted, telemetry jammed, or upper stages
+              detonated by precise kinetic hits from tiny, previously unseen alien drones.</li>
+          <li><strong>April 2028:</strong> The first overt attack: several massive rods of dense metal
+              – essentially alien “Rods from God” – are released from high orbits, de-orbiting onto
+              uninhabited test ranges and deserts. The message is clear: they can hit anywhere,
+              with nuclear-like energy, from orbit.</li>
+          <li><strong>May–June 2028:</strong> Global position systems and large portions of
+              communications constellations are seized or spoofed. Ships drift off course, aircraft
+              scramble to revert to inertial navigation, and financial networks suffer cascading
+              outages.</li>
+          <li><strong>July–December 2028:</strong> A ring of alien platforms takes up station at
+              Earth–Moon Lagrange points and high, near-polar orbits, establishing layered coverage
+              of the entire planet. From there, they can observe, jam, and strike with minimal delay.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2029–2032 · Planetfall and Local Control</h3>
+        <ul>
+          <li><strong>2029:</strong> The first atmospheric entries: hypersonic autonomous craft that
+              skip along the upper atmosphere, mapping radar coverage, power grids, data centres,
+              and military bases in exquisite detail.</li>
+          <li><strong>2030:</strong> Coordinated kinetic strikes disable key airbases, naval ports,
+              ICBM silos, and hardened command facilities. Instead of glassing cities, the aliens
+              decapitate military capacity, leaving civilian populations largely intact – valuable
+              labour and biological resources.</li>
+          <li><strong>2031:</strong> Low-orbit carrier platforms begin dropping swarms of ground drones:
+              quadrupeds, tracked vehicles, and small hovering units. They establish perimeters
+              around critical infrastructure – power plants, ports, industrial hubs – enforcing
+              no-go zones with non-lethal but overwhelming force (directed-energy dazzlers,
+              area-denial microwaves, high-velocity projectiles).</li>
+          <li><strong>2032:</strong> Cities are not occupied street-by-street by alien troops; instead,
+              machine cordons and airborne patrols segment regions, allowing human authorities to
+              manage day-to-day order under alien surveillance. Compliance is rewarded with restored
+              power and limited network access; resistance is punished with precision strikes on
+              specific blocks, not wholesale destruction.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2033–2040 · Resistance, Adaptation, and Exploitation</h3>
+        <ul>
+          <li><strong>2033–2035:</strong> Human militaries and resistance networks adapt:
+              <ul>
+                <li>reverting to fibre and line-of-sight comms where possible,</li>
+                <li>using analogue and air-gapped systems for planning,</li>
+                <li>developing EMP devices and cyber exploits targeting captured satellites
+                    and ground drones.</li>
+              </ul>
+          </li>
+          <li>The aliens respond by tightening control over orbital assets and deploying more
+              robust, hardened drones that can operate with minimal external comms, relying on
+              local sensing and pre-loaded mission trees.</li>
+          <li><strong>2036–2038:</strong> Resource extraction ramps up: the armada establishes
+              permanent facilities on the Moon and in near-Earth space, refining regolith and
+              captured debris into construction material and fuel. Earth’s industrial base is
+              coerced into supporting this build-out.</li>
+          <li><strong>2039–2040:</strong> Environmental manipulation begins: targeted aerosol
+              injections, orbital shades, and marine machinery are used to nudge climate and
+              ocean chemistry in directions that appear marginal for humans but ideal for
+              alien biochemistry and long-term infrastructure stability.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2041–2060 · The Occupation Matures</h3>
+        <ul>
+          <li><strong>2041–2045:</strong> New political entities emerge:
+              <ul>
+                <li>“Client regimes” that explicitly cooperate with alien directives in exchange
+                    for relative autonomy and tech crumbs, and</li>
+                <li>underground city-states and rural networks that survive by staying below
+                    orbital detection thresholds.</li>
+              </ul>
+          </li>
+          <li><strong>2046–2050:</strong> Hybrid human–alien infrastructure appears:
+              <ul>
+                <li>energy grids patched with alien storage and transmission tech,</li>
+                <li>transport routes optimised for alien logistics, not human convenience,</li>
+                <li>medical and life-support systems derived from alien biotech, but distributed
+                    only to compliant populations.</li>
+              </ul>
+          </li>
+          <li><strong>2051–2060:</strong> Human science advances by reverse-engineering captured or
+              “lost” alien hardware, particularly in materials and control systems. A quiet arms race
+              develops between alien security AIs and human hackers, fought in the dark corners of
+              compromised networks and repurposed machine vision systems.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2061–2080 · Cracks in the Armada</h3>
+        <ul>
+          <li><strong>2061–2065:</strong> Long-range astronomy finally resolves part of the picture:
+              we detect faint, relativistic exhaust plumes from other alien fleets elsewhere in the
+              galaxy. It’s clear we’re not the only system being pacified.</li>
+          <li><strong>2066–2070:</strong> Maintenance gaps appear. Some orbital platforms show signs
+              of deferred repair; others manoeuvre into “graveyard” orbits and go dark. Either the
+              home civilisation is stretched thin, or this is what their normal occupation decay
+              curve looks like.</li>
+          <li><strong>2071–2075:</strong> Coordinated human resistance efforts time attacks for windows
+              when local orbital coverage is thinnest. Several ground installations are recaptured,
+              yielding intact alien reactors, drives, and fabrication systems.</li>
+          <li><strong>2076–2080:</strong> Evidence emerges – via intercepted control traffic and
+              degraded alien transmissions – that the armada is a second-tier colonial asset, not
+              the apex of their capabilities. The homeworld may be dealing with other crises, or
+              simply considers Earth “secured enough” to divert attention elsewhere.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-era">
+        <h3>2081–2100 · Toward a Post-Conquest Earth</h3>
+        <ul>
+          <li><strong>2081–2088:</strong> The alien presence shifts from active conquest to
+              semi-automated management. Many orbital nodes are now run by long-lived machine
+              systems following high-level policies with minimal real-time oversight from
+              the origin civilisation.</li>
+          <li>Humans exploit this automation: inserting noise into sensor networks, subtly
+              altering local policy parameters, and gradually carving out zones of de facto
+              autonomy that look compliant from orbit.</li>
+          <li><strong>2089–2095:</strong> A new strategic choice confronts humanity:
+              <ul>
+                <li>attempt a risky, large-scale revolt that might trigger devastating orbital
+                    strikes, or</li>
+                <li>continue the slow erosion of alien control, aiming to inherit much of their
+                    infrastructure when the armada eventually departs or collapses.</li>
+              </ul>
+          </li>
+          <li><strong>2096–2100:</strong> The scenario ends in a tense equilibrium:
+              <ul>
+                <li>Earth is formally “theirs,” criss-crossed by alien-built infrastructure and
+                    guarded by semi-autonomous orbital weaponry.</li>
+                <li>But pockets of human society have grown adept at living in the blind spots,
+                    co-opting technology, and planning for the day when the lights in the alien
+                    command cores finally dim.</li>
+              </ul>
+            Whether that day comes through patient decay, external war in the alien’s own
+            region of space, or a decisive human uprising is left for the next scenario file.
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Dan Fournel · fournel.org · Alien Attack 2026 Scenario
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
