@@ -5,7 +5,7 @@
   <title>fournel.org – Future Scenarios</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-        content="Hub for future-based timelines on fournel.org – Skynet 2027, alien contact and invasion scenarios, Bahai-inspired world order, and WW2-derived futures.">
+        content="Hub for future-based timelines on fournel.org – Skynet 2027, alien contact and invasion scenarios, Bahai-inspired world order, World War 3 futures, and long-range modeling.">
 
   <style>
     :root {
@@ -56,12 +56,10 @@
       position: absolute;
       inset: 0;
       background: url("images/wormhole.gif") center center / cover no-repeat fixed;
-      /* If your GIF is in a different path, update the URL above */
       filter: blur(2px);
       transform: scale(1.05);
     }
 
-    /* Dark + colour overlay so text stays readable */
     .wormhole-overlay {
       position: fixed;
       inset: 0;
@@ -74,7 +72,6 @@
       opacity: 0.95;
     }
 
-    /* Subtle moving stars layer */
     .stars {
       position: fixed;
       inset: -50%;
@@ -94,7 +91,7 @@
       to   { transform: translate3d(80px, 120px, 0); }
     }
 
-    /* Header / nav (same style as index) */
+    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -156,16 +153,15 @@
       border-radius: 999px;
       border: 1px solid transparent;
       color: var(--muted);
-      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      transition: 0.2s;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a.active,
+    .nav-links a:hover {
       color: var(--text);
       border-color: var(--accent-soft);
       background: rgba(15, 23, 42, 0.8);
       transform: translateY(-1px);
-      text-decoration: none;
     }
 
     main {
@@ -176,13 +172,11 @@
       z-index: 1;
     }
 
-    /* Hero */
     .hero {
       margin-bottom: 2.4rem;
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
       gap: 1.8rem;
-      align-items: flex-start;
       animation: fadeUp 0.9s ease-out forwards;
       opacity: 0;
       transform: translateY(12px);
@@ -190,8 +184,6 @@
 
     .hero-badge {
       display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
       padding: 0.22rem 0.7rem;
       border-radius: 999px;
       border: 1px solid rgba(56, 189, 248, 0.7);
@@ -202,118 +194,16 @@
       letter-spacing: 0.13em;
     }
 
-    .hero-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
-    }
-
     .hero h1 {
       margin: 0.8rem 0 0.35rem;
       font-size: clamp(2.1rem, 2.3vw + 1.3rem, 2.6rem);
     }
 
     .hero-lede {
-      margin: 0;
       font-size: 1rem;
       color: var(--muted);
       line-height: 1.75;
       max-width: 42rem;
-    }
-
-    .hero-lede span {
-      color: var(--accent);
-    }
-
-    .hero-actions {
-      margin-top: 1.1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.3rem;
-      padding: 0.55rem 1.15rem;
-      font-size: 0.9rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      background: none;
-      color: var(--text);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: 0.2s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: var(--shadow);
-    }
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      text-decoration: none;
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-      border-color: var(--border-soft);
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.78);
-    }
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-soft);
-      text-decoration: none;
-      transform: translateY(-1px);
-    }
-
-    .hero-card {
-      border-radius: var(--radius);
-      padding: 1.05rem 1.15rem;
-      background:
-        radial-gradient(circle at 25% 15%, #4fd1ff, transparent 55%),
-        radial-gradient(circle at 80% 90%, #a855ff, transparent 65%),
-        radial-gradient(circle at 50% 50%, rgba(15,23,42,0.98), rgba(3,7,18,0.98) 70%);
-      border: 1px solid rgba(148, 163, 253, 0.6);
-      box-shadow: var(--shadow);
-      font-size: 0.86rem;
-      color: #e5e7ff;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card h2 {
-      margin: 0 0 0.4rem;
-      font-size: 1.02rem;
-    }
-    .hero-card p {
-      margin: 0;
-      line-height: 1.5;
-    }
-    .hero-card ul {
-      margin: 0.55rem 0 0;
-      padding-left: 1.2rem;
-    }
-    .hero-card li + li { margin-top: 0.2rem; }
-
-    section { margin-bottom: 2.2rem; }
-
-    section h2 {
-      font-size: 1.25rem;
-      margin-bottom: 0.4rem;
-    }
-
-    section p.section-intro {
-      margin-top: 0;
-      font-size: 0.9rem;
-      color: var(--muted);
     }
 
     .grid {
@@ -329,13 +219,13 @@
       background: rgba(15, 23, 42, 0.94);
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
-      position: relative;
-      overflow: hidden;
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: var(--accent);
+      background: rgba(15, 23, 42, 0.98);
     }
 
     .card h3 {
@@ -352,9 +242,9 @@
     }
 
     .card span.tag {
-      display: inline-block;
       margin-top: 0.5rem;
-      padding: 0.18rem 0.55rem;
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
       border-radius: 999px;
       border: 1px solid var(--border-soft);
       font-size: 0.75rem;
@@ -363,65 +253,16 @@
       letter-spacing: 0.09em;
     }
 
-    .card:hover {
-      transform: translateY(-6px) scale(1.01);
-      border-color: var(--accent);
-      background: rgba(15, 23, 42, 0.98);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-      text-decoration: none;
-    }
-
-    .timeline-box {
-      border-radius: var(--radius);
-      background: rgba(15, 23, 42, 0.94);
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow);
-      padding: 1.2rem 1.3rem 1.3rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-      max-height: 70vh;
-      overflow: auto;
-    }
-
-    .timeline-era {
-      margin-bottom: 0.75rem;
-    }
-
-    .timeline-era h3 {
-      margin: 0 0 0.2rem;
-      font-size: 0.96rem;
-      color: var(--text);
-    }
-
-    .timeline-era p {
-      margin: 0;
-    }
-
-    footer.site-footer {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 1.4rem 1.5rem 1.6rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      border-top: 1px solid rgba(15, 23, 42, 0.8);
+    footer {
       text-align: center;
-      position: relative;
-      z-index: 1;
-      background: radial-gradient(circle at top, rgba(15,23,42,0.96), rgba(3,7,18,0.96));
-    }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 840px) {
-      header { position: static; }
-      .hero { grid-template-columns: minmax(0, 1fr); }
-      .hero-card { order: -1; }
+      padding: 1.5rem 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
   </style>
 </head>
+
 <body>
 
 <div class="wormhole-bg"></div>
@@ -441,7 +282,7 @@
       <a href="index.htm">Home</a>
       <a href="history.htm">History</a>
       <a href="tech.htm">Technology</a>
-      <a href="future.htm" class="active">Future</a>
+      <a class="active" href="future.htm">Future</a>
       <a href="about.htm">About</a>
     </div>
   </nav>
@@ -450,173 +291,64 @@
 <main>
   <section class="hero">
     <div>
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span>Timelines · Scenarios · Branching Futures</span>
-      </div>
-
-      <h1>Future timelines branching out from the present.</h1>
+      <div class="hero-badge">Future Timelines</div>
+      <h1>Exploring branching futures from 2025 onward.</h1>
 
       <p class="hero-lede">
-        This page collects the explicitly future-focused timelines on fournel.org:
-        branching stories about AI defence networks, alien contact and invasion,
-        world-order evolution inspired by the Bahai Faith, and futures that grow out
-        of alternative trajectories for the Second World War. None of these are
-        predictions – they’re ways of stress-testing our assumptions about what
-        comes next.
+        These scenarios examine multiple possible paths the future could take—
+        realistic, speculative, or extreme.  
+        Each branch explores technology, geopolitics, AI, alien intelligence,
+        religion, war, and long-range world-building.
       </p>
-
-      <div class="hero-actions">
-        <a href="skynet.htm" class="btn btn-primary">Open Skynet 2027 →</a>
-        <a href="alien.htm" class="btn btn-ghost">Alien Contact 2026</a>
-        <a href="alien_attack.htm" class="btn btn-ghost">Alien Attack 2026</a>
-        <a href="bahai.htm" class="btn btn-ghost">Bahai Future 2025–3000</a>
-        <a href="ww2.htm" class="btn btn-ghost">WW2-Based Futures</a>
-      </div>
     </div>
-
-    <aside class="hero-card">
-      <h2>How to read these timelines</h2>
-      <p>
-        Each page is a separate “branch” of the future:
-      </p>
-      <ul>
-        <li><strong>skynet.htm</strong> – AI defence network and escalation risk.</li>
-        <li><strong>alien.htm</strong> – cautious first contact in 2026.</li>
-        <li><strong>alien_attack.htm</strong> – hostile armada and planetary takeover.</li>
-        <li><strong>bahai.htm</strong> – staged world order evolution to 3000 AD.</li>
-        <li><strong>ww2.htm</strong> – futures that emerge from an altered World War II path.</li>
-      </ul>
-      <p style="margin-top:0.55rem;">
-        For context, <a href="history.htm">history.htm</a> and
-        <a href="tech.htm">tech.htm</a> provide the deep-time background for
-        both politics and technology.
-      </p>
-    </aside>
   </section>
 
   <section>
     <h2>Scenario Index</h2>
-    <p class="section-intro">
-      Choose a branch to follow. Each file contains its own detailed timeline, but they
-      all share the same underlying universe of history and technology.
-    </p>
+    <p class="section-intro">Choose a timeline to explore:</p>
 
     <div class="grid">
+
       <a href="skynet.htm" class="card">
-        <h3>Skynet 2027 (skynet.htm)</h3>
-        <p>
-          A realistic, no-time-travel scenario where an integrated defence AI goes online
-          in the late 2020s. The timeline tracks how automation, miscalculation, and
-          human politics interact from roughly 2000 to 2100.
-        </p>
-        <span class="tag">AI · automation · escalation</span>
+        <h3>Skynet 2027</h3>
+        <p>The rise of an automated defence AI network without time travel.</p>
+        <span class="tag">AI · escalation</span>
       </a>
 
       <a href="alien.htm" class="card">
-        <h3>Alien Contact 2026 (alien.htm)</h3>
-        <p>
-          Humanity confirms unambiguous contact with an alien civilisation in 2026.
-          The story focuses on cautious diplomacy, science, religion, and global
-          politics as we adjust to a larger galactic context.
-        </p>
-        <span class="tag">first contact · diplomacy</span>
+        <h3>Alien Contact 2026</h3>
+        <p>Peaceful first contact and its global political, social & religious effects.</p>
+        <span class="tag">first contact</span>
       </a>
 
       <a href="alien_attack.htm" class="card">
-        <h3>Alien Attack 2026 (alien_attack.htm)</h3>
-        <p>
-          A hostile spin on the same starting year: a synchronised message declares
-          “YOUR WORLD IS NOW OURS,” followed by the arrival of a prepared armada.
-          Occupation, resistance, and adaptation unfold through the 21st century.
-        </p>
-        <span class="tag">invasion · occupation</span>
+        <h3>Alien Attack 2026</h3>
+        <p>A hostile armada arrives one year after a global message: “Your world is now ours.”</p>
+        <span class="tag">invasion</span>
       </a>
 
       <a href="bahai.htm" class="card">
-        <h3>Bahai Future Timeline (bahai.htm)</h3>
-        <p>
-          Long-range world-order evolution inspired by Bahai concepts of the Lesser
-          Peace, a World Super-State, the Great Peace, and early attributes of the
-          Most Great Peace, stretching from 2025 to 3000 AD.
-        </p>
-        <span class="tag">world order · 2025–3000</span>
+        <h3>Bahai Future Timeline</h3>
+        <p>World order evolution from 2025 to 3000 AD based on Bahai prophetic stages.</p>
+        <span class="tag">world order</span>
       </a>
 
-      <a href="ww2.htm" class="card">
-        <h3>WW2-Based Futures (ww2.htm)</h3>
+      <a href="ww3.htm" class="card">
+        <h3>World War III Scenario</h3>
         <p>
-          Futures that grow out of alternate World War II outcomes: different empires,
-          institutions, and technological paths leading to a very different 21st and
-          22nd century.
+          A full geopolitical and military timeline of a 2027–2037 global conflict,
+          followed by reconstruction and a new postwar order.
         </p>
-        <span class="tag">alternate history · long arc</span>
+        <span class="tag">geopolitics · war</span>
       </a>
+
     </div>
   </section>
 
-  <section>
-    <h2>Where these branches overlap</h2>
-    <p class="section-intro">
-      Even wildly different futures share some structural beats. This quick meta-timeline
-      shows how the scenario pages relate to one another and where they diverge.
-    </p>
-
-    <div class="timeline-box">
-      <div class="timeline-era">
-        <h3>Shared backdrop · 20th century foundations</h3>
-        <p>
-          All futures, including those in <a href="ww2.htm">ww2.htm</a>, rest on long
-          historical currents captured in <a href="history.htm">history.htm</a> and
-          technological arcs from <a href="tech.htm">tech.htm</a>. In some branches,
-          World War II plays out as in our timeline; in others, its outcome and
-          institutions shift, changing the base conditions for AI, space, and global
-          governance.
-        </p>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2000–2035 · The convergence zone</h3>
-        <p>
-          All five future timelines pass through an early-21st-century world of climate
-          stress, digital networks, and unevenly distributed AI. Around the mid-2020s:
-          Skynet begins as a defence modernisation project (<a href="skynet.htm">skynet.htm</a>);
-          alien signals appear in either cooperative or hostile form
-          (<a href="alien.htm">alien.htm</a>, <a href="alien_attack.htm">alien_attack.htm</a>);
-          and the first building blocks of a Bahai-style Lesser Peace begin to show up in
-          <a href="bahai.htm">bahai.htm</a>.
-        </p>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2035–2100 · Divergence and crisis</h3>
-        <p>
-          In some branches, automated defence and misaligned incentives drive escalation
-          and near-disaster (Skynet). In others, the main disruption is external – a
-          watching civilisation or an occupying armada. The Bahai timeline assumes
-          severe tests but avoids permanent collapse, using shocks to move slowly toward
-          more integrated world governance. WW2-based futures can amplify or dampen these
-          shocks depending on how mid-century institutions evolved.
-        </p>
-      </div>
-
-      <div class="timeline-era">
-        <h3>2100–3000 · Long-term trajectories</h3>
-        <p>
-          Beyond roughly 2100, <a href="bahai.htm">bahai.htm</a> carries the clearest
-          forward story, but Skynet, alien contact, alien attack, and WW2-derived
-          futures all feed into potential long-run outcomes: different balances between
-          central authority and local autonomy, different uses of high technology, and
-          different levels of contact with any non-human intelligences that share the
-          universe with us.
-        </p>
-      </div>
-    </div>
-  </section>
 </main>
 
-<footer class="site-footer">
-  © <span id="year"></span> Dan Fournel · fournel.org – Future Scenarios
+<footer>
+  © <span id="year"></span> Dan Fournel — fournel.org  
 </footer>
 
 <script>
