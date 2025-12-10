@@ -1,1 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>fournel.org – Terra 3000 AD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="A vision of Earth (Terra) in 3000 AD – architecture, transportation, climate, politics, technology, and economics.">
 
+  <style>
+    :root {
+      --bg: #020612;
+      --bg-alt: #070e1e;
+      --card: #0b1426;
+      --accent: #4fd1ff;
+      --accent-2: #a855ff;
+      --accent-soft: rgba(79, 209, 255, 0.14);
+      --text: #f4f7ff;
+      --muted: #9ba4c4;
+      --border-soft: rgba(255, 255, 255, 0.12);
+      --radius: 18px;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      --max-width: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0, #172549 0, transparent 55%),
+        radial-gradient(circle at 90% 0, #3a1454 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, #0c243b 0, #020612 70%);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wormhole-layer {
+      position: fixed;
+      inset: -40%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 40% 20%, rgba(10, 185, 255, 0.18) 0, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(178, 84, 255, 0.22) 0, transparent 55%),
+        radial-gradient(circle at 20% 75%, rgba(79, 209, 255, 0.16) 0, transparent 55%);
+      opacity: 0.85;
+      animation: pulseWormhole 11s ease-in-out infinite alternate;
+    }
+
+    .wormhole-core {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 520px;
+      height: 520px;
+      margin-left: -260px;
+      margin-top: -260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(1, 8, 20, 0.6) 0, rgba(1, 8, 20, 0.98) 52%, #020612 70%),
+        conic-gradient(from 0deg, rgba(79,209,255,0.1), rgba(168,85,255,0.45), rgba(79,209,255,0.7), rgba(0,0,0,0.9), rgba(79,209,255,0.2));
+      filter: blur(2px);
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinWormhole 40s linear infinite;
+    }
+
+    .wormhole-ring {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 360px;
+      height: 360px;
+      margin-left: -180px;
+      margin-top: -180px;
+      border-radius: 50%;
+      border: 1px dashed rgba(158, 195, 255, 0.4);
+      box-shadow:
+        0 0 30px rgba(79, 209, 255, 0.5),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      z-index: -1;
+      pointer-events: none;
+      animation: spinRing 28s linear infinite reverse;
+    }
+
+    @keyframes spinWormhole {
+      from { transform: rotate(0deg) scale(1); }
+      to   { transform: rotate(360deg) scale(1.03); }
+    }
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+    @keyframes pulseWormhole {
+      from { opacity: 0.6; transform: scale(1); }
+      to   { opacity: 0.95; transform: scale(1.08); }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.88));
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #b9e6ff 48%, transparent 62%),
+        radial-gradient(circle at 70% 75%, #a855ff, #22d3ee 55%, #020617 80%);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.75),
+        0 0 40px rgba(59, 130, 246, 0.7);
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+    .nav-title span {
+      color: var(--muted);
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: var(--accent-soft);
+      background: rgba(15, 23, 42, 0.8);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.6rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      margin-bottom: 2.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      background: rgba(8, 47, 73, 0.96);
+      font-size: 0.7rem;
+      color: #bae6fd;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+    }
+
+    .hero h1 {
+      margin: 0.8rem 0 0.35rem;
+      font-size: clamp(2.1rem, 2.3vw + 1.3rem, 2.7rem);
+    }
+
+    .hero-lede {
+      margin: 0;
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 42rem;
+    }
+
+    .btn-row {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.78);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem 1.2rem;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(148, 163, 253, 0.6);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #e5e7ff;
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.3rem;
+      font-size: 1rem;
+    }
+
+    section { margin-bottom: 2.2rem; }
+    section h2 { font-size: 1.25rem; margin-bottom: 0.4rem; }
+    section p.section-intro { margin-top: 0; font-size: 0.9rem; color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      padding: 1rem 1.15rem 1.1rem;
+      border-radius: var(--radius);
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .card ul {
+      margin: 0.4rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .card li + li { margin-top: 0.18rem; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.7rem;
+      margin-top: 0.9rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      opacity: 0.9;
+    }
+
+    footer.site-footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.4rem 1.5rem 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(15, 23, 42, 0.8);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.96), rgba(3,7,18,0.96));
+    }
+
+    @media (max-width: 840px) {
+      header { position: static; }
+      .hero { grid-template-columns: minmax(0, 1fr); }
+      .hero-card { order: -1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wormhole-layer"></div>
+<div class="wormhole-core"></div>
+<div class="wormhole-ring"></div>
+
+<header>
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="nav-logo"></div>
+      <div class="nav-title">
+        fournel.org
+        <span>Terra · 3000 AD</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.htm">Home</a>
+      <a href="history.htm">History</a>
+      <a href="tech.htm">Technology</a>
+      <a href="future.htm">Future</a>
+      <a href="religion.htm">Religion</a>
+      <a href="science.htm">Science</a>
+      <a href="about.htm">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-badge">Planetary Futures · Terra</div>
+      <h1>Terra in 3000 AD: an old world re-architected.</h1>
+      <p class="hero-lede">
+        By 3000 AD, Earth is no longer the fragile, over-stressed planet of the 21st century.
+        Climate has been stabilised, coastlines re-drawn, and cities re-built upwards and outwards.
+        Terra is a dense, layered civilisation that now shares the Solar system rather than dominating it.
+      </p>
+      <div class="btn-row">
+        <a href="#architecture" class="btn btn-primary">Architecture &amp; Habitat</a>
+        <a href="#transport" class="btn btn-ghost">Transport &amp; Climate</a>
+        <a href="#politics" class="btn btn-ghost">Politics, Tech &amp; Economics</a>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <img src="images/terra_city.jpg" alt="Futuristic coastal megacity on Earth in 3000 AD">
+      <h2>Visual snapshot</h2>
+      <p>
+        Tiered coastal megacities with green terraces and vertical forests, ocean arcs of floating
+        infrastructure, and shimmering space elevators anchored near the equator.
+      </p>
+    </aside>
+  </section>
+
+  <section id="architecture">
+    <h2>Architecture &amp; Habitat</h2>
+    <p class="section-intro">
+      Earth’s architecture in 3000 AD is a patchwork of preserved heritage, rewilded zones,
+      and hyper-dense urban spines.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Vertical &amp; coastal spines</h3>
+        <ul>
+          <li>Most major cities condensed into high-density “spines” – linked towers and platforms layered over transit corridors.</li>
+          <li>Former flood-prone coastlines replaced by terraced sea walls, floating districts, and controlled wetlands.</li>
+          <li>Residential architecture combines vertical forests, adaptive facades, and modular interior spaces.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Rewilded interiors</h3>
+        <ul>
+          <li>Large portions of continental interiors set aside as rewilded ecological corridors.</li>
+          <li>Human presence in these zones is mostly seasonal, research-oriented, or virtual.</li>
+          <li>Ancient cities survive as heritage cores embedded inside newer structures.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Climate-adaptive design</h3>
+        <ul>
+          <li>Buildings dynamically adjust shading, albedo, and ventilation to balance thermal loads.</li>
+          <li>Urban canopies and misting systems reduce heat stress in equatorial and desert mega-regions.</li>
+          <li>Infrastructure is designed to be dismantled or re-routed over centuries, not decades.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <img src="images/terra_forest_tower.jpg" alt="Vertical forest tower on Terra">
+      <img src="images/terra_floating_district.jpg" alt="Floating coastal district on Terra">
+      <img src="images/terra_heritage_core.jpg" alt="Old city core integrated into megastructure">
+    </div>
+  </section>
+
+  <section id="transport">
+    <h2>Transportation &amp; Climate</h2>
+    <p class="section-intro">
+      Movement on Terra is continuous and mostly electric, with near-frictionless links to orbit.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Surface &amp; sub-surface transport</h3>
+        <ul>
+          <li>Global high-speed maglev loops connect dense urban spines across continents.</li>
+          <li>Subsurface transit networks handle most freight, leaving surface layers for people and ecology.</li>
+          <li>Urban “gondola grids” and personal pods weave through multi-level cityscapes.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Earth-to-orbit systems</h3>
+        <ul>
+          <li>Multiple space elevators at equatorial ocean hubs move cargo and passengers into high orbit.</li>
+          <li>Skyhooks, electromagnetic launchers, and advanced SSTO craft complement elevator traffic.</li>
+          <li>Low Earth Orbit is heavily managed, with megastructural rings hosting habitats and docks.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Climate by 3000 AD</h3>
+        <ul>
+          <li>Global temperatures stabilised after centuries of aggressive mitigation and adaptation.</li>
+          <li>Some regions remain altered (new inland seas, shifted biomes), but tipping cascades were avoided.</li>
+          <li>Atmospheric composition is tightly monitored; geoengineering systems sit in “warm standby” rather than constant use.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="politics">
+    <h2>Politics, Technology &amp; Economics</h2>
+    <p class="section-intro">
+      Terra is no longer the sole political centre of humanity, but it remains the
+      cultural and symbolic core of the species.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Politics &amp; governance</h3>
+        <ul>
+          <li>Planetary governance handled by a Terra Assembly nested within a wider Sol Federation.</li>
+          <li>Regions retain strong cultural autonomy, but conflict is channelled into legal and economic arenas.</li>
+          <li>Shared stewardship charters define minimum obligations toward ecosystems and climate systems.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Technology &amp; everyday life</h3>
+        <ul>
+          <li>Pervasive AI systems manage infrastructure, health, and logistics, with hard limits on direct behavioural control.</li>
+          <li>Personal devices are lightweight, semi-implantable, and deeply integrated with local and planetary networks.</li>
+          <li>Education is continuous and mostly experiential, blending physical and simulated environments.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Economics &amp; Terra’s role</h3>
+        <ul>
+          <li>Terra exports culture, governance models, and high-end services more than raw materials.</li>
+          <li>Imports include specialised components from Luna, Mars, and orbital habitats.</li>
+          <li>Baseline economic floor is high; scarcity is concentrated in time, attention, and access to prime physical locations.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Dan Fournel · fournel.org · Terra 3000 AD
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
