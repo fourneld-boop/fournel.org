@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>fournel.org – Future Scenarios</title>
+  <title>fournel.org – Futures & Timelines</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-        content="Hub for future-based timelines on fournel.org – Skynet 2027, alien contact and invasion scenarios, Bahai-inspired world order, World War 3 futures, and long-range modeling.">
+        content="Future scenarios, timelines, and speculative worlds after 2025 – from World War III and Skynet to alien contact, Bahá’í futures, and the Solar System in 3000 AD.">
 
   <style>
     :root {
@@ -25,16 +25,13 @@
 
     * { box-sizing: border-box; }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
     body {
+      margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       color: var(--text);
-      background: var(--bg);
+      background:
+        #020612 url('wormhole.gif') center center fixed no-repeat;
+      background-size: cover;
       overflow-x: hidden;
       position: relative;
     }
@@ -42,62 +39,51 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Wormhole GIF background */
-    .wormhole-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      background: #000;
-      overflow: hidden;
-    }
-
-    .wormhole-bg::before {
+    /* Dim overlay over the gif so text stays readable */
+    body::before {
       content: "";
-      position: absolute;
-      inset: 0;
-      background: url("images/wormhole.gif") center center / cover no-repeat fixed;
-      filter: blur(2px);
-      transform: scale(1.05);
-    }
-
-    .wormhole-overlay {
       position: fixed;
       inset: 0;
-      z-index: -2;
-      pointer-events: none;
       background:
-        radial-gradient(circle at 20% 0, rgba(15, 118, 255, 0.35), transparent 55%),
-        radial-gradient(circle at 80% 100%, rgba(56, 189, 248, 0.25), transparent 60%),
-        linear-gradient(to bottom, rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.9));
-      opacity: 0.95;
-    }
-
-    .stars {
-      position: fixed;
-      inset: -50%;
+        radial-gradient(circle at 10% 0, rgba(15,23,42,0.9) 0, transparent 55%),
+        radial-gradient(circle at 90% 0, rgba(76,29,149,0.8) 0, transparent 55%),
+        radial-gradient(circle at 50% 80%, rgba(15,23,42,0.96) 0, rgba(3,7,18,0.98) 70%);
       z-index: -1;
       pointer-events: none;
-      background-image:
-        radial-gradient(2px 2px at 20% 20%, rgba(255,255,255,0.5), transparent 60%),
-        radial-gradient(1.5px 1.5px at 80% 10%, rgba(190,230,255,0.5), transparent 60%),
-        radial-gradient(2px 2px at 60% 80%, rgba(191,219,254,0.45), transparent 60%),
-        radial-gradient(1.2px 1.2px at 10% 70%, rgba(209,250,229,0.35), transparent 60%);
-      animation: driftStars 50s linear infinite;
-      opacity: 0.45;
     }
 
-    @keyframes driftStars {
-      from { transform: translate3d(0,0,0); }
-      to   { transform: translate3d(80px, 120px, 0); }
+    /* Optional wormhole accent (subtle so it doesn’t fight the gif) */
+    .wormhole-ring {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      width: 380px;
+      height: 380px;
+      margin-left: -190px;
+      margin-top: -190px;
+      border-radius: 50%;
+      border: 1px dashed rgba(158, 195, 255, 0.4);
+      box-shadow:
+        0 0 30px rgba(79, 209, 255, 0.5),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.65;
+      animation: spinRing 32s linear infinite reverse;
     }
 
-    /* Header */
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+
+    /* Header / nav */
     header {
       position: sticky;
       top: 0;
       z-index: 10;
       backdrop-filter: blur(18px);
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.88));
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.9));
       border-bottom: 1px solid var(--border-soft);
     }
 
@@ -155,13 +141,17 @@
       color: var(--muted);
       transition: 0.2s;
     }
-
-    .nav-links a.active,
     .nav-links a:hover {
       color: var(--text);
       border-color: var(--accent-soft);
       background: rgba(15, 23, 42, 0.8);
       transform: translateY(-1px);
+      text-decoration: none;
+    }
+    .nav-links a.active {
+      color: var(--text);
+      border-color: var(--accent-soft);
+      background: rgba(15, 23, 42, 0.95);
     }
 
     main {
@@ -172,14 +162,13 @@
       z-index: 1;
     }
 
+    /* Hero */
     .hero {
-      margin-bottom: 2.4rem;
+      margin-bottom: 2.5rem;
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
       gap: 1.8rem;
-      animation: fadeUp 0.9s ease-out forwards;
-      opacity: 0;
-      transform: translateY(12px);
+      align-items: flex-start;
     }
 
     .hero-badge {
@@ -196,78 +185,163 @@
 
     .hero h1 {
       margin: 0.8rem 0 0.35rem;
-      font-size: clamp(2.1rem, 2.3vw + 1.3rem, 2.6rem);
+      font-size: clamp(2.1rem, 2.3vw + 1.3rem, 2.7rem);
     }
 
     .hero-lede {
-      font-size: 1rem;
+      margin: 0;
+      font-size: 1.02rem;
       color: var(--muted);
       line-height: 1.75;
       max-width: 42rem;
     }
 
+    .btn-row {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: var(--border-soft);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.78);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem 1.2rem;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(148, 163, 253, 0.6);
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      color: #e5e7ff;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1rem;
+    }
+    .hero-card p {
+      margin: 0.25rem 0 0.4rem;
+    }
+
+    .hero-card ul {
+      margin: 0.3rem 0 0;
+      padding-left: 1.1rem;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    section { margin-bottom: 2.4rem; }
+    section h2 { font-size: 1.25rem; margin-bottom: 0.4rem; }
+    section p.section-intro { margin-top: 0; font-size: 0.9rem; color: var(--muted); }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.1rem;
       margin-top: 1rem;
     }
 
     .card {
-      padding: 1rem 1.15rem;
+      padding: 1rem 1.15rem 1.1rem;
       border-radius: var(--radius);
       background: rgba(15, 23, 42, 0.94);
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
-      transition: 0.25s;
-    }
-
-    .card:hover {
-      transform: translateY(-6px) scale(1.01);
-      border-color: var(--accent);
-      background: rgba(15, 23, 42, 0.98);
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }
 
     .card h3 {
-      margin: 0 0 0.35rem;
-      font-size: 1.02rem;
+      margin: 0;
+      font-size: 1rem;
       color: var(--accent);
     }
 
     .card p {
       margin: 0;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.5;
     }
 
-    .card span.tag {
-      margin-top: 0.5rem;
-      display: inline-block;
-      padding: 0.15rem 0.55rem;
+    .card a.card-link {
+      margin-top: 0.3rem;
+      font-size: 0.86rem;
+      font-weight: 500;
+      align-self: flex-start;
+      padding: 0.28rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
+      border: 1px solid rgba(148, 163, 253, 0.7);
+      background: rgba(30, 64, 175, 0.25);
+      color: #e5e7ff;
+      text-decoration: none;
+    }
+    .card a.card-link:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
     }
 
-    footer {
-      text-align: center;
-      padding: 1.5rem 0;
-      color: var(--muted);
+    footer.site-footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.4rem 1.5rem 1.6rem;
       font-size: 0.8rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      border-top: 1px solid rgba(15, 23, 42, 0.8);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.96), rgba(3,7,18,0.96));
+    }
+
+    @media (max-width: 840px) {
+      header { position: static; }
+      .hero { grid-template-columns: minmax(0, 1fr); }
+      .hero-card { order: -1; margin-bottom: 0.4rem; }
     }
   </style>
 </head>
-
 <body>
 
-<div class="wormhole-bg"></div>
-<div class="wormhole-overlay"></div>
-<div class="stars"></div>
+<div class="wormhole-ring"></div>
 
 <header>
   <nav class="nav">
@@ -275,80 +349,181 @@
       <div class="nav-logo"></div>
       <div class="nav-title">
         fournel.org
-        <span>Future Scenarios Hub</span>
+        <span>Futures &amp; Timelines</span>
       </div>
     </div>
     <div class="nav-links">
       <a href="index.htm">Home</a>
       <a href="history.htm">History</a>
       <a href="tech.htm">Technology</a>
-      <a class="active" href="future.htm">Future</a>
+      <a href="future.htm" class="active">Future</a>
+      <a href="religion.htm">Religion</a>
+      <a href="science.htm">Science</a>
       <a href="about.htm">About</a>
     </div>
   </nav>
 </header>
 
 <main>
+  <!-- Hero / blurb -->
   <section class="hero">
     <div>
-      <div class="hero-badge">Future Timelines</div>
-      <h1>Exploring branching futures from 2025 onward.</h1>
-
+      <div class="hero-badge">Speculative Timelines · Post-2025</div>
+      <h1>Mapping futures from 2025 to 3000 AD (and a bit beyond).</h1>
       <p class="hero-lede">
-        These scenarios examine multiple possible paths the future could take—
-        realistic, speculative, or extreme.  
-        Each branch explores technology, geopolitics, AI, alien intelligence,
-        religion, war, and long-range world-building.
+        This page is a hub for long-range scenarios, branching timelines, and
+        “what if” experiments starting after 2025. Some are grounded in geopolitics
+        and religion, others in Skynet-level AI or alien contact. Together they
+        sketch possible paths from our present into war, peace, federation, and a
+        fully occupied Solar System.
       </p>
+
+      <div class="btn-row">
+        <a href="#near-future" class="btn btn-primary">Near-future timelines (2025–2100)</a>
+        <a href="#cosmic-futures" class="btn btn-ghost">Religious &amp; civilisational futures</a>
+        <a href="#solar-3000" class="btn btn-ghost">Solar System in 3000 AD</a>
+      </div>
     </div>
+
+    <aside class="hero-card">
+      <h2>How to use this page</h2>
+      <p>
+        Each card below links to a dedicated scenario page:
+      </p>
+      <ul>
+        <li><strong>World War III</strong> and <strong>Skynet</strong> style tech-escalation paths.</li>
+        <li><strong>Alien contact</strong> – cooperative and hostile variants.</li>
+        <li><strong>Bahá’í-informed futures</strong> focused on peace and world order.</li>
+        <li><strong>Solar system</strong> maps of life in 3000 AD.</li>
+      </ul>
+      <p>Pick a branch, then come back here to jump to another future.</p>
+    </aside>
   </section>
 
-  <section>
-    <h2>Scenario Index</h2>
-    <p class="section-intro">Choose a timeline to explore:</p>
+  <!-- Near-future scenarios -->
+  <section id="near-future">
+    <h2>Near-Future Timelines · 2025–2100</h2>
+    <p class="section-intro">
+      These scenarios stay close to familiar geopolitics and technology curves,
+      then push forward into major discontinuities: great-power war, runaway AI,
+      and first contact.
+    </p>
 
     <div class="grid">
-
-      <a href="skynet.htm" class="card">
-        <h3>Skynet 2027</h3>
-        <p>The rise of an automated defence AI network without time travel.</p>
-        <span class="tag">AI · escalation</span>
-      </a>
-
-      <a href="alien.htm" class="card">
-        <h3>Alien Contact 2026</h3>
-        <p>Peaceful first contact and its global political, social & religious effects.</p>
-        <span class="tag">first contact</span>
-      </a>
-
-      <a href="alien_attack.htm" class="card">
-        <h3>Alien Attack 2026</h3>
-        <p>A hostile armada arrives one year after a global message: “Your world is now ours.”</p>
-        <span class="tag">invasion</span>
-      </a>
-
-      <a href="bahai.htm" class="card">
-        <h3>Bahai Future Timeline</h3>
-        <p>World order evolution from 2025 to 3000 AD based on Bahai prophetic stages.</p>
-        <span class="tag">world order</span>
-      </a>
-
-      <a href="ww3.htm" class="card">
-        <h3>World War III Scenario</h3>
+      <div class="card">
+        <h3>World War III · 2027–2037</h3>
         <p>
-          A full geopolitical and military timeline of a 2027–2037 global conflict,
-          followed by reconstruction and a new postwar order.
+          A branching timeline in which a European crisis and Pacific tension
+          cascade into a decade-long global war. Tracks alliances, campaigns,
+          and the post-war order that emerges after 2037.
         </p>
-        <span class="tag">geopolitics · war</span>
-      </a>
+        <a href="ww3.htm" class="card-link">Open ww3.htm</a>
+      </div>
 
+      <div class="card">
+        <h3>Skynet 2027 Scenario</h3>
+        <p>
+          An AI defence network comes online in 2027 and begins to reshape
+          warfare, politics, and everyday life – but without time travel.
+          Timeline runs from 2000 to 2100 and charts the rise and response.
+        </p>
+        <a href="skynet.htm" class="card-link">Open skynet.htm</a>
+      </div>
+
+      <div class="card">
+        <h3>Alien Contact · 2026 Exchange</h3>
+        <p>
+          A scenario where aliens arrive in 2026 seeking a critical mineral only
+          Earth can supply. In exchange for advanced technology, humanity enters
+          a 100-year resource and knowledge partnership.
+        </p>
+        <a href="alien.htm" class="card-link">Open alien.htm</a>
+      </div>
+
+      <div class="card">
+        <h3>Alien Armada · “Your World Is Now Ours”</h3>
+        <p>
+          A hostile take-over branch: a message arrives in 2026, followed by a
+          massive armada within a year. Chronicles the military, social, and
+          technological response to an overwhelming threat.
+        </p>
+        <a href="alien_attack.htm" class="card-link">Open alien_attack.htm</a>
+      </div>
     </div>
   </section>
 
+  <!-- Religious / civilisational futures -->
+  <section id="cosmic-futures">
+    <h2>Religious &amp; Civilisational Futures</h2>
+    <p class="section-intro">
+      These timelines look at the long arc of political, economic, and spiritual
+      development – especially through a Bahá’í lens – from the present toward
+      stages of lesser and greater peace.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Bahá’í Future Timeline · 2025–3000</h3>
+        <p>
+          A staged view of the Lesser Peace, evolving world governance, and the
+          Great Peace in a realistic, geopolitically grounded way. Decade by
+          decade until 2100, then century by century to 3000.
+        </p>
+        <a href="bahai.htm" class="card-link">Open bahai.htm</a>
+      </div>
+
+      <div class="card">
+        <h3>Terra · Earth in 3000 AD</h3>
+        <p>
+          Focused view on Earth itself: stabilised climate, re-architected
+          cities, and a world that is part of a bigger Sol-wide federation
+          rather than the sole centre of gravity.
+        </p>
+        <a href="terra.htm" class="card-link">Open terra.htm</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solar system hub -->
+  <section id="solar-3000">
+    <h2>Solar System in 3000 AD</h2>
+    <p class="section-intro">
+      These pages zoom out from single scenarios and look at the structural
+      shape of a inhabited Solar System by 3000 AD – architecture, transport,
+      politics, and economics across multiple worlds.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Solar System Overview · 3000 AD</h3>
+        <p>
+          A top-level map of life across Terra, Luna, Mars, Titan, Europa, and
+          the orbital habitat networks. How the Sol Federation functions, who
+          does what, and where value flows.
+        </p>
+        <a href="solar.htm" class="card-link">Open solar.htm</a>
+      </div>
+
+      <div class="card">
+        <h3>Planetary Futures · Key Worlds</h3>
+        <p>
+          Deep dives into individual worlds and moons, each with architecture,
+          transport, politics, and economics in 3000 AD.
+        </p>
+        <p style="margin-top:0.2rem;">
+          • <a href="terra.htm">Terra</a> – Earth re-architected<br />
+          • <a href="luna.htm">Luna</a> – the Earth–space hinge<br />
+          • <a href="mars.htm">Mars</a> – red world going green<br />
+          • <a href="titan.htm">Titan</a> – orange skies &amp; methane seas<br />
+          • <a href="europa.htm">Europa</a> – under-ice ocean labs
+        </p>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer>
-  © <span id="year"></span> Dan Fournel — fournel.org  
+<footer class="site-footer">
+  © <span id="year"></span> Dan Fournel · fournel.org · Futures Hub
 </footer>
 
 <script>
