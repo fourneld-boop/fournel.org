@@ -1,1 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main pages -->
+  <url><loc>https://fournel.org/</loc></url>
+  <url><loc>https://fournel.org/index.html</loc></url>
+  <url><loc>https://fournel.org/future.htm</loc></url>
+  <url><loc>https://fournel.org/solar.htm</loc></url>
+  <url><loc>https://fournel.org/ai.htm</loc></url>
+
+  <!-- Planet pages -->
+  <url><loc>https://fournel.org/mars.htm</loc></url>
+  <url><loc>https://fournel.org/titan.htm</loc></url>
+  <url><loc>https://fournel.org/luna.htm</loc></url>
+  <url><loc>https://fournel.org/europa.htm</loc></url>
+  <url><loc>https://fournel.org/terra.htm</loc></url>
+
+  <!-- Additional pages (if present) -->
+  <url><loc>https://fournel.org/contact.htm</loc></url>
+  <url><loc>https://fournel.org/about.htm</loc></url>
+  <url><loc>https://fournel.org/projects.htm</loc></url>
+  <url><loc>https://fournel.org/gallery.htm</loc></url>
+
+</urlset>
 
