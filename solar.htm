@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>fournel.org – Solar System 3000 AD</title>
-  <link rel="canonical" href="https://fournel.org/solar.htm">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
-        content="A vision of the entire Solar System in 3000 AD – architecture, transportation, climate engineering, politics, technology, and economics.">
+        content="A vision of the Solar System in 3000 AD – architecture, transportation, climate engineering, politics, technology, and economics, with a mini interactive solar system map.">
 
   <style>
     :root {
@@ -175,6 +174,11 @@
       transform: translateY(-1px);
       text-decoration: none;
     }
+    .nav-links a.active {
+      color: var(--text);
+      border-color: var(--accent-soft);
+      background: rgba(15, 23, 42, 0.95);
+    }
 
     main {
       max-width: var(--max-width);
@@ -239,17 +243,14 @@
       text-decoration: none;
       white-space: nowrap;
       transition: 0.2s ease;
+      user-select: none;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       box-shadow: var(--shadow);
     }
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      text-decoration: none;
-      transform: translateY(-1px);
-    }
+    .btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); text-decoration:none; }
 
     .btn-ghost {
       border-color: var(--border-soft);
@@ -260,8 +261,8 @@
       border-color: var(--accent);
       color: var(--accent);
       background: var(--accent-soft);
-      text-decoration: none;
       transform: translateY(-1px);
+      text-decoration: none;
     }
 
     .hero-card {
@@ -334,6 +335,215 @@
       opacity: 0.9;
     }
 
+    /* ===== Mini solar system map / orrery ===== */
+    .orrery-wrap {
+      border-radius: var(--radius);
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(148, 163, 253, 0.45);
+      box-shadow: var(--shadow);
+      padding: 1rem 1.1rem 1.1rem;
+      overflow: hidden;
+    }
+
+    .orrery-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.8rem;
+    }
+
+    .orrery-top h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #e5e7ff;
+    }
+
+    .orrery-top p {
+      margin: 0.2rem 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      max-width: 52rem;
+      line-height: 1.55;
+    }
+
+    .orrery-controls {
+      display: flex;
+      gap: 0.55rem;
+      align-items: center;
+    }
+
+    .toggle-btn {
+      padding: 0.42rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 253, 0.55);
+      background: rgba(30, 64, 175, 0.18);
+      color: #e5e7ff;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .toggle-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .orrery {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(79,209,255,0.08), transparent 55%),
+        radial-gradient(circle at 50% 50%, rgba(168,85,255,0.06), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0.35), rgba(0,0,0,0.75) 70%);
+      overflow: hidden;
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      opacity: 0.5;
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.8) 50%, transparent 60%),
+        radial-gradient(1px 1px at 140px 110px, rgba(255,255,255,0.7) 50%, transparent 60%),
+        radial-gradient(1px 1px at 220px 70px, rgba(255,255,255,0.7) 50%, transparent 60%),
+        radial-gradient(1px 1px at 320px 180px, rgba(255,255,255,0.7) 50%, transparent 60%),
+        radial-gradient(1px 1px at 460px 90px, rgba(255,255,255,0.7) 50%, transparent 60%),
+        radial-gradient(1px 1px at 560px 140px, rgba(255,255,255,0.7) 50%, transparent 60%),
+        radial-gradient(1px 1px at 680px 60px, rgba(255,255,255,0.7) 50%, transparent 60%),
+        radial-gradient(1px 1px at 760px 210px, rgba(255,255,255,0.7) 50%, transparent 60%),
+        radial-gradient(1px 1px at 880px 120px, rgba(255,255,255,0.7) 50%, transparent 60%);
+    }
+
+    .center-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      margin-left: -9px;
+      margin-top: -9px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fff6b0, #ffb703 55%, #ff6b00 90%);
+      box-shadow: 0 0 35px rgba(255, 199, 0, 0.6);
+      z-index: 2;
+    }
+
+    .orbit {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 999px;
+      border: 1px dashed rgba(158, 195, 255, 0.25);
+      transform: translate(-50%, -50%);
+    }
+
+    .orbit .planet {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 0 16px rgba(79,209,255,0.25);
+    }
+
+    .planet-label {
+      position: absolute;
+      left: 12px;
+      top: -6px;
+      font-size: 0.78rem;
+      color: rgba(229,231,255,0.9);
+      white-space: nowrap;
+      opacity: 0.9;
+      pointer-events: none;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    .orbit .planet::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 14px;
+      top: -10px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 253, 0.35);
+      padding: 0.35rem 0.55rem;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      color: #e5e7ff;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(2px);
+      transition: 0.15s ease;
+      pointer-events: none;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.65);
+      z-index: 5;
+    }
+
+    .orbit .planet:hover::after { opacity: 1; transform: translateY(0); }
+
+    .orbit.anim { animation: spin 18s linear infinite; }
+    @keyframes spin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg);} }
+
+    /* Scale orbits for key hubs (not physical AU; “map” style) */
+    .o-luna   { width: 120px; height: 120px; }
+    .o-terra  { width: 190px; height: 190px; animation-duration: 22s; }
+    .o-mars   { width: 270px; height: 270px; animation-duration: 34s; }
+    .o-europa { width: 340px; height: 340px; animation-duration: 46s; }
+    .o-titan  { width: 400px; height: 400px; animation-duration: 56s; }
+
+    /* Planet colors */
+    .p-luna   { background: radial-gradient(circle at 30% 30%, #ffffff, #b6c2d9 60%, #7e8aa8); width: 8px; height: 8px; }
+    .p-terra  { background: radial-gradient(circle at 30% 30%, #b9e6ff, #3b82f6 55%, #1d4ed8); width: 11px; height: 11px; }
+    .p-mars   { background: radial-gradient(circle at 30% 30%, #ffd6a5, #f97316 55%, #b45309); width: 10px; height: 10px; }
+    .p-europa { background: radial-gradient(circle at 30% 30%, #fff, #f1f5f9 60%, #a3b4cc); width: 9px; height: 9px; }
+    .p-titan  { background: radial-gradient(circle at 30% 30%, #ffe5a3, #f59e0b 55%, #92400e); width: 9px; height: 9px; }
+
+    /* Position planets on their orbit ring (offset from center) */
+    .o-luna  .planet { transform: translate(calc(-50% + 60px), -50%); }
+    .o-terra .planet { transform: translate(calc(-50% + 95px), -50%); }
+    .o-mars  .planet { transform: translate(calc(-50% + 135px), -50%); }
+    .o-europa .planet { transform: translate(calc(-50% + 170px), -50%); }
+    .o-titan .planet { transform: translate(calc(-50% + 200px), -50%); }
+
+    .orrery-legend {
+      margin-top: 0.85rem;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--muted);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .legend-items {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.25);
+      margin-right: 0.35rem;
+      vertical-align: -1px;
+    }
+
+    .small-note { color: var(--muted); opacity: 0.92; }
+
     footer.site-footer {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -351,6 +561,17 @@
       header { position: static; }
       .hero { grid-template-columns: minmax(0, 1fr); }
       .hero-card { order: -1; }
+      .orrery { height: 360px; }
+      .o-titan  { width: 360px; height: 360px; }
+      .o-europa { width: 310px; height: 310px; }
+      .o-mars   { width: 250px; height: 250px; }
+      .o-terra  { width: 180px; height: 180px; }
+      .o-luna   { width: 115px; height: 115px; }
+      .o-titan .planet { transform: translate(calc(-50% + 180px), -50%); }
+      .o-europa .planet { transform: translate(calc(-50% + 155px), -50%); }
+      .o-mars .planet { transform: translate(calc(-50% + 125px), -50%); }
+      .o-terra .planet { transform: translate(calc(-50% + 90px), -50%); }
+      .o-luna .planet { transform: translate(calc(-50% + 55px), -50%); }
     }
   </style>
 </head>
@@ -377,6 +598,7 @@
       <a href="religion.htm">Religion</a>
       <a href="science.htm">Science</a>
       <a href="about.htm">About</a>
+      <a href="solar.htm" class="active">Solar</a>
     </div>
   </nav>
 </header>
@@ -393,8 +615,8 @@
       </p>
 
       <div class="btn-row">
-        <!-- Planet "nav buttons" -->
-        <a href="terra.htm" class="btn btn-primary">Terra</a>
+        <a href="#map" class="btn btn-primary">Mini Solar System Map</a>
+        <a href="terra.htm" class="btn btn-ghost">Terra</a>
         <a href="luna.htm" class="btn btn-ghost">Luna</a>
         <a href="mars.htm" class="btn btn-ghost">Mars</a>
         <a href="titan.htm" class="btn btn-ghost">Titan</a>
@@ -411,6 +633,68 @@
         and along major transfer routes.
       </p>
     </aside>
+  </section>
+
+  <!-- NEW: Mini Solar System Map -->
+  <section id="map">
+    <h2>Mini Solar System Map</h2>
+    <p class="section-intro">
+      A lightweight, “Eyes-style” overview: tap a world to jump to its 3000 AD page.
+      (This is a stylised orrery — distances are not to scale.)
+    </p>
+
+    <div class="orrery-wrap">
+      <div class="orrery-top">
+        <div>
+          <h3>Sol Orrery · 3000 AD hubs</h3>
+          <p>
+            The Sun is the anchor. The highlighted worlds are your major narrative hubs: Terra, Luna,
+            Mars, Europa (Jovian system), and Titan (Saturnian system). Click any marker to explore.
+          </p>
+        </div>
+
+        <div class="orrery-controls">
+          <button id="toggleMotion" class="toggle-btn" type="button">Pause motion</button>
+          <a class="toggle-btn" href="future.htm" style="text-decoration:none;">Back to Future Hub</a>
+        </div>
+      </div>
+
+      <div class="orrery" aria-label="Interactive mini solar system map">
+        <div class="stars"></div>
+        <div class="center-dot" title="Sol (Sun)"></div>
+
+        <div class="orbit o-luna anim" data-orbit="luna">
+          <a class="planet p-luna" href="luna.htm" data-tip="Luna · Earth–space hinge"></a>
+        </div>
+
+        <div class="orbit o-terra anim" data-orbit="terra">
+          <a class="planet p-terra" href="terra.htm" data-tip="Terra · Earth in 3000 AD"></a>
+        </div>
+
+        <div class="orbit o-mars anim" data-orbit="mars">
+          <a class="planet p-mars" href="mars.htm" data-tip="Mars · canyon cities & domes"></a>
+        </div>
+
+        <div class="orbit o-europa anim" data-orbit="europa">
+          <a class="planet p-europa" href="europa.htm" data-tip="Europa · under-ice ocean labs"></a>
+        </div>
+
+        <div class="orbit o-titan anim" data-orbit="titan">
+          <a class="planet p-titan" href="titan.htm" data-tip="Titan · methane seas & airships"></a>
+        </div>
+      </div>
+
+      <div class="orrery-legend">
+        <div class="legend-items">
+          <span><span class="legend-dot p-terra"></span>Terra</span>
+          <span><span class="legend-dot p-luna"></span>Luna</span>
+          <span><span class="legend-dot p-mars"></span>Mars</span>
+          <span><span class="legend-dot p-europa"></span>Europa</span>
+          <span><span class="legend-dot p-titan"></span>Titan</span>
+        </div>
+        <div class="small-note">Tip: on mobile, tap a planet dot to open its page.</div>
+      </div>
+    </div>
   </section>
 
   <section id="architecture">
@@ -525,7 +809,7 @@
           <li><strong>Terra</strong> exports culture, governance frameworks, and high-end services.</li>
           <li><strong>Luna</strong> and orbital habitats provide shipbuilding, logistics, and manufacturing.</li>
           <li><strong>Mars</strong>, <strong>Titan</strong>, and selected asteroids supply specialised materials and industrial capacity.</li>
-          <li><strong>Europa</strong> and similar worlds contribute primarily scientific knowledge and prestige.</li>
+          <li><strong>Europa</strong> contributes primarily scientific knowledge and prestige.</li>
         </ul>
       </div>
     </div>
@@ -538,6 +822,24 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Pause/resume orbit motion
+  const btn = document.getElementById("toggleMotion");
+  let paused = false;
+
+  function setPaused(state) {
+    paused = state;
+    document.querySelectorAll(".orbit.anim").forEach(el => {
+      el.style.animationPlayState = paused ? "paused" : "running";
+    });
+    btn.textContent = paused ? "Resume motion" : "Pause motion";
+  }
+
+  btn.addEventListener("click", () => setPaused(!paused));
+
+  // Accessibility: if user prefers reduced motion, pause by default
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) setPaused(true);
 </script>
 
 </body>
