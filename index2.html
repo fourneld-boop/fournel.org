@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="fournel.org — Mapping humanity across deep time: futures, AI, civilizations, Earth and space scenarios." />
+  <title>fournel.org — Humanity in Deep Time</title>
+
+  <style>
+    :root{
+      --bg0:#070A11;
+      --bg1:#0B0E14;
+      --ink:#E6EAF0;
+      --muted:#A8B0C0;
+      --accent:#7AA2FF;
+      --accent2:#C3D5FF;
+      --glass: rgba(255,255,255,.06);
+      --glass2: rgba(255,255,255,.10);
+      --stroke: rgba(255,255,255,.12);
+      --stroke2: rgba(255,255,255,.18);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --r16: 16px;
+      --r24: 24px;
+      --max: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(122,162,255,.22), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(195,213,255,.12), transparent 55%),
+        radial-gradient(900px 900px at 60% 120%, rgba(122,162,255,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 40%, #070A11);
+      overflow-x:hidden;
+    }
+
+    /* subtle animated “sky” */
+    .sky{
+      position:fixed;
+      inset:-20vh -20vw;
+      pointer-events:none;
+      opacity:.55;
+      filter: blur(18px);
+      background:
+        radial-gradient(800px 400px at 30% 20%, rgba(122,162,255,.16), transparent 60%),
+        radial-gradient(700px 380px at 70% 30%, rgba(195,213,255,.10), transparent 58%),
+        radial-gradient(900px 500px at 55% 80%, rgba(122,162,255,.10), transparent 60%);
+      animation: drift 22s ease-in-out infinite alternate;
+      transform: translate3d(0,0,0);
+    }
+    @keyframes drift{
+      from{ transform: translate3d(-18px,-10px,0) scale(1.02); }
+      to{ transform: translate3d(22px,14px,0) scale(1.06); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .sky{ animation:none; }
+      .glow, .btn, .card{ transition:none !important; }
+    }
+
+    a{ color:inherit; }
+
+    .wrap{
+      width:min(var(--max), calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    /* top nav */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(7,10,17,.72), rgba(7,10,17,.38));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration:none;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .mark{
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent2), var(--accent));
+      box-shadow: 0 0 0 6px rgba(122,162,255,.10), 0 0 24px rgba(122,162,255,.25);
+    }
+    .brand span{
+      font-weight: 560;
+      opacity:.95;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap: 18px;
+      padding:0;
+      margin:0;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      text-decoration:none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    nav a:hover{
+      color: var(--ink);
+      border-color: rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* hero */
+    .hero{
+      padding: 64px 0 22px;
+      min-height: calc(100vh - 60px);
+      display:flex;
+      align-items:center;
+      position:relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .hero{ min-height:auto; padding: 44px 0 16px; }
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+
+    .kicker{
+      color: var(--muted);
+      font-size: 0.98rem;
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+      opacity:.9;
+    }
+    h1{
+      margin:0 0 14px;
+      font-weight: 520;
+      line-height: 1.06;
+      font-size: clamp(2.4rem, 5vw, 3.9rem);
+      max-width: 16ch;
+    }
+    .lead{
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.55;
+      max-width: 54ch;
+    }
+
+    .cta{
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin: 0 0 26px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration:none;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--ink);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.20);
+    }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(122,162,255,.95), rgba(122,162,255,.70));
+      border-color: rgba(122,162,255,.35);
+      color: #0B0E14;
+    }
+    .btn.primary:hover{
+      background: linear-gradient(180deg, rgba(195,213,255,.92), rgba(122,162,255,.78));
+      border-color: rgba(195,213,255,.40);
+    }
+    .btn .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity:.8;
+    }
+
+    /* hero side panel */
+    .panel{
+      border-radius: var(--r24);
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding: 18px 18px 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .panel:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(600px 200px at 30% 0%, rgba(122,162,255,.18), transparent 55%),
+        radial-gradient(420px 240px at 90% 40%, rgba(195,213,255,.10), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .panel > *{ position:relative; }
+    .panel h2{
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+      font-weight: 560;
+      letter-spacing:.2px;
+    }
+    .panel p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: .98rem;
+    }
+    .mini-links{
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .mini-links a{
+      text-decoration:none;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.08);
+      color: var(--ink);
+    }
+    .mini-links a:hover{
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+    }
+    .mini-links small{
+      color: var(--muted);
+      display:block;
+      margin-top: 2px;
+      font-size: .86rem;
+    }
+
+    /* sections */
+    section{
+      padding: 22px 0 56px;
+    }
+    .section-title{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 14px;
+      margin: 0 0 16px;
+    }
+    .section-title h3{
+      margin:0;
+      font-size: 1.1rem;
+      font-weight: 560;
+      letter-spacing:.2px;
+    }
+    .section-title span{
+      color: var(--muted);
+      font-size:.94rem;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 980px){
+      .cards{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      text-decoration:none;
+      border-radius: var(--r16);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      padding: 16px 16px 14px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+    }
+    .card .icon{
+      font-size: 1.25rem;
+      line-height:1;
+      margin-bottom: 10px;
+      opacity:.95;
+    }
+    .card h4{
+      margin:0 0 6px;
+      font-size: 1.06rem;
+      font-weight: 560;
+    }
+    .card p{
+      margin:0 0 12px;
+      color: var(--muted);
+      line-height:1.5;
+      font-size: .95rem;
+    }
+    .card .go{
+      color: var(--accent2);
+      font-size: .92rem;
+      letter-spacing:.02em;
+    }
+
+    /* long view ribbon */
+    .ribbon{
+      border-radius: var(--r24);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+      overflow:hidden;
+      position:relative;
+    }
+    .ribbon-head{
+      padding: 16px 16px 0;
+    }
+    .ribbon-head h3{
+      margin:0 0 6px;
+      font-size: 1.18rem;
+      font-weight: 560;
+    }
+    .ribbon-head p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 72ch;
+    }
+    .track{
+      display:flex;
+      gap: 10px;
+      overflow-x:auto;
+      padding: 10px 16px 16px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .track::-webkit-scrollbar{ height: 10px; }
+    .track::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.14); border-radius: 999px; }
+    .era{
+      min-width: 260px;
+      scroll-snap-align: start;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      padding: 14px 14px 12px;
+    }
+    .era strong{
+      display:block;
+      margin-bottom:6px;
+      font-size: 1.02rem;
+      font-weight: 650;
+      color: var(--accent2);
+    }
+    .era span{
+      color: var(--muted);
+      line-height:1.45;
+      display:block;
+      font-size:.93rem;
+    }
+
+    /* footer */
+    footer{
+      padding: 26px 0 40px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color: var(--muted);
+    }
+    .foot{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap:wrap;
+    }
+    .foot a{
+      color: var(--muted);
+      text-decoration:none;
+      border-bottom: 1px solid transparent;
+    }
+    .foot a:hover{
+      color: var(--ink);
+      border-bottom-color: rgba(255,255,255,.18);
+    }
+
+    /* subtle “AI ready” badge */
+    .ai-badge{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: .9rem;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration:none;
+    }
+    .ai-badge:hover{
+      border-color: rgba(255,255,255,.22);
+      color: var(--ink);
+      background: rgba(255,255,255,.06);
+    }
+    .pulse{
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent2), var(--accent));
+      box-shadow: 0 0 0 6px rgba(122,162,255,.10);
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{ box-shadow: 0 0 0 6px rgba(122,162,255,.10); }
+      50%{ box-shadow: 0 0 0 10px rgba(122,162,255,.06); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .pulse{ animation:none; }
+    }
+
+    /* small helper */
+    .muted{ color: var(--muted); }
+  </style>
+</head>
+
+<body>
+  <div class="sky" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index2.html" aria-label="fournel.org home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>fournel.org</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="future.htm">Future</a></li>
+          <li><a href="ai.htm">AI</a></li>
+          <li><a href="terra.htm">Earth</a></li>
+          <li><a href="solar.htm">Space</a></li>
+          <li><a href="index.html">Classic</a></li>
+          <li><a href="about.htm">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="kicker">Deep time • futures • civilizations</p>
+          <h1>Humanity doesn’t end at borders or decades.</h1>
+          <p class="lead">
+            fournel.org maps the long future — from near-term transitions to planetary governance and beyond.
+            Scenarios, timelines, and speculative realism built for clarity, not hype.
+          </p>
+
+          <div class="cta">
+            <a class="btn primary" href="future.htm"><span class="dot" aria-hidden="true"></span>Explore Timelines</a>
+            <a class="btn" href="ai.htm"><span class="dot" aria-hidden="true"></span>AI Futures</a>
+            <a class="btn" href="#modules"><span class="dot" aria-hidden="true"></span>Start Here</a>
+          </div>
+
+          <p class="muted" style="margin:0;">
+            Calm, future-forward design. Minimal motion. Built to age slowly.
+          </p>
+        </div>
+
+        <aside class="panel" aria-label="Featured scenario">
+          <h2>Featured Scenario</h2>
+          <p>
+            <strong style="font-weight:650;color:var(--ink);">🌐 The World Federation (2145)</strong><br/>
+            A realistic pathway from fractured geopolitics to durable planetary governance —
+            informed by history, demography, and technology.
+          </p>
+
+          <div class="mini-links">
+            <a href="future.htm">
+              Read scenarios
+              <small>Near-future timelines & long-range governance arcs</small>
+            </a>
+            <a href="ai.htm">
+              AI evolution
+              <small>Tools → partners → civilization-scale systems</small>
+            </a>
+            <a href="solar.htm">
+              Solar system futures
+              <small>Human expansion, infrastructure, and deep time</small>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MODULES -->
+    <section id="modules">
+      <div class="wrap">
+        <div class="section-title">
+          <h3>Core modules</h3>
+          <span>Start with the big arcs, then go deeper.</span>
+        </div>
+
+        <div class="cards">
+          <a class="card" href="future.htm">
+            <div class="icon" aria-hidden="true">🧭</div>
+            <h4>Future Timelines</h4>
+            <p>Near-future transitions, long-run scenarios, and structured forecasts across decades and centuries.</p>
+            <div class="go">Explore →</div>
+          </a>
+
+          <a class="card" href="ai.htm">
+            <div class="icon" aria-hidden="true">🤖</div>
+            <h4>Artificial Intelligence</h4>
+            <p>From automation to agency. Milestones, risks, and governance patterns across the 21st–23rd centuries.</p>
+            <div class="go">View timeline →</div>
+          </a>
+
+          <a class="card" href="terra.htm">
+            <div class="icon" aria-hidden="true">🌍</div>
+            <h4>Earth Futures</h4>
+            <p>Climate, infrastructure, population, and institutional adaptation — grounded scenarios without the noise.</p>
+            <div class="go">Explore →</div>
+          </a>
+
+          <a class="card" href="solar.htm">
+            <div class="icon" aria-hidden="true">🪐</div>
+            <h4>Solar System</h4>
+            <p>Industrial scale-up, habitats, propulsion ceilings, and long-range expansion beyond Earth.</p>
+            <div class="go">Explore →</div>
+          </a>
+
+          <a class="card" href="future.htm#near-future">
+            <div class="icon" aria-hidden="true">📍</div>
+            <h4>Near-Future Scenarios</h4>
+            <p>2025–2050: competition, fragmentation, consolidation, and the first stable “new normal.”</p>
+            <div class="go">Jump in →</div>
+          </a>
+
+          <a class="card" href="index.html">
+            <div class="icon" aria-hidden="true">🗂️</div>
+            <h4>Classic Archive</h4>
+            <p>Prefer the original style? The classic homepage remains available and unchanged.</p>
+            <div class="go">Open →</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LONG VIEW -->
+    <section>
+      <div class="wrap">
+        <div class="ribbon">
+          <div class="ribbon-head">
+            <h3>The long view</h3>
+            <p>
+              Most futures fail because they stop at 2050.
+              fournel.org explores history forward — <strong>centuries</strong>, not quarters.
+              Scroll the ribbon to see the era structure.
+            </p>
+          </div>
+
+          <div class="track" aria-label="Era ribbon">
+            <div class="era">
+              <strong>2025–2050 • Transition</strong>
+              <span>AI acceleration, political strain, climate adaptation, infrastructure reshaping, new security blocs.</span>
+            </div>
+            <div class="era">
+              <strong>2050–2100 • Consolidation</strong>
+              <span>Regional unions mature, governance experiments harden, automation shifts labor and legitimacy.</span>
+            </div>
+            <div class="era">
+              <strong>2100–2200 • Planetary governance</strong>
+              <span>Coordination becomes existential: climate, migration, AI safety, and inter-bloc stability frameworks.</span>
+            </div>
+            <div class="era">
+              <strong>2200+ • Deep time</strong>
+              <span>Civilization-scale projects, off-world industry, and new institutions shaped by scale and distance.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap foot">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+            <span class="mark" aria-hidden="true"></span>
+            <strong style="color:var(--ink);">fournel.org</strong>
+          </div>
+          <div>Mapping humanity across deep time.</div>
+          <div style="margin-top:8px;">© 2025–∞</div>
+        </div>
+
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="future.htm">Future</a>
+          <a href="ai.htm">AI</a>
+          <a href="terra.htm">Earth</a>
+          <a href="solar.htm">Space</a>
+          <a href="index.html">Classic</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Subtle “AI Ready” badge (links to AI page by default) -->
+  <a class="ai-badge" href="ai.htm" aria-label="AI context ready">
+    <span class="pulse" aria-hidden="true"></span>
+    <span>AI Context Ready</span>
+  </a>
+</body>
+</html>
