@@ -252,6 +252,87 @@
       display:none !important;
     }
 
+    /* --- Migration map --- */
+    .map-wrap{
+      margin-top:.75rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      overflow:hidden;
+    }
+    .map-top{
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      align-items:baseline;
+      padding:.75rem .9rem;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .map-top .meta{color:var(--muted);font-size:.88rem}
+    .map-legend{
+      display:flex;flex-wrap:wrap;gap:.55rem;
+      padding:.75rem .9rem;
+      color:var(--muted);
+      font-size:.88rem;
+    }
+    .legend-dot{
+      width:10px;height:10px;border-radius:50%;
+      display:inline-block;margin-right:.35rem;
+      box-shadow:0 0 14px rgba(143,211,255,0.40);
+      vertical-align:middle;
+    }
+    .legend-fr{background: rgba(255,210,122,0.95);}
+    .legend-ca{background: rgba(143,211,255,0.95);}
+    .legend-route{background: rgba(168,85,255,0.95);}
+
+    .map-svg{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .pulse{
+      animation: pulse 2.6s ease-in-out infinite;
+      transform-origin:center;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1); opacity:0.95}
+      50%{transform:scale(1.18); opacity:0.55}
+    }
+
+    .route{
+      stroke: rgba(168,85,255,0.85);
+      stroke-width: 3.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 10 10;
+      animation: dash 9s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(168,85,255,0.35));
+    }
+    @keyframes dash{
+      from{stroke-dashoffset: 0;}
+      to{stroke-dashoffset: -200;}
+    }
+
+    .route-glow{
+      stroke: rgba(143,211,255,0.18);
+      stroke-width: 9;
+      fill:none;
+      stroke-linecap:round;
+      filter: blur(0.5px);
+    }
+
+    .label{
+      font-size: 14px;
+      fill: rgba(232,236,255,0.92);
+      font-weight: 650;
+      letter-spacing: .02em;
+    }
+    .subLabel{
+      font-size: 12px;
+      fill: rgba(170,178,230,0.92);
+    }
+
     footer{
       text-align:center;
       padding: 1.5rem 1rem;
@@ -315,6 +396,112 @@
       Tip: you can type any surname (or place) and the page will narrow to matching sections.
       Cliquez un filtre rapide pour isoler une branche.
     </div>
+  </section>
+
+  <!-- NEW: France → Canada migration map -->
+  <section class="section card" data-block>
+    <h2>Migration : France → Canada</h2>
+    <p class="gene-line">
+      Une visualisation simple (et stylisée) de la traversée Atlantique associée aux premières générations.
+      <span style="color:var(--muted)">(Carte illustrative — pas une carte géographique précise.)</span>
+    </p>
+
+    <div class="map-wrap" aria-label="France to Canada migration map">
+      <div class="map-top">
+        <div class="meta"><strong>Route</strong> · Rouen / Normandie → Québec (Nouvelle-France)</div>
+        <div class="meta">XVIIᵉ siècle</div>
+      </div>
+
+      <!-- Inline SVG: simple ocean panel + two landmasses + animated arc -->
+      <svg class="map-svg" viewBox="0 0 1000 460" role="img" aria-label="France to Canada migration route (illustrative)">
+        <!-- background -->
+        <defs>
+          <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="rgba(143,211,255,0.12)"/>
+            <stop offset="1" stop-color="rgba(0,0,0,0.22)"/>
+          </linearGradient>
+          <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="rgba(255,255,255,0.10)"/>
+            <stop offset="1" stop-color="rgba(255,255,255,0.04)"/>
+          </linearGradient>
+          <filter id="softGlow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <rect x="0" y="0" width="1000" height="460" fill="url(#ocean)"/>
+
+        <!-- subtle stars -->
+        <g opacity="0.35">
+          <circle cx="90" cy="65" r="2" fill="rgba(232,236,255,0.9)"/>
+          <circle cx="160" cy="110" r="1.5" fill="rgba(232,236,255,0.7)"/>
+          <circle cx="310" cy="70" r="1.4" fill="rgba(232,236,255,0.7)"/>
+          <circle cx="760" cy="75" r="1.7" fill="rgba(232,236,255,0.75)"/>
+          <circle cx="870" cy="130" r="1.4" fill="rgba(232,236,255,0.65)"/>
+          <circle cx="640" cy="55" r="1.4" fill="rgba(232,236,255,0.65)"/>
+        </g>
+
+        <!-- landmass: Europe (stylized) -->
+        <path d="M730,170
+                 C780,120 880,120 910,165
+                 C940,205 925,250 890,275
+                 C860,298 820,300 790,285
+                 C760,270 725,235 730,170 Z"
+              fill="url(#land)" stroke="rgba(255,255,255,0.10)" />
+
+        <!-- landmass: North America (stylized) -->
+        <path d="M70,170
+                 C120,120 210,110 270,140
+                 C330,170 350,220 330,270
+                 C310,320 250,345 200,335
+                 C150,325 100,290 78,240
+                 C60,205 55,195 70,170 Z"
+              fill="url(#land)" stroke="rgba(255,255,255,0.10)" />
+
+        <!-- Route glow + route -->
+        <path class="route-glow" d="M840,220 C690,90 430,80 240,220" />
+        <path class="route" d="M840,220 C690,90 430,80 240,220" />
+
+        <!-- Start marker: France -->
+        <g filter="url(#softGlow)">
+          <circle cx="840" cy="220" r="9" fill="rgba(255,210,122,0.95)"/>
+          <circle class="pulse" cx="840" cy="220" r="16" fill="rgba(255,210,122,0.18)"/>
+        </g>
+        <text x="855" y="210" class="label">France</text>
+        <text x="855" y="230" class="subLabel">Rouen / Normandie</text>
+
+        <!-- End marker: Canada -->
+        <g filter="url(#softGlow)">
+          <circle cx="240" cy="220" r="9" fill="rgba(143,211,255,0.95)"/>
+          <circle class="pulse" cx="240" cy="220" r="16" fill="rgba(143,211,255,0.18)"/>
+        </g>
+        <text x="95" y="210" class="label">Canada</text>
+        <text x="95" y="230" class="subLabel">Québec / Nouvelle-France</text>
+
+        <!-- small ship icon (simple) -->
+        <g transform="translate(520 150)" opacity="0.85" filter="url(#softGlow)">
+          <path d="M0,60 L45,60 L36,75 L9,75 Z" fill="rgba(232,236,255,0.35)" stroke="rgba(232,236,255,0.25)"/>
+          <path d="M22,10 L22,60" stroke="rgba(232,236,255,0.45)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M22,16 C10,24 10,44 22,52 C34,44 34,24 22,16 Z"
+                fill="rgba(168,85,255,0.14)" stroke="rgba(168,85,255,0.30)"/>
+        </g>
+      </svg>
+
+      <div class="map-legend" aria-label="Legend">
+        <div><span class="legend-dot legend-fr"></span>Point de départ (France)</div>
+        <div><span class="legend-dot legend-ca"></span>Point d’arrivée (Canada)</div>
+        <div><span class="legend-dot legend-route"></span>Route transatlantique</div>
+      </div>
+    </div>
+
+    <p class="note">
+      Vous pouvez ajuster les libellés (ex. ajouter “Lozère / Fournels” comme origine du nom, ou Québec/Terrebonne comme points d’établissement)
+      sans changer le style.
+    </p>
   </section>
 
   <!-- =========================
