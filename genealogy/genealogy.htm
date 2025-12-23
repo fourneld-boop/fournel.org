@@ -1,298 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Fournel Genealogy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Généalogie de la famille Fournel en France et au Canada depuis le XVIIe siècle.">
-  <style>
-    :root{
-      --bg:#0a0f1f; --text:#e8ecff; --muted:#aab2e6; --accent:#8fd3ff; --accent2:#a855ff; --warn:#ffd27a;
-      --card:rgba(255,255,255,0.06); --border:rgba(255,255,255,0.11); --shadow:0 18px 55px rgba(0,0,0,.55);
-      --radius:14px; --max:1100px;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
-    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(18px);background:rgba(10,15,31,0.92);border-bottom:1px solid rgba(255,255,255,0.08)}
-    nav{max-width:var(--max);margin:0 auto;padding:.85rem 1.25rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
-    nav strong{letter-spacing:.02em;display:flex;align-items:baseline;gap:.65rem}
-    nav strong span{color:var(--muted);font-weight:500;font-size:.85rem}
-    .nav-links{display:flex;gap:.55rem;flex-wrap:wrap;align-items:center;font-size:.9rem}
-    .nav-links a{color:var(--muted);padding:.25rem .7rem;border-radius:999px;border:1px solid transparent;transition:.18s}
-    .nav-links a:hover{color:var(--text);border-color:rgba(143,211,255,0.18);background:rgba(255,255,255,0.04);text-decoration:none;transform:translateY(-1px)}
-    .nav-links a.active{color:var(--text);border-color:rgba(143,211,255,0.22);background:rgba(255,255,255,0.06)}
-
-    main{max-width:980px;margin:0 auto;padding:2.2rem 1.25rem 4rem}
-    h1{text-align:center;font-size:clamp(2.0rem,2.2vw + 1.1rem,2.6rem);margin:0 0 .35rem}
-    .subtitle{text-align:center;color:var(--muted);margin:0 0 1.25rem;font-style:italic}
-
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.15rem 1.15rem 1.0rem;box-shadow:var(--shadow);position:relative;overflow:hidden;margin:1rem 0}
-    .card::before{content:"";position:absolute;inset:0;background:
-      radial-gradient(circle at 10% 15%, rgba(143,211,255,.12), transparent 45%),
-      radial-gradient(circle at 90% 80%, rgba(168,85,255,.10), transparent 48%);
-      pointer-events:none;
-    }
-    .card > *{position:relative}
-    .card h2{margin:.2rem 0 .6rem;color:var(--warn)}
-
-    .controls{margin:1.2rem 0;border-radius:var(--radius);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);box-shadow:var(--shadow);padding:.9rem .95rem}
-    .search-row{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
-    .search{display:flex;align-items:center;gap:.55rem;padding:.45rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(0,0,0,0.18);flex:1 1 340px;min-width:260px}
-    .search input{width:100%;background:transparent;border:none;outline:none;color:var(--text);font-size:.95rem}
-    .search input::placeholder{color:rgba(170,178,230,0.85)}
-    .btn{cursor:pointer;border:none;border-radius:999px;padding:.45rem .8rem;background:rgba(143,211,255,0.12);color:var(--text);border:1px solid rgba(143,211,255,0.25);transition:.18s;font-size:.9rem}
-    .btn:hover{transform:translateY(-1px);background:rgba(143,211,255,0.18);border-color:rgba(143,211,255,0.40)}
-    .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.75rem}
-    .chip{cursor:pointer;user-select:none;padding:.28rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(0,0,0,0.14);color:var(--muted);font-size:.86rem;transition:.16s}
-    .chip:hover{transform:translateY(-1px);border-color:rgba(143,211,255,0.28);color:var(--text)}
-    .chip.active{color:var(--text);border-color:rgba(143,211,255,0.50);background:rgba(143,211,255,0.10)}
-    .hint{margin-top:.75rem;color:rgba(170,178,230,0.92);font-size:.9rem;line-height:1.55}
-    .match-count{margin-top:.6rem;color:rgba(170,178,230,0.92);font-size:.9rem}
-
-    /* Migration map */
-    .map-wrap{margin-top:.75rem;border-radius:16px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.18);overflow:hidden}
-    .map-top{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;padding:.75rem .9rem;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)}
-    .map-top .meta{color:var(--muted);font-size:.88rem}
-    .map-legend{display:flex;flex-wrap:wrap;gap:.55rem;padding:.75rem .9rem;color:var(--muted);font-size:.88rem}
-    .legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:.35rem;box-shadow:0 0 14px rgba(143,211,255,0.40);vertical-align:middle}
-    .legend-fr{background:rgba(255,210,122,0.95)} .legend-ca{background:rgba(143,211,255,0.95)} .legend-route{background:rgba(168,85,255,0.95)}
-    .map-svg{width:100%;height:auto;display:block}
-    .pulse{animation:pulse 2.6s ease-in-out infinite;transform-origin:center}
-    @keyframes pulse{0%,100%{transform:scale(1);opacity:.95}50%{transform:scale(1.18);opacity:.55}}
-    .route{stroke:rgba(168,85,255,0.85);stroke-width:3.2;fill:none;stroke-linecap:round;stroke-dasharray:10 10;animation:dash 9s linear infinite;filter:drop-shadow(0 0 10px rgba(168,85,255,0.35))}
-    @keyframes dash{from{stroke-dashoffset:0}to{stroke-dashoffset:-200}}
-    .route-glow{stroke:rgba(143,211,255,0.18);stroke-width:9;fill:none;stroke-linecap:round;filter:blur(.5px)}
-    .label{font-size:14px;fill:rgba(232,236,255,0.92);font-weight:650;letter-spacing:.02em}
-    .subLabel{font-size:12px;fill:rgba(170,178,230,0.92)}
-
-    /* Legacy containment (keep your original data intact) */
-    .legacy-wrap{padding:.35rem .15rem}
-    .legacy-wrap :where(p, li, td, th, div){color:var(--text) !important}
-    .legacy-wrap :where(font){color:inherit;font-family:inherit}
-    .legacy-wrap :where(table){max-width:100%}
-    .legacy-wrap img{max-width:100%;height:auto}
-    .legacy-wrap [data-hit="0"]{display:none !important}
-    mark.hl{background:rgba(255,210,122,0.22);color:var(--text);padding:0 .2em;border-radius:.3em}
-
-    footer{text-align:center;padding:1.5rem 1rem;font-size:.85rem;color:var(--muted);border-top:1px solid rgba(255,255,255,0.08);background:rgba(10,15,31,0.65)}
-  </style>
-</head>
-
-<body>
-<header>
-  <nav>
-    <strong>fournel.org <span>Généalogie / Genealogy</span></strong>
-    <div class="nav-links">
-      <a href="../index.html">Home</a>
-      <a href="../history.htm">History</a>
-      <a href="../tech.htm">Technology</a>
-      <a href="../future.htm">Future</a>
-      <a href="../religion.htm">Religion</a>
-      <a href="../science.htm">Science</a>
-      <a href="../about.htm">About</a>
-      <a class="active" href="genealogy.htm">Genealogy</a>
-    </div>
-  </nav>
-</header>
-
-<main>
-  <h1>La Généalogie des Fournel</h1>
-  <p class="subtitle">France → Canada · page modernisée (données originales conservées)</p>
-
-  <section class="controls" aria-label="Search and filter by surname">
-    <div class="search-row">
-      <div class="search" role="search" aria-label="Surname search">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="rgba(232,236,255,0.9)" stroke-width="1.6"/>
-          <path d="M16.5 16.5 21 21" stroke="rgba(232,236,255,0.9)" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
-        <input id="q" type="search" placeholder="Search / Rechercher (ex: Fournel, Prévost, Hubinet, Barbel, Rouen, Québec)"/>
-      </div>
-      <button class="btn" id="clearBtn" type="button">Clear</button>
-      <button class="btn" id="showAllBtn" type="button">Show all</button>
-    </div>
-
-    <div class="chips" id="chips" aria-label="Quick surname filters">
-      <span class="chip active" data-chip="__all__">All</span>
-      <span class="chip" data-chip="Fournel">Fournel</span>
-      <span class="chip" data-chip="Fourneaux">Fourneaux</span>
-      <span class="chip" data-chip="Prevost">Prévost</span>
-      <span class="chip" data-chip="Hubinet">Hubinet</span>
-      <span class="chip" data-chip="Barbel">Barbel</span>
-      <span class="chip" data-chip="Quebec">Québec</span>
-      <span class="chip" data-chip="Terrebonne">Terrebonne</span>
-      <span class="chip" data-chip="Rouen">Rouen</span>
-    </div>
-
-    <div class="hint">
-      This filters the <em>original</em> page content below without deleting anything.
-      (Ça masque/affiche des lignes — aucune donnée n’est supprimée.)
-    </div>
-    <div class="match-count" id="matchCount"></div>
-  </section>
-
-  <section class="card" aria-label="France to Canada migration map">
-    <h2>Migration : France → Canada</h2>
-    <p style="margin-top:.2rem;color:var(--muted);">
-      Carte illustrative stylisée (non géographique). Labels principaux: Rouen / Normandie → Québec / Nouvelle-France.
-    </p>
-
-    <div class="map-wrap">
-      <div class="map-top">
-        <div class="meta"><strong>Route</strong> · Rouen / Normandie → Québec (Nouvelle-France)</div>
-        <div class="meta">XVIIᵉ siècle</div>
-      </div>
-
-      <svg class="map-svg" viewBox="0 0 1000 460" role="img" aria-label="France to Canada migration route (illustrative)">
-        <defs>
-          <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="rgba(143,211,255,0.12)"/>
-            <stop offset="1" stop-color="rgba(0,0,0,0.22)"/>
-          </linearGradient>
-          <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="rgba(255,255,255,0.10)"/>
-            <stop offset="1" stop-color="rgba(255,255,255,0.04)"/>
-          </linearGradient>
-          <filter id="softGlow">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feMerge>
-              <feMergeNode in="blur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-
-        <rect x="0" y="0" width="1000" height="460" fill="url(#ocean)"/>
-
-        <g opacity="0.35">
-          <circle cx="90" cy="65" r="2" fill="rgba(232,236,255,0.9)"/>
-          <circle cx="160" cy="110" r="1.5" fill="rgba(232,236,255,0.7)"/>
-          <circle cx="310" cy="70" r="1.4" fill="rgba(232,236,255,0.7)"/>
-          <circle cx="760" cy="75" r="1.7" fill="rgba(232,236,255,0.75)"/>
-          <circle cx="870" cy="130" r="1.4" fill="rgba(232,236,255,0.65)"/>
-          <circle cx="640" cy="55" r="1.4" fill="rgba(232,236,255,0.65)"/>
-        </g>
-
-        <path d="M730,170 C780,120 880,120 910,165 C940,205 925,250 890,275 C860,298 820,300 790,285 C760,270 725,235 730,170 Z"
-              fill="url(#land)" stroke="rgba(255,255,255,0.10)" />
-        <path d="M70,170 C120,120 210,110 270,140 C330,170 350,220 330,270 C310,320 250,345 200,335 C150,325 100,290 78,240 C60,205 55,195 70,170 Z"
-              fill="url(#land)" stroke="rgba(255,255,255,0.10)" />
-
-        <path class="route-glow" d="M840,220 C690,90 430,80 240,220" />
-        <path class="route" d="M840,220 C690,90 430,80 240,220" />
-
-        <g filter="url(#softGlow)">
-          <circle cx="840" cy="220" r="9" fill="rgba(255,210,122,0.95)"/>
-          <circle class="pulse" cx="840" cy="220" r="16" fill="rgba(255,210,122,0.18)"/>
-        </g>
-        <text x="855" y="210" class="label">France</text>
-        <text x="855" y="230" class="subLabel">Rouen / Normandie</text>
-
-        <g filter="url(#softGlow)">
-          <circle cx="240" cy="220" r="9" fill="rgba(143,211,255,0.95)"/>
-          <circle class="pulse" cx="240" cy="220" r="16" fill="rgba(143,211,255,0.18)"/>
-        </g>
-        <text x="95" y="210" class="label">Canada</text>
-        <text x="95" y="230" class="subLabel">Québec / Nouvelle-France</text>
-
-        <g transform="translate(520 150)" opacity="0.85" filter="url(#softGlow)">
-          <path d="M0,60 L45,60 L36,75 L9,75 Z" fill="rgba(232,236,255,0.35)" stroke="rgba(232,236,255,0.25)"/>
-          <path d="M22,10 L22,60" stroke="rgba(232,236,255,0.45)" stroke-width="3" stroke-linecap="round"/>
-          <path d="M22,16 C10,24 10,44 22,52 C34,44 34,24 22,16 Z"
-                fill="rgba(168,85,255,0.14)" stroke="rgba(168,85,255,0.30)"/>
-        </g>
-      </svg>
-
-      <div class="map-legend">
-        <div><span class="legend-dot legend-fr"></span>Point de départ (France)</div>
-        <div><span class="legend-dot legend-ca"></span>Point d’arrivée (Canada)</div>
-        <div><span class="legend-dot legend-route"></span>Route transatlantique</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Données originales (inchangées)</h2>
-    <div id="legacy" class="legacy-wrap">
-      <!-- BEGIN: ORIGINAL LEGACY CONTENT (kept intact) -->
-      <!--
-      NOTE: Your full original data is preserved below. The search/filter only hides lines visually.
-      -->
-      
-<p align="left"><!--webbot bot="HTMLMarkup" startspan --><embed 
-src=badleroybrown.mid width=0 height=0 LOOP="5" AUTOSTART="TRUE"> <!--webbot
-bot="HTMLMarkup" endspan --><img height="200" 
-src="images/flow10.gif" width=718></p>
-<ul type="square">
-  <li>
-  <p align="center"><font size="6"><b><i>La </i></b></font><font color="#ff0000" 
-  size=6><b><i>Généalogie</i></b></font><font size="6"><b><i> Des 
-  </i></b></font><font face="Frankenstein" color="#ff0000" 
-  size=6><b><i>Fournels</i></b></font><font color="#ff0000" size="6"><b><i> 
-  </i></b></font><font size="6"><b><i>En Canada</i></b></font></p>
-  <li>
-  <p align="center"><img height="137" src="images/banner2.gif" 
-  width=322></p></li></ul>
-<p align="center"><font size="6"><b><i><img height="350" 
-src="images/indback2.gif" width=511></i></b></font></p>
-<ul type="square">
-  <li> 
-  <li>
-  <p align="center"><font size="5"><b><i>1620</i></b></font><font face="Wingdings" 
-  size=5><b><i>è</i></b></font><font size="5"><b><i> 2000 -{</i></b><b><i><u> 380 
-  ans.</u></i></b><b><i> }</i></b> </font><font color="#0000ff" size="2"><b><i><u>By 
-  : Edd 4-Nel-1997</u></i></b></font></p>
-  <li>
-  <p align="center"><font face="Arial"><strong><i>"Trust no one not even us.....but 
-  keep the faith!"</i></strong></font></p>
-  <li>
-  <p align="center"><em><strong>Falaise de Jean-Louis Fournel "La liberté ou la 
-  mort"</strong></em></p>
-  <li>
-  <p align="center">&nbsp;</p>
-  <li>
-  <p align="center">Â, Ê, Î, Ô, Û, Ã, Ñ,Õ, Ø, À, È, Ì, Ò, Ù, 
-  Á, É,Í, Ó, Ú, Ý, Ä, Ë, Ï, Ö, Ü, Ç &#338;</p></li></ul>
-<p align="right">&nbsp;</p>
-<p align="center">&nbsp;</p>
-<p align="center">&nbsp;</p>
-<p align="center"><img height="94" alt="Knight Left" src="images/left.gif" width="138" ><img height="94" alt="Knight Right" src="images/right.gif" width="138" ></p>
-<p align="center"><img height="41" src="images/puma.gif" width="85" ></p>
-<p align="center"><font color="#ff0000" size="5"><b><u>FOURNEL</u></b></font><font size="5">: 
-Fourneaux.Fourneau,<u>Fornel</u>,</font></p>
-<p><font size="5">Fornal,Fornale,Fornalski,Fornalik,Forli,FornaFe,</font></p>
-<p><font size="5">DuFournel,Fornell,Fornelius,Fornelos,Fornella,Fornelli,</font></p>
-<p><font size="5"><u>Fournelle</u>,Fournial, Fornola,Fernil,Furnal,</font></p>
-<p><font face="Frankenstein" color="#ff0000" size="5"><b>Fournels</b></font><font size="5">: <b><u>ville 
-avec un Chateau-Fournels en Lozere sud France 1500&#8217;s.</u></b></font></p>
-<p><font size="5">Fernel,Fernille,<u>Fornet,</u>Fornette, </font></p>
-<p><font size="5">Furnius (</font><font 
-color=#ff0000 size=5>esp. C.,or G.,iaus Furnius,50 
-b.c.</font><font size="5">),</font></p>
-<p><font size="5">Forneli: ville n/w 
-Sicily,de © [Le Grande 17&#353; Atlas De L&#8217;anc.Regime]. </font></p>
-<p><font size="5"><b>Fournel</b>: [Qui;Qui a un <b><u>fournil</u></b> ou <b><u>le-four-banal</u></b>] de © [Heritage du Monde].</font></p>
-<p><font size="5">[ 
-Furnius,Forneli,Fornerius,Furneaux or De Furnellis</font><font size="4">,</font></p>
-<p><font size="5">Fournil,Fornel,Fournel,Fournelle ]</font></p>
-<p><font face="Courier New" color="#ff0000"><b>[Henry DE FURNEAUX,OR DE FURNELLIS 
-(Sheriff of Dover) BIRTH: ABT.?1181, DEATH: ABT.?1220, after 
-1220].</b></font></p>
-
-<!-- (Your legacy page continues here exactly as it was; kept intact) -->
-
-    </div>
-  </section>
-</main>
-
-<footer>
-  © <span id="year"></span> fournel.org · Genealogy Archive
-</footer>
-
 <script>
+  /* -----------------------------
+     Footer year
+  ------------------------------ */
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  /* -----------------------------
+     Search / filter logic
+  ------------------------------ */
   const legacy = document.getElementById("legacy");
   const q = document.getElementById("q");
   const chipsWrap = document.getElementById("chips");
@@ -300,7 +14,6 @@ Furnius,Forneli,Fornerius,Furneaux or De Furnellis</font><font size="4">,</font>
   const showAllBtn = document.getElementById("showAllBtn");
   const matchCount = document.getElementById("matchCount");
 
-  // Filter targets: block-ish elements
   const targets = Array.from(legacy.querySelectorAll("p, li, tr"));
 
   function normalize(str){
@@ -311,13 +24,14 @@ Furnius,Forneli,Fornerius,Furneaux or De Furnellis</font><font size="4">,</font>
   }
 
   function setActiveChip(value){
-    chipsWrap.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c.dataset.chip === value));
+    chipsWrap.querySelectorAll(".chip").forEach(c =>
+      c.classList.toggle("active", c.dataset.chip === value)
+    );
   }
 
   function clearHighlights(){
     legacy.querySelectorAll("mark.hl").forEach(m => {
-      const t = document.createTextNode(m.textContent);
-      m.replaceWith(t);
+      m.replaceWith(document.createTextNode(m.textContent));
     });
     legacy.normalize();
   }
@@ -340,10 +54,10 @@ Furnius,Forneli,Fornerius,Furneaux or De Furnellis</font><font size="4">,</font>
       }
     });
 
-    const toProcess = [];
-    while(walker.nextNode()) toProcess.push(walker.currentNode);
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
 
-    for(const textNode of toProcess){
+    for(const textNode of nodes){
       const raw = textNode.nodeValue;
       const rawN = normalize(raw);
       const idx = rawN.indexOf(needleN);
@@ -394,15 +108,14 @@ Furnius,Forneli,Fornerius,Furneaux or De Furnellis</font><font size="4">,</font>
       }
     }
 
-    matchCount.textContent = `${shown} matching line(s) shown · ${hl} highlight(s)`;
+    matchCount.textContent = `${shown} matching line(s) · ${hl} highlight(s)`;
   }
 
-  chipsWrap.addEventListener("click", (e) => {
+  chipsWrap.addEventListener("click", e => {
     const chip = e.target.closest(".chip");
     if(!chip) return;
-    const val = chip.dataset.chip;
-    setActiveChip(val);
-    q.value = (val === "__all__") ? "" : chip.textContent;
+    setActiveChip(chip.dataset.chip);
+    q.value = chip.dataset.chip === "__all__" ? "" : chip.textContent;
     applyFilter();
   });
 
@@ -426,7 +139,54 @@ Furnius,Forneli,Fornerius,Furneaux or De Furnellis</font><font size="4">,</font>
     matchCount.textContent = "";
   });
 
+  /* -----------------------------
+     Background music logic
+  ------------------------------ */
+  const bgm = document.getElementById("bgm");
+  const musicBtn = document.getElementById("musicBtn");
+  let musicOn = false;
+
+  async function startMusic(){
+    if(!bgm) return;
+    try{
+      await bgm.play();
+      musicOn = true;
+      if(musicBtn) musicBtn.textContent = "🔊 Music On";
+    }catch(e){
+      // Autoplay blocked until user interaction (normal)
+    }
+  }
+
+  function stopMusic(){
+    if(!bgm) return;
+    bgm.pause();
+    musicOn = false;
+    if(musicBtn) musicBtn.textContent = "🔇 Music Off";
+  }
+
+  // Attempt autoplay on load
+  startMusic();
+
+  // Enable on first user gesture
+  const gestureEvents = ["click","keydown","touchstart","wheel"];
+  const onFirstGesture = () => {
+    startMusic();
+    gestureEvents.forEach(ev =>
+      window.removeEventListener(ev, onFirstGesture, { passive:true })
+    );
+  };
+  gestureEvents.forEach(ev =>
+    window.addEventListener(ev, onFirstGesture, { passive:true })
+  );
+
+  // Manual toggle
+  if(musicBtn){
+    musicBtn.addEventListener("click", async () => {
+      if(musicOn) stopMusic();
+      else await startMusic();
+    });
+  }
+
+  // Initial render
   applyFilter();
 </script>
-</body>
-</html>
