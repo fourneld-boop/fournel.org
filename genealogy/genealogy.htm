@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fr"><head>
 <meta charset="utf-8">
@@ -88,6 +89,15 @@
     input[type="range"] { width: 140px; }
   }
 </style>
+<script>
+/* Hide any images that fail to load (prevents broken icons) */
+document.addEventListener('error', function (e) {
+  var t = e.target;
+  if (t && t.tagName === 'IMG') {
+    t.style.display = 'none';
+  }
+}, true);
+</script>
 </head>
 <body>
 <div id="topBar" role="region" aria-label="Language and music controls">
@@ -1528,9 +1538,7 @@ Adrien.</span></p>
   <tr>
     <td background="http://www.genealogie.umontreal.ca/en/images/fondActe.gif" 
     >&nbsp;</td>
-    <td><img height="21" 
-      src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" width=1 
-      border=0> </td></tr>
+    <td></td></tr>
   <tr>
     <td 
     background=http://www.genealogie.umontreal.ca/en/images/ombreBordGauche.jpg 
@@ -1598,9 +1606,7 @@ Adrien.</span></p>
     <td 
     background=http://www.genealogie.umontreal.ca/en/images/ombreBordDroit.jpg 
     ><!----></td>
-    <td><img 
-      src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" width=1 
-      border=0> </td></tr>
+    <td></td></tr>
   <tr>
     <td 
     background=http://www.genealogie.umontreal.ca/en/images/ombreCoinBasGauche.jpg 
@@ -1614,18 +1620,10 @@ Adrien.</span></p>
       border=0>
         
         <tr>
-          <td><img height="1" 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=50 border=0></td>
-          <td><img height="1" 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=400 border=0></td>
-          <td><img height="1" 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=49 border=0></td>
-          <td><img height="1" 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=1 border=0></td></tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td></tr>
         <tr>
           <td 
           background=http://www.genealogie.umontreal.ca/en/images/ombreCoinHautGauche.jpg 
@@ -1636,9 +1634,7 @@ Adrien.</span></p>
           <td 
           background=http://www.genealogie.umontreal.ca/en/images/ombreCoinHautDroit.jpg 
           rowSpan=2>&nbsp; </td>
-          <td><img height="21" 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=1 border=0> </td></tr>
+          <td></td></tr>
         <tr>
           <td 
           background=http://www.genealogie.umontreal.ca/en/images/fondActe.gif 
@@ -1650,9 +1646,7 @@ Adrien.</span></p>
                 <td>&nbsp;</td>
                 <td>&nbsp; 
             </td></tr></table></td>
-          <td><img height="21" 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=1 border=0> </td></tr>
+          <td></td></tr>
         <tr>
           <td 
           background=http://www.genealogie.umontreal.ca/en/images/ombreBordGauche.jpg 
@@ -1724,9 +1718,7 @@ Adrien.</span></p>
           <td 
           background=http://www.genealogie.umontreal.ca/en/images/ombreBordDroit.jpg 
           ><!----></td>
-          <td><img 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=1 border=0> </td></tr>
+          <td></td></tr>
         <tr>
           <td 
           background=http://www.genealogie.umontreal.ca/en/images/ombreCoinBasGauche.jpg 
@@ -1738,17 +1730,12 @@ Adrien.</span></p>
           <td 
           background=http://www.genealogie.umontreal.ca/en/images/ombreCoinBasDroit.jpg 
           rowSpan=2>&nbsp; </td>
-          <td><img height="18" 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=1 border=0> </td></tr>
+          <td></td></tr>
         <tr>
           <td 
           background=http://www.genealogie.umontreal.ca/en/images/ombreBordBas.jpg 
-          ><!--<img height="25" src="images/fond_cl_r12_c2.jpg" width="300" border="0">--></td>
-          <td><img height="21" 
-            src="http://www.genealogie.umontreal.ca/en/images/spacer.gif" 
-            width=1 border=0> 
-  </td></tr></table></td></tr></table>
+          ><!----></td>
+          <td></td></tr></table></td></tr></table>
 
 </main>
 </body></html>
